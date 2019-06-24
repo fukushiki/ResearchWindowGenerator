@@ -5,9 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ResearchWindowGenerator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="360" Width="720">
+        Title="UserInfo" Height="360" Width="520">
     <Grid>
-        <TextBox HorizontalAlignment="Left" Height="30" Margin="265,65,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="Subject_Name" Text="TextBox"
+                 Width="470" Height="35" 
+                 HorizontalAlignment="Left" 
+                 Margin="15,15,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" />
+        <ComboBox Name="Belonglist_ComboBox" 
+                  HorizontalAlignment="Left" 
+                  Margin="15,100,0,0" VerticalAlignment="Top" 
+                  Height="35" Width="470" SelectionChanged="Belonglist_SelectionChanged"
+                  >
+            
+        </ComboBox>
+        <ComboBox Name="Gradelist_ComboBox"  
+                  HorizontalAlignment="Left" 
+                  Margin="15,185,0,0" VerticalAlignment="Top" 
+                  Height="35" Width="470" SelectionChanged="Gradelist_SelectionChanged">
+        </ComboBox>
+        <Button Content="次へ" HorizontalAlignment="Left" Margin="385,280,0,0" VerticalAlignment="Top" Height="30" Width="100" RenderTransformOrigin="-0.15,0.822" Click="Button_Click"/>
+        <TextBlock Name="AlertTextBox" HorizontalAlignment="Left" Margin="15,280,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="30" Width="305"/>
 
     </Grid>
 </Window>
