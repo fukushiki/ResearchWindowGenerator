@@ -10,23 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ResearchWindowGenerator
 {
     /// <summary>
-    /// MainWindow.xaml の相互作用ロジック
+    /// MenuWindow.xaml の相互作用ロジック
     /// </summary>
-
-    
-    public partial class MainWindow : Window
+    public partial class MenuWindow : Window
     {
-        public MainWindow()
+        public MenuWindow()
         {
             InitializeComponent();
-            Initialize.InitializeDesktopInfo();
-            
         }
     }
 }
