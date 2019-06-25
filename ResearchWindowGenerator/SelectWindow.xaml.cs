@@ -19,7 +19,8 @@ namespace ResearchWindowGenerator
     /// </summary>
     public partial class SelectWindow : Window
     {
-        
+        string[] windowNames = { "ResearchWindow1", "ResearchWindow2", "ResearchWindow3", "ResearchWindow4", "ResearchWindow5" ,"ResarchWindowTest"};
+
         public SelectWindow()
         {
             InitializeComponent();
@@ -30,9 +31,9 @@ namespace ResearchWindowGenerator
 
         private void InitializeComboBox()
         {
-            string[] window_number = { "ResearchWindow1", "ResearchWindow2", "ResearchWindow3", "ResearchWindow4", "ResearchWindow5" };
+            
             //Windowlist
-            foreach (string i in window_number)
+            foreach (string i in windowNames)
             {
                 this.Windowlist_ComboBox.Items.Add(i);
             }
@@ -42,9 +43,39 @@ namespace ResearchWindowGenerator
         private void NextButton_Click(object sender, RoutedEventArgs e)
         {
             //TODO : Xamlによって作成するWindowの作り分けをする
-            //Console.WriteLine(Windowlist_ComboBox.Items.IndexOf(Windowlist_ComboBox.Text));
-            //ResarchWindows researchWindow1 = new ResarchWindows();
-                
+            string selected_windowname = Windowlist_ComboBox.Text;
+            Console.WriteLine(selected_windowname);
+
+            switch (Array.IndexOf(windowNames, selected_windowname))
+            {
+                case 0:
+                    Console.WriteLine(windowNames[0]);
+                    
+                    break;
+                case 1:
+                    Console.WriteLine(windowNames[1]);
+                    break;
+                case 2:
+                    Console.WriteLine(windowNames[2]);
+                    break;
+                case 3:
+                    Console.WriteLine(windowNames[3]);
+                    break;
+                case 4:
+                    Console.WriteLine(windowNames[4]);
+                    break;
+                case 5:
+                    Console.WriteLine(windowNames[5]);
+                    ResarchWindowTest resarchWindowTest = new ResarchWindowTest();
+                    resarchWindowTest.Show();
+                    break;
+                default:
+                    Console.WriteLine("Default case");
+                    break;
+            }
+            //TODO : Windowが選択できるようにする
+            //ResarchWindowTest resarchWindowTest = new ResarchWindowTest();
+            this.Close();
         }
     }
 

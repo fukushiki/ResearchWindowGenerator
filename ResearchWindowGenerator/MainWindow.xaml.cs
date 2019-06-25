@@ -33,6 +33,7 @@ namespace ResearchWindowGenerator
         {
             InitializeComponent(); //XAMLから初期配置を設定するらしい
             //ReadCsv();
+            
             InitializeComboBox();
             Subject_Name.Text = "";
             Belonglist_ComboBox.SelectedIndex = 0;
