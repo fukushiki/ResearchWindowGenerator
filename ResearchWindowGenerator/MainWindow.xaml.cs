@@ -38,6 +38,7 @@ namespace ResearchWindowGenerator
             Subject_Name.Text = "";
             Belonglist_ComboBox.SelectedIndex = 0;
             Gradelist_ComboBox.SelectedIndex = 0;
+            //TODO:設定ファイルがないなら設定メモファイルを生成するように設計
             Initialize.InitializeDesktopInfo();
 
 
@@ -90,9 +91,12 @@ namespace ResearchWindowGenerator
 
             if (is_contents_flag) {
                 //ログ生成
+                /*
                 Console.WriteLine("ユーザー名 : "+Subject_Name.Text);
                 Console.WriteLine("所属 : "+Belonglist_ComboBox.Text);
                 Console.WriteLine("学年 : "+Gradelist_ComboBox.Text);
+                */
+                Logger.SaveUserData(Subject_Name.Text, Belonglist_ComboBox.Text, Gradelist_ComboBox.Text);
 
                 selectWindow = new SelectWindow();
                 selectWindow.Show();
@@ -108,3 +112,4 @@ namespace ResearchWindowGenerator
         }
     }
 }
+    
