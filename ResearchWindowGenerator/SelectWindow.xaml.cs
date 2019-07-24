@@ -19,7 +19,7 @@ namespace ResearchWindowGenerator
     /// </summary>
     public partial class SelectWindow : Window
     {
-        string[] windowNames = { "ResearchWindow1", "ResearchWindow2", "ResearchWindow3", "ResearchWindow4", "ResearchWindow5" ,"ResarchWindowTest"};
+        string[] windowNames = { "ResearchWindow1", "ResearchWindow2", "ResearchWindow3", "ResearchWindow4", "ResearchWindow5" ,"ResarchWindowTest","ResearchWindowTest_Log"};
 
         public SelectWindow()
         {
@@ -68,6 +68,11 @@ namespace ResearchWindowGenerator
                     Console.WriteLine(windowNames[5]);
                     ResarchWindowTest resarchWindowTest = new ResarchWindowTest();
                     resarchWindowTest.Show();
+                    break;
+                case 6:
+                    Console.WriteLine(windowNames[5]);
+                    ResarchWindowTest_Log resarchWindowTest_Log = new ResarchWindowTest_Log();
+                    resarchWindowTest_Log.Show();
                     break;
                 default:
                     Console.WriteLine("Default case");

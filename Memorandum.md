@@ -25,4 +25,7 @@
 	```C#
 	Console.WriteLine("Hello World!");
 	```
+    - IO.File.Create ‚Ì‚ ‚Æ‚Ìˆ—‚ÅIO.Exception‚ª”­¶‚·‚é
+      IO.File.Create().Close()‚Å‰ğŒˆ@‚¿‚á‚ñ‚Æ•Â‚¶‚È‚¢‚Æ‚¾‚ß
+      (https://qiita.com/keita1987/items/2ca6f456204517e76fef)
 ## 
