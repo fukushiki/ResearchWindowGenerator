@@ -1,4 +1,5 @@
 ﻿<Window x:Class="ResearchWindowGenerator.ResarchWindowTest_Log"
+        Name="researchwindowtest"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,8 +7,13 @@
         xmlns:local="clr-namespace:ResearchWindowGenerator"
         mc:Ignorable="d"
         Title="ResarchWindowTest" Height="450" Width="800">
+
     <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="310,225,0,0" VerticalAlignment="Top" Width="75"/>
+        <Canvas x:Name ="mycanvas" Height="450" Width="800">
+        </Canvas>
 
     </Grid>
+
 </Window>
+
+
