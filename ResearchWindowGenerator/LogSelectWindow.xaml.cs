@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ResearchWindowGenerator.ResearchWindow;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -71,8 +72,34 @@ namespace ResearchWindowGenerator
             string selectedCsvName = csvList_ConboBox.Text;
             int csvNum = Array.IndexOf(csvlist, selectedCsvName);
             string file_pass = this.csvList_ConboBox.Text;
-            ResarchWindowTest_Log resarchWindowTest_Log = new ResarchWindowTest_Log(file_pass);
-            resarchWindowTest_Log.Show();
+
+            string csv_file_name =
+                System.IO.Path.GetFileName(file_pass);
+            string[] csv_window_name = csv_file_name.Split('_');
+            foreach(string a in csv_window_name)
+            {
+                Console.WriteLine(a);
+            }
+
+            string fn = csv_window_name[1];
+            Console.WriteLine(fn);
+            switch (fn)
+            {
+                case "ResarchWindowTest":
+                    ResearchWindowTest researchWindowTest = new ResearchWindowTest(file_pass,true);
+                    researchWindowTest.Show();
+                    break;
+                case "ResarchWindowPowerPoint":
+                    ResearchWindowPowerPoint researchWindowPowerPoint = new ResearchWindowPowerPoint(file_pass, true);
+                    researchWindowPowerPoint.Show();
+                    break;
+
+                default:
+                    Console.WriteLine("ファイルがないじゃん");
+                    break;
+            }
+
+            
             this.Close();
         }
 

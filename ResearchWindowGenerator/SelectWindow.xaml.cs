@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ResearchWindowGenerator.ResearchWindow;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,7 +20,7 @@ namespace ResearchWindowGenerator
     /// </summary>
     public partial class SelectWindow : Window
     {
-        string[] windowNames = { "ResearchWindow1", "ResearchWindow2", "ResearchWindow3", "ResearchWindow4", "ResearchWindow5" ,"ResarchWindowTest","ResearchWindowTest_Log"};
+        string[] windowNames = { "ResearchWindowPowerPoint", "ResearchWindowPDF", "ResearchWindowCalendar", "ResearchWindowTest","ResearchWindowTest_Log" };
 
         public SelectWindow()
         {
@@ -46,18 +47,19 @@ namespace ResearchWindowGenerator
             string selected_windowname = Windowlist_ComboBox.Text;
             Console.WriteLine(selected_windowname);
 
-            switch (Array.IndexOf(windowNames, selected_windowname))
+            switch (selected_windowname)
             {
-                case 0:
-                    Console.WriteLine(windowNames[0]);
-                    
+                case "ResearchWindowTest":
+                    ResearchWindowTest researchWindowTest = new ResearchWindowTest("", false);
+                    researchWindowTest.Show();
                     break;
-                case 1:
-                    Console.WriteLine(windowNames[1]);
+                case "ResearchWindowPowerPoint":
+                    ResearchWindowPowerPoint researchWindowPowerPoint = new ResearchWindowPowerPoint("", false);
+                    researchWindowPowerPoint.Show();
                     break;
-                case 2:
-                    Console.WriteLine(windowNames[2]);
+                case "Research":
                     break;
+                /*
                 case 3:
                     Console.WriteLine(windowNames[3]);
                     break;
@@ -66,20 +68,19 @@ namespace ResearchWindowGenerator
                     break;
                 case 5:
                     Console.WriteLine(windowNames[5]);
-                    ResarchWindowTest resarchWindowTest = new ResarchWindowTest();
-                    resarchWindowTest.Show();
+                    ResearchWindowTest researchWindowTest = new ResearchWindowTest("",false);
+                    researchWindowTest.Show();
                     break;
                 case 6:
                     Console.WriteLine(windowNames[5]);
-                    ResarchWindowTest_Log resarchWindowTest_Log = new ResarchWindowTest_Log("test");
-                    resarchWindowTest_Log.Show();
+                    ResearchWindowTest_Log researchWindowTest_Log = new ResearchWindowTest_Log("test");
+                    researchWindowTest_Log.Show();
                     break;
+                */
                 default:
                     Console.WriteLine("Default case");
                     break;
             }
-            //TODO : Windowが選択できるようにする
-            //ResarchWindowTest resarchWindowTest = new ResarchWindowTest();
             this.Close();
         }
     }

@@ -36,6 +36,7 @@ namespace ResearchWindowGenerator
             
             //File名生成
             String start_time = date.Year + "." + date.Month + "." + date.Day + "." + date.Hour + "." + date.Minute + "." + date.Second;
+            if (subjectName.Equals("")) subjectName = "YURIKONANAO";
             fileName = subjectName + "_" + _v + "_" + start_time;
             //Console.WriteLine();
             //ログファイルの生成

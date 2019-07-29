@@ -72,14 +72,11 @@
     <Compile Include="LogShowSlideBar.xaml.cs">
       <DependentUpon>LogShowSlideBar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ResarchWindowTest_Log.xaml.cs">
-      <DependentUpon>ResarchWindowTest_Log.xaml</DependentUpon>
+    <Compile Include="ResearchWindowTest.xaml.cs">
+      <DependentUpon>ResearchWindowTest.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ResarchWindowTest.xaml.cs">
-      <DependentUpon>ResarchWindowTest.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ResearchWindow\ResarchWindow_PowerPoint.xaml.cs">
-      <DependentUpon>ResarchWindow_PowerPoint.xaml</DependentUpon>
+    <Compile Include="ResearchWindow\ResearchWindowPowerPoint.cs">
+      <DependentUpon>ResearchWindowPowerPoint.xaml</DependentUpon>
     </Compile>
     <Compile Include="SelectWindow.xaml.cs">
       <DependentUpon>SelectWindow.xaml</DependentUpon>
@@ -87,6 +84,7 @@
     <Compile Include="LogDrawing_Canvas.xaml.cs">
       <DependentUpon>LogDrawing_Canvas.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utility.cs" />
     <Page Include="LogControler.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -112,15 +110,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ResarchWindowTest_Log.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="ResarchWindowTest.xaml">
+    <Page Include="ResearchWindowTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ResearchWindow\ResarchWindow_PowerPoint.xaml">
+    <Page Include="ResearchWindow\ResearchWindowPowerPoint.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -33,7 +33,7 @@ namespace ResearchWindowGenerator
 
         LogDrawing_Canvas logdrawing;
 
-        public ResarchWindowTest_Log(string _filePath)
+        public ResearchWindowTest_Log(string _filePath)
         {
             filePath = _filePath;
             InitializeComponent();

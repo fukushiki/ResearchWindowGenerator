@@ -29,7 +29,7 @@ namespace ResearchWindowGenerator
         public LogDrawing_Canvas()
         {
             InitializeComponent();
-            //csvPath = @"../../../LogFolder/_ResarchWindowText_2019.7.15.14.57.3.csv";
+            //csvPath = @"../../../LogFolder/_ResarchWindowTest_2019.7.15.14.57.3.csv";
             this.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             this.VerticalAlignment = System.Windows.VerticalAlignment.Top;
             this.Margin = new Thickness(0, 0, 0, 0);
