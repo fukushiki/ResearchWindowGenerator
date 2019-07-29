@@ -29,6 +29,7 @@ namespace ResearchWindowGenerator
         string[] csvContents = File.ReadAllLines(filePathCsv);
         //string UserClassList =
         SelectWindow selectWindow;
+        LogSelectWindow logSelectWindow;
         public MainWindow()
         {
             InitializeComponent(); //XAMLから初期配置を設定するらしい
@@ -109,6 +110,14 @@ namespace ResearchWindowGenerator
                 AlertTextBox.Text = "記入漏れがあります";
             }
 
+        }
+
+        private void LogSlect_Click(object sender, RoutedEventArgs e)
+        {
+            //TODO : ログ選択Windowへ
+            logSelectWindow = new LogSelectWindow();
+            logSelectWindow.Show();
+            this.Close();
         }
     }
 }

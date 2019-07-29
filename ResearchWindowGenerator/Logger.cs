@@ -51,7 +51,7 @@ namespace ResearchWindowGenerator
         /// <param name="_time">250ms毎</param>
         /// <param name="_x">マウスカーソルの座標x</param>
         /// <param name="_y">マウスカーソルの座標y</param>
-        internal static void SaveMouseCursorPosition(double _time, int _x, int _y)
+        internal static void SaveMouseCursorPosition(double _time, double _x, double _y)
         {
             String write_data = _time + "," + _x + "," + _y;
             //Console.WriteLine(write_data);

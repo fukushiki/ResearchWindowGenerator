@@ -62,12 +62,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="LogControler.xaml.cs">
+      <DependentUpon>LogControler.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Logger.cs" />
+    <Compile Include="LogSelectWindow.xaml.cs">
+      <DependentUpon>LogSelectWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="LogShowSlideBar.xaml.cs">
+      <DependentUpon>LogShowSlideBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ResarchWindowTest_Log.xaml.cs">
       <DependentUpon>ResarchWindowTest_Log.xaml</DependentUpon>
     </Compile>
     <Compile Include="ResarchWindowTest.xaml.cs">
       <DependentUpon>ResarchWindowTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ResearchWindow\ResarchWindow_PowerPoint.xaml.cs">
+      <DependentUpon>ResarchWindow_PowerPoint.xaml</DependentUpon>
     </Compile>
     <Compile Include="SelectWindow.xaml.cs">
       <DependentUpon>SelectWindow.xaml</DependentUpon>
@@ -75,6 +87,18 @@
     <Compile Include="LogDrawing_Canvas.xaml.cs">
       <DependentUpon>LogDrawing_Canvas.xaml</DependentUpon>
     </Compile>
+    <Page Include="LogControler.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LogSelectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="LogShowSlideBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -93,6 +117,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ResarchWindowTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResearchWindow\ResarchWindow_PowerPoint.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

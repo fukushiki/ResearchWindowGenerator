@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace ResearchWindowGenerator
 {
@@ -23,16 +24,28 @@ namespace ResearchWindowGenerator
         static int MAXCOLUMN;
         //TODO : できるならLISTのLISTにしたい　https://teratail.com/questions/40608
         static List<double>[] csvContentsList = new List<double>[100000];
+        static string csvPath;
 
         public LogDrawing_Canvas()
         {
             InitializeComponent();
-            string csvPath = @"../../../LogFolder/_ResarchWindowText_2019.7.15.14.57.3.csv";
-            CsvReader(csvPath);
-            DrawLogLine();
+            //csvPath = @"../../../LogFolder/_ResarchWindowText_2019.7.15.14.57.3.csv";
+            this.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            this.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+            this.Margin = new Thickness(0, 0, 0, 0);
+
+
+
         }
 
-        public static void CsvReader(string _csvpass)
+        public void setFilePath(string _file_path)
+        {
+            csvPath = _file_path;
+            Console.WriteLine("LogDrawing_Canvas.xaml" + csvPath);
+            CsvReader(csvPath);
+        }
+
+        private void CsvReader(string _csvpass)
         {
             int count = 0;
             try
@@ -50,12 +63,13 @@ namespace ResearchWindowGenerator
                         csvContentsList[count] = new List<double>();
                         foreach (var value in values)
                         {
+                            /*
                             #if DEBUG
                             Console.WriteLine(value.Length);
                             Console.WriteLine(Convert.ToDouble(value));
                             Console.WriteLine("count =" + count + ", counts = " + count + ", value = " + value);
                             Console.WriteLine("ここからcsv_arrayの中身");
-                            #endif
+                            #endif*/
                             csvContentsList[count].Add(Convert.ToDouble(value));
                         }
                         count++;
@@ -70,6 +84,7 @@ namespace ResearchWindowGenerator
             }
 
             Console.WriteLine("ここから中身の確認");
+            DrawLogLine();
         }
 
         private void DrawLogLine()
@@ -79,15 +94,34 @@ namespace ResearchWindowGenerator
 
             for (int i = 0; i < MAXCOLUMN; i++)
             {
+                /*
                 #if DEBUG
                 Console.WriteLine("csvContentsList[" + i + "]");
                 Console.WriteLine("時間 : " + csvContentsList[i].ToArray()[0] + "秒 //" + "x座標" + csvContentsList[i].ToArray()[1] + " //" + "y座標" + csvContentsList[i].ToArray()[2]);
-                # endif
+                # endif */
                 polyline.Points.Add(new Point(csvContentsList[i].ToArray()[1], csvContentsList[i].ToArray()[2]));
                 
             }
             polyline.Stroke = Brushes.Blue;
-            mycanvas.Children.Add(polyline);  
+            polyline.Opacity = 100000;
+            mycanvas.Children.Add(polyline);
+            DoEvents();
         }
+
+        /// <summary>
+        /// 現在メッセージ待ち行列の中にある全てのUIメッセージを処理します。
+        /// </summary>
+        private void DoEvents()
+        {
+            DispatcherFrame frame = new DispatcherFrame();
+            var callback = new DispatcherOperationCallback(obj =>
+            {
+                ((DispatcherFrame)obj).Continue = false;
+                return null;
+            });
+            Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Background, callback, frame);
+            Dispatcher.PushFrame(frame);
+        }
+
     }
 }

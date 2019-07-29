@@ -71,7 +71,7 @@ namespace ResearchWindowGenerator
                     break;
                 case 6:
                     Console.WriteLine(windowNames[5]);
-                    ResarchWindowTest_Log resarchWindowTest_Log = new ResarchWindowTest_Log();
+                    ResarchWindowTest_Log resarchWindowTest_Log = new ResarchWindowTest_Log("test");
                     resarchWindowTest_Log.Show();
                     break;
                 default:

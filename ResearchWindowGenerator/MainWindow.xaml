@@ -24,7 +24,9 @@
                   Height="35" Width="470" SelectionChanged="Gradelist_SelectionChanged">
         </ComboBox>
         <Button Content="次へ" HorizontalAlignment="Left" Margin="385,280,0,0" VerticalAlignment="Top" Height="30" Width="100" RenderTransformOrigin="-0.15,0.822" Click="Button_Click"/>
-        <TextBlock Name="AlertTextBox" HorizontalAlignment="Left" Margin="15,280,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="30" Width="305"/>
+        <TextBlock x:Name="AlertTextBox" HorizontalAlignment="Left" Margin="15,280,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="30" Width="305"><InlineUIContainer>
+                <Button x:Name= "logSlect" Content="ログを見る" Width="100" Height="30" Click="LogSlect_Click"/>
+            </InlineUIContainer></TextBlock>
 
     </Grid>
 </Window>
