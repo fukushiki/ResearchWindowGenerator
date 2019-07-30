@@ -1,4 +1,5 @@
 ﻿using ResearchWindowGenerator.ResearchWindow;
+using ResearchWindowGenerator.ResearchWindowFolder;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -89,9 +90,13 @@ namespace ResearchWindowGenerator
                     ResearchWindowTest researchWindowTest = new ResearchWindowTest(file_pass,true);
                     researchWindowTest.Show();
                     break;
-                case "ResarchWindowPowerPoint":
+                case "ResearchWindowPowerPoint":
                     ResearchWindowPowerPoint researchWindowPowerPoint = new ResearchWindowPowerPoint(file_pass, true);
                     researchWindowPowerPoint.Show();
+                    break;
+                case "ResearchWindowPDF":
+                    ResearchWindowPDF researchWindowPDF = new ResearchWindowPDF(file_pass, true);
+                    researchWindowPDF.Show();
                     break;
 
                 default:

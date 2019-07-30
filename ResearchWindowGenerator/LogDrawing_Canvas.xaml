@@ -5,13 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ResearchWindowGenerator"
              mc:Ignorable="d" 
-             d:DesignHeight="1020" d:DesignWidth="1980"
              x:Name="logDrawing_Canvas">
     <Grid>
         
-        <Canvas x:Name ="mycanvas" Height="1020" Width="1980">
+        <Canvas x:Name ="mycanvas">
             
         </Canvas>
         
     </Grid>
 </UserControl>
+<!--d:DesignHeight="1020" d:DesignWidth="1980"-->

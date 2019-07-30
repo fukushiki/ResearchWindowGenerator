@@ -1,19 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-namespace ResearchWindowGenerator
+namespace ResearchWindowGenerator.ResearchWindowFolder
 {
     /// <summary>
-    /// ResearchWindowTest.xaml の相互作用ロジック
+    /// ResearchWindowPDF.xaml の相互作用ロジック
     /// </summary>
-    public partial class ResearchWindowTest : Window
+    public partial class ResearchWindowPDF : Window
     {
         private Timer _timer = null;
         static double TimeCount = 0.0;
@@ -24,39 +30,32 @@ namespace ResearchWindowGenerator
         static List<double>[] csvContentsList = new List<double>[100000];
 
         LogDrawing_Canvas logdrawing;
-
-        public ResearchWindowTest(string file_name, bool log_flag)
+        public ResearchWindowPDF(string file_name, bool log_flag)
         {
+            
             LogFlag = log_flag;
             filePath = file_name;
             InitializeComponent();
-            
-            // タイトルバーとの境界線を表示しない
-            //this.WindowStyle = WindowStyle.None;
-            //this.WindowStyle = WindowStyle.SingleBorderWindow;
-            //最大化表示
-            Window researchwindowtest = this.FindName("researchWindowTest") as Window;
-            researchwindowtest.WindowState = WindowState.Maximized;
-            researchwindowtest.Width  = Screen.PrimaryScreen.WorkingArea.Width;
-            researchwindowtest.Height = Screen.PrimaryScreen.WorkingArea.Height;
-            Console.WriteLine("//==============================================");
-            Console.WriteLine(Width);
-            Console.WriteLine(Height);
+            Window researchwindowpdf = this.FindName("researchWindowPDF") as Window;
+            researchwindowpdf.WindowState = WindowState.Maximized;
+            researchwindowpdf.Width = Screen.PrimaryScreen.WorkingArea.Width;
+            researchwindowpdf.Height = Screen.PrimaryScreen.WorkingArea.Height;
             DoEvents();
 
+
             StackPanel myStackPanel = this.FindName("myStackPanel") as StackPanel;
-            myStackPanel.Height = researchwindowtest.Height;
-            myStackPanel.Width = researchwindowtest.Width;
-            
-            
+            myStackPanel.Height = researchwindowpdf.Height;
+            myStackPanel.Width = researchwindowpdf.Width;
+
+
 
             //TODO : マウスカーソルをウィンドウ外に出ないように固定する
             //InitializeCursor();
 
             //TODO : マウスカーソルの座標位置のログを取得できるようにする
-            if(log_flag == false)
+            if (log_flag == false)
             {
-                Logger.LoggerInitialize("ResarchWindowTest");
+                Logger.LoggerInitialize("ResearchWindowPDF");
                 /*
                 Logger.SaveMouseCursorPosition();
                 */
@@ -65,13 +64,7 @@ namespace ResearchWindowGenerator
 
 
 
-            System.Windows.Controls.Button button = new System.Windows.Controls.Button
-            {
-                Height = myStackPanel.Height / 2,
-                Width = myStackPanel.Width / 2,
-                Margin = new Thickness(0, 0, 0, 0),
-            };
-            myStackPanel.Children.Add(button);
+
 
             if (log_flag == true)
             {
@@ -83,16 +76,22 @@ namespace ResearchWindowGenerator
                     VerticalAlignment = System.Windows.VerticalAlignment.Top,
                     Margin = new Thickness(0, 0, 0, 0),
                 };
+                //logdrawing.logDrawing_Canvas.Background = Brushes.Aquamarine;
+                //logdrawing.logDrawing_Canvas.Background = Brushes.Gray;
+                //logdrawing.logDrawing_Canvas.Opacity = 0.1;
+                //Console.WriteLine("logdrawing : Height=" + logdrawing.Height);
+                //Console.WriteLine("logdrawing : Width=" + logdrawing.Width);
 
-                //myStackPanel.Children.Add(logdrawing);
-                this.AddChild(logdrawing);
+                myStackPanel.Children.Add(logdrawing);
+
 
                 logdrawing.setFilePath(filePath);
+
+
                 Generate_subWindow();
+
+
             }
-
-            
-
         }
 
         //https://moewe-net.com/csharp/forms-timer
@@ -122,14 +121,10 @@ namespace ResearchWindowGenerator
             //マウスカーソルの座標を取得
             System.Drawing.Point p = System.Windows.Forms.Control.MousePosition;
             TimeCount += 0.02;
-            Logger.SaveMouseCursorPosition(TimeCount,p.X, p.Y);
+            Logger.SaveMouseCursorPosition(TimeCount, p.X, p.Y);
         }
 
-        /*
-        public void InitializeCursor() {
-            Console.WriteLine(this.Height +":"+ this.Width);
-            System.Windows.Forms.Cursor.Clip = new System.Drawing.Rectangle(0,0,(int)this.Width,(int)this.Height);
-        }*/
+
 
         private void DoEvents()
         {
@@ -150,6 +145,5 @@ namespace ResearchWindowGenerator
             logControler.Show();
 
         }
-
     }
 }

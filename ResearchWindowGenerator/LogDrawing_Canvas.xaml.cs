@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -19,7 +20,7 @@ namespace ResearchWindowGenerator
     /// <summary>
     /// UserControl1.xaml の相互作用ロジック
     /// </summary>
-    public partial class LogDrawing_Canvas : UserControl
+    public partial class LogDrawing_Canvas : System.Windows.Controls.UserControl
     {
         static int MAXCOLUMN;
         //TODO : できるならLISTのLISTにしたい　https://teratail.com/questions/40608
@@ -30,11 +31,20 @@ namespace ResearchWindowGenerator
         {
             InitializeComponent();
             //csvPath = @"../../../LogFolder/_ResarchWindowTest_2019.7.15.14.57.3.csv";
+            /*
             this.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             this.VerticalAlignment = System.Windows.VerticalAlignment.Top;
             this.Margin = new Thickness(0, 0, 0, 0);
+            */
 
+            System.Windows.Controls.UserControl logDraw = this.FindName("logDrawing_Canvas") as System.Windows.Controls.UserControl;
+            //researchwindowpdf.WindowState = WindowState.Maximized;
+            logDraw.Width = Screen.PrimaryScreen.WorkingArea.Width;
+            logDraw.Height = Screen.PrimaryScreen.WorkingArea.Height;
 
+            Canvas myCanvas = this.FindName("mycanvas") as Canvas;
+            mycanvas.Height = logDraw.Height;
+            mycanvas.Width = logDraw.Width;
 
         }
 

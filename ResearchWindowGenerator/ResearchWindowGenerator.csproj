@@ -72,6 +72,9 @@
     <Compile Include="LogShowSlideBar.xaml.cs">
       <DependentUpon>LogShowSlideBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ResearchWindowFolder\ResearchWindowPDF.xaml.cs">
+      <DependentUpon>ResearchWindowPDF.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ResearchWindowFolder\ResearchWindowPowerPoint.xaml.cs">
       <DependentUpon>ResearchWindowPowerPoint.xaml</DependentUpon>
     </Compile>
@@ -110,6 +113,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ResearchWindowFolder\ResearchWindowPDF.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ResearchWindowFolder\ResearchWindowPowerPoint.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
