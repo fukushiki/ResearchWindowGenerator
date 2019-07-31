@@ -75,26 +75,34 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             StackPanel radiobuttonStackPanel = this.FindName("radiobuttonStackPanel") as StackPanel;
             radiobuttonStackPanel.Height = researchwindowpdf.Height/2;
             radiobuttonStackPanel.Width = researchwindowpdf.Width / 4;
-            Grid.SetZIndex(radiobuttonStackPanel, 1);
+            radiobuttonStackPanel.Margin = new Thickness(myStackPanel.Width, 0, 0, 0);
+            //Grid.SetZIndex(radiobuttonStackPanel, 1);
+            StackPanel.SetZIndex(radiobuttonStackPanel, 1);
 
             StackPanel listviewStackPanel = this.FindName("listviewStackPanel") as StackPanel;
             listviewStackPanel.Height = researchwindowpdf.Height/2;
             listviewStackPanel.Width = researchwindowpdf.Width / 4;
-            Grid.SetZIndex(listviewStackPanel, 1);
+            listviewStackPanel.Margin = new Thickness(myStackPanel.Width + radiobuttonStackPanel.Width, 0, 0, 0);
+            //Grid.SetZIndex(listviewStackPanel, 1);
+            StackPanel.SetZIndex(listviewStackPanel, 1);
+
 
             StackPanel te = this.FindName("temp1StackPanel") as StackPanel;
             te.Height = researchwindowpdf.Height/2;
             te.Width = researchwindowpdf.Width / 4;
-            Grid.SetZIndex(te, 1);
-
+            //Grid.SetZIndex(te, 1);
+            StackPanel.SetZIndex(te, 1);
+            te.Margin= new Thickness(myStackPanel.Width, listviewStackPanel.Height, 0, 0);
 
             StackPanel buttonStackPanel = this.FindName("buttonStackPanel") as StackPanel;
             buttonStackPanel.Height = researchwindowpdf.Height/2;
             buttonStackPanel.Width = researchwindowpdf.Width / 4;
-            Grid.SetZIndex(buttonStackPanel, 1);
+            buttonStackPanel.Margin = new Thickness(myStackPanel.Width + radiobuttonStackPanel.Width, listviewStackPanel.Height, 0, 0);
+            //Grid.SetZIndex(buttonStackPanel, 1);
+            StackPanel.SetZIndex(buttonStackPanel, 1);
             Button loggerButton = new Button {
-                Width = buttonStackPanel.Width * 0.1,
-                Height = buttonStackPanel.Height * 0.1,
+                Width = buttonStackPanel.Width * 0.9,
+                Height = buttonStackPanel.Height * 0.0,
                 Content = "Start",
                 Margin = new Thickness(buttonStackPanel.Width*0.1, buttonStackPanel.Height * 0.1, buttonStackPanel.Width * 0.1, buttonStackPanel.Height * 0.1),
             };
@@ -104,8 +112,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             StackPanel drawlogStackPanel = this.FindName("drawlogStackPanel") as StackPanel;
             drawlogStackPanel.Height = researchwindowpdf.Height;
             drawlogStackPanel.Width = researchwindowpdf.Width;
-            Grid.SetZIndex(drawlogStackPanel, 100);
-
+            //drawlogStackPanel.Background = new SolidColorBrush(Colors.Green);
+            //Grid.SetZIndex(drawlogStackPanel, 100);
+            StackPanel.SetZIndex(drawlogStackPanel, 100);
 
 
 
@@ -119,8 +128,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Logger.SaveMouseCursorPosition();
                 */
                 StartTimer();
-            }else
-            {   
+            }
+            if(log_flag == true){   
                 logdrawing = new LogDrawing_Canvas
                 {
                     Height = this.Height,
