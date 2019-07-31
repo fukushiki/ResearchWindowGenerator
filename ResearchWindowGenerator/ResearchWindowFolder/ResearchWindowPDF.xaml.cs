@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Panel = System.Windows.Controls.Panel;
 using WebBrowser = System.Windows.Controls.WebBrowser;
 
 namespace ResearchWindowGenerator.ResearchWindowFolder
@@ -31,6 +32,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         //TODO : できるならLISTのLISTにしたい　https://teratail.com/questions/40608
         static List<double>[] csvContentsList = new List<double>[100000];
 
+        
+
         LogDrawing_Canvas logdrawing;
         public ResearchWindowPDF(string file_name, bool log_flag)
         {
@@ -42,16 +45,29 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             researchwindowpdf.WindowState = WindowState.Maximized;
             researchwindowpdf.Width = Screen.PrimaryScreen.WorkingArea.Width;
             researchwindowpdf.Height = Screen.PrimaryScreen.WorkingArea.Height;
-            DoEvents();
+            
 
 
             StackPanel myStackPanel = this.FindName("myStackPanel") as StackPanel;
-            myStackPanel.Height = researchwindowpdf.Height;
+            myStackPanel.Height = researchwindowpdf.Height-30;
             myStackPanel.Width = researchwindowpdf.Width;
 
-            PDFReader();
 
 
+            //DoEvents();
+            //WebBrowser pdfviewer = this.FindName("PDFViewer") as WebBrowser;
+            WebBrowser pdfviewer = new WebBrowser
+            {
+                Width = researchwindowpdf.Width/3,
+                //Height = researchwindowpdf.Height,
+                //Height = this.Height,
+                HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
+                VerticalAlignment = System.Windows.VerticalAlignment.Top,
+                Margin = new Thickness(0, 0, 0, 0),
+            };
+            //<WebBrowser x:Name="PDFViewer" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            PDFReader(pdfviewer);
+            myStackPanel.Children.Add(pdfviewer);
 
             //TODO : マウスカーソルをウィンドウ外に出ないように固定する
             //InitializeCursor();
@@ -71,28 +87,29 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
 
             if (log_flag == true)
-            {
+            {   
                 logdrawing = new LogDrawing_Canvas
                 {
-                    Height = myStackPanel.Height,
-                    Width = myStackPanel.Width,
+                    Height = this.Height,
+                    Width = this.Width,
                     HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
                     VerticalAlignment = System.Windows.VerticalAlignment.Top,
-                    Margin = new Thickness(0, 0, 0, 0),
+                    Margin = new Thickness(-pdfviewer.Width, 0, 0, 0),
                 };
-                //logdrawing.logDrawing_Canvas.Background = Brushes.Aquamarine;
-                //logdrawing.logDrawing_Canvas.Background = Brushes.Gray;
-                //logdrawing.logDrawing_Canvas.Opacity = 0.1;
-                //Console.WriteLine("logdrawing : Height=" + logdrawing.Height);
-                //Console.WriteLine("logdrawing : Width=" + logdrawing.Width);
 
                 myStackPanel.Children.Add(logdrawing);
-
-
                 logdrawing.setFilePath(filePath);
+                //researchWindowPDF.
 
 
-                Generate_subWindow();
+
+                StackPanel.SetZIndex(logdrawing, 30);
+                StackPanel.SetZIndex(pdfviewer, 10);
+
+                
+
+                //Generate_subWindow();
+                //DoEvents();
 
 
             }
@@ -151,24 +168,25 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         }
 
 
-        private void PDFReader()
+        private void PDFReader(WebBrowser pdfviewer)
         {
-            String PDFfilePass = @"../../../PDFFolder/smartIoT.pdf";
+            //String PDFfilePass = @"../../../PDFFolder/smartIoT.pdf";
             Assembly mainAssembly = Assembly.GetExecutingAssembly();
 
-            WebBrowser pdfviewer = this.FindName("PDFViewer") as WebBrowser;
-            pdfviewer.Width = Screen.PrimaryScreen.WorkingArea.Width / 3;
-            pdfviewer.Height = Screen.PrimaryScreen.WorkingArea.Height;
+            
+            
+            
+            
+            //pdfviewer.Height = Screen.PrimaryScreen.WorkingArea.Height;
 
 
             // Get URI to navigate to  
-            //Uri uri = new Uri("C:/Users/pegaf/source/repos/ResearchWindowGenerator/PDFFolder/smartIoT.pdf", UriKind.RelativeOrAbsolute);
             Uri uri = new Uri(System.IO.Path.GetFullPath("../../../PDFFolder/smartIoT.pdf"), UriKind.RelativeOrAbsolute);
-            //C:\Users\pegaf\source\repos\ResearchWindowGenerator\PDFFolder\smartIoT.pdf
 
-            pdfviewer.Navigate(uri + "#page=2");// + "#toolbar=1"
+            pdfviewer.Navigate(uri + "#page=7&scrollbar=0&toolbar=0&view=Fit&zoom=75");// + "#toolbar=1"
             //pdfviewer.Navigate("http://www.wpf-tutorial.com");
-            DoEvents();
+            
+            //DoEvents();
         }
     }
 }
