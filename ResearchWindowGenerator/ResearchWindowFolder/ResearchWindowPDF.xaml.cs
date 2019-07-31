@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Button = System.Windows.Controls.Button;
 using Panel = System.Windows.Controls.Panel;
 using WebBrowser = System.Windows.Controls.WebBrowser;
 
@@ -49,16 +50,15 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
 
             StackPanel myStackPanel = this.FindName("myStackPanel") as StackPanel;
-            myStackPanel.Height = researchwindowpdf.Height-30;
-            myStackPanel.Width = researchwindowpdf.Width;
+            myStackPanel.Height = researchwindowpdf.Height;
+            myStackPanel.Width = researchwindowpdf.Width/2;
+            Grid.SetZIndex(myStackPanel,1);
 
+            //個別の機能
 
-
-            //DoEvents();
-            //WebBrowser pdfviewer = this.FindName("PDFViewer") as WebBrowser;
             WebBrowser pdfviewer = new WebBrowser
             {
-                Width = researchwindowpdf.Width/3,
+                Width = myStackPanel.Width,
                 //Height = researchwindowpdf.Height,
                 //Height = this.Height,
                 HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
@@ -69,8 +69,46 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             PDFReader(pdfviewer);
             myStackPanel.Children.Add(pdfviewer);
 
-            //TODO : マウスカーソルをウィンドウ外に出ないように固定する
-            //InitializeCursor();
+
+
+
+            StackPanel radiobuttonStackPanel = this.FindName("radiobuttonStackPanel") as StackPanel;
+            radiobuttonStackPanel.Height = researchwindowpdf.Height/2;
+            radiobuttonStackPanel.Width = researchwindowpdf.Width / 4;
+            Grid.SetZIndex(radiobuttonStackPanel, 1);
+
+            StackPanel listviewStackPanel = this.FindName("listviewStackPanel") as StackPanel;
+            listviewStackPanel.Height = researchwindowpdf.Height/2;
+            listviewStackPanel.Width = researchwindowpdf.Width / 4;
+            Grid.SetZIndex(listviewStackPanel, 1);
+
+            StackPanel te = this.FindName("temp1StackPanel") as StackPanel;
+            te.Height = researchwindowpdf.Height/2;
+            te.Width = researchwindowpdf.Width / 4;
+            Grid.SetZIndex(te, 1);
+
+
+            StackPanel buttonStackPanel = this.FindName("buttonStackPanel") as StackPanel;
+            buttonStackPanel.Height = researchwindowpdf.Height/2;
+            buttonStackPanel.Width = researchwindowpdf.Width / 4;
+            Grid.SetZIndex(buttonStackPanel, 1);
+            Button loggerButton = new Button {
+                Width = buttonStackPanel.Width * 0.1,
+                Height = buttonStackPanel.Height * 0.1,
+                Content = "Start",
+                Margin = new Thickness(buttonStackPanel.Width*0.1, buttonStackPanel.Height * 0.1, buttonStackPanel.Width * 0.1, buttonStackPanel.Height * 0.1),
+            };
+            
+
+            StackPanel drawlogStackPanel = this.FindName("drawlogStackPanel") as StackPanel;
+            drawlogStackPanel.Height = researchwindowpdf.Height;
+            drawlogStackPanel.Width = researchwindowpdf.Width;
+            Grid.SetZIndex(drawlogStackPanel, 100);
+
+
+
+
+            //==================================================================================
 
             //TODO : マウスカーソルの座標位置のログを取得できるようにする
             if (log_flag == false)
@@ -80,13 +118,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Logger.SaveMouseCursorPosition();
                 */
                 StartTimer();
-            }
-
-
-
-
-
-            if (log_flag == true)
+            }else
             {   
                 logdrawing = new LogDrawing_Canvas
                 {
@@ -94,23 +126,13 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     Width = this.Width,
                     HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
                     VerticalAlignment = System.Windows.VerticalAlignment.Top,
-                    Margin = new Thickness(-pdfviewer.Width, 0, 0, 0),
+                    Margin = new Thickness(0, 0, 0, 0),
                 };
-
-                myStackPanel.Children.Add(logdrawing);
                 logdrawing.setFilePath(filePath);
-                //researchWindowPDF.
-
-
-
-                StackPanel.SetZIndex(logdrawing, 30);
-                StackPanel.SetZIndex(pdfviewer, 10);
-
-                
+                drawlogStackPanel.Children.Add(logdrawing);
+                DoEvents();
 
                 //Generate_subWindow();
-                //DoEvents();
-
 
             }
         }

@@ -7,12 +7,25 @@
         xmlns:local="clr-namespace:ResearchWindowGenerator.ResearchWindowFolder"
         mc:Ignorable="d"
         Title="ResearchWindowPDF">
-    <Grid>
+    <Grid x:Name="maingrid">
         
         <StackPanel x:Name="myStackPanel" Margin="0,0,0,0"  Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Top" >
             
         </StackPanel>
-        
-        
+        <StackPanel x:Name="radiobuttonStackPanel" Margin="0,0,0,0"  Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Top">
+        </StackPanel>
+        <StackPanel x:Name="listviewStackPanel" Margin="0,0,0,0"  Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Top">
+        </StackPanel>
+        <StackPanel x:Name="temp1StackPanel" Margin="0,0,0,0"  Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Top">
+        </StackPanel>
+        <StackPanel x:Name="buttonStackPanel" Margin="0,0,0,0"  Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Top">
+        </StackPanel>
+
+        <StackPanel x:Name="drawlogStackPanel" Margin="0,0,0,0"  Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Top">
+        </StackPanel>
+
+
+
+
     </Grid>
 </Window>
