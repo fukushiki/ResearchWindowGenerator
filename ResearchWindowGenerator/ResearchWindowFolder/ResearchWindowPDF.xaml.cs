@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Forms;
@@ -66,55 +67,58 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Margin = new Thickness(0, 0, 0, 0),
             };
             //<WebBrowser x:Name="PDFViewer" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            PDFReader(pdfviewer);
+            //PDFReader(pdfviewer);
+            //==
+            Assembly mainAssembly = Assembly.GetExecutingAssembly();
+            // Get URI to navigate to  
+            Uri uri = new Uri(System.IO.Path.GetFullPath("../../../PDFFolder/smartIoT.pdf"), UriKind.RelativeOrAbsolute);
+            pdfviewer.Navigate(uri + "#page=7&scrollbar=0&toolbar=0&view=Fit&zoom=75");// + "#toolbar=1"
+            //==
             myStackPanel.Children.Add(pdfviewer);
 
 
 
 
             StackPanel radiobuttonStackPanel = this.FindName("radiobuttonStackPanel") as StackPanel;
-            radiobuttonStackPanel.Height = researchwindowpdf.Height/2;
-            radiobuttonStackPanel.Width = researchwindowpdf.Width / 4;
-            radiobuttonStackPanel.Margin = new Thickness(myStackPanel.Width, 0, 0, 0);
+            radiobuttonStackPanel.Height = researchwindowpdf.Height/2 -20;
+            radiobuttonStackPanel.Width = researchwindowpdf.Width / 4 - 20;
+            radiobuttonStackPanel.Margin = new Thickness(myStackPanel.Width +10, 0, 10, 10);
             //Grid.SetZIndex(radiobuttonStackPanel, 1);
+            radiobuttonStackPanel.Background = new SolidColorBrush(Colors.AliceBlue);
             StackPanel.SetZIndex(radiobuttonStackPanel, 1);
 
             StackPanel listviewStackPanel = this.FindName("listviewStackPanel") as StackPanel;
-            listviewStackPanel.Height = researchwindowpdf.Height/2;
-            listviewStackPanel.Width = researchwindowpdf.Width / 4;
-            listviewStackPanel.Margin = new Thickness(myStackPanel.Width + radiobuttonStackPanel.Width, 0, 0, 0);
+            listviewStackPanel.Height = researchwindowpdf.Height/2 -20;
+            listviewStackPanel.Width = researchwindowpdf.Width / 4 -20;
+            listviewStackPanel.Margin = new Thickness(myStackPanel.Width + radiobuttonStackPanel.Width, 0, 10, 0);
             //Grid.SetZIndex(listviewStackPanel, 1);
+            listviewStackPanel.Background = new SolidColorBrush(Colors.Red);
             StackPanel.SetZIndex(listviewStackPanel, 1);
 
 
             StackPanel te = this.FindName("temp1StackPanel") as StackPanel;
-            te.Height = researchwindowpdf.Height/2;
-            te.Width = researchwindowpdf.Width / 4;
+            te.Height = researchwindowpdf.Height/2 -20;
+            te.Width = researchwindowpdf.Width / 4 -20;
             //Grid.SetZIndex(te, 1);
             StackPanel.SetZIndex(te, 1);
-            te.Margin= new Thickness(myStackPanel.Width, listviewStackPanel.Height, 0, 0);
+            te.Margin= new Thickness(myStackPanel.Width+10, listviewStackPanel.Height+10, 10, 10);
 
             StackPanel buttonStackPanel = this.FindName("buttonStackPanel") as StackPanel;
-            buttonStackPanel.Height = researchwindowpdf.Height/2;
-            buttonStackPanel.Width = researchwindowpdf.Width / 4;
-            buttonStackPanel.Margin = new Thickness(myStackPanel.Width + radiobuttonStackPanel.Width, listviewStackPanel.Height, 0, 0);
+            buttonStackPanel.Height = researchwindowpdf.Height/2 -20;
+            buttonStackPanel.Width = researchwindowpdf.Width / 4 -20;
+            buttonStackPanel.Margin = new Thickness(myStackPanel.Width + radiobuttonStackPanel.Width +10, listviewStackPanel.Height+10, 0, 0);
             //Grid.SetZIndex(buttonStackPanel, 1);
             StackPanel.SetZIndex(buttonStackPanel, 1);
             Button loggerButton = new Button {
                 Width = buttonStackPanel.Width * 0.9,
-                Height = buttonStackPanel.Height * 0.0,
+                Height = buttonStackPanel.Height * 0.9,
                 Content = "Start",
                 Margin = new Thickness(buttonStackPanel.Width*0.1, buttonStackPanel.Height * 0.1, buttonStackPanel.Width * 0.1, buttonStackPanel.Height * 0.1),
             };
             buttonStackPanel.Children.Add(loggerButton);
             
 
-            StackPanel drawlogStackPanel = this.FindName("drawlogStackPanel") as StackPanel;
-            drawlogStackPanel.Height = researchwindowpdf.Height;
-            drawlogStackPanel.Width = researchwindowpdf.Width;
-            //drawlogStackPanel.Background = new SolidColorBrush(Colors.Green);
-            //Grid.SetZIndex(drawlogStackPanel, 100);
-            StackPanel.SetZIndex(drawlogStackPanel, 100);
+            
 
 
 
@@ -129,7 +133,10 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 */
                 StartTimer();
             }
-            if(log_flag == true){   
+            if(log_flag == true){
+
+                
+
                 logdrawing = new LogDrawing_Canvas
                 {
                     Height = this.Height,
@@ -139,8 +146,41 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     Margin = new Thickness(0, 0, 0, 0),
                 };
                 logdrawing.setFilePath(filePath);
-                drawlogStackPanel.Children.Add(logdrawing);
-                DoEvents();
+
+                Popup drawlogPopup = this.FindName("drawlogPopup") as Popup;
+                System.Threading.Thread.Sleep(500);
+                drawlogPopup.IsOpen = true;
+                drawlogPopup.AllowsTransparency = true;
+                //drawlogPopup.Width = 1000;
+                //drawlogPopup.Height = 1000;
+                drawlogPopup.Placement = PlacementMode.Center;
+                drawlogPopup.PlacementTarget = maingrid;
+                drawlogPopup.Child = logdrawing;
+
+                
+                /*<Popup IsOpen="True"
+           AllowsTransparency="True"
+           Placement="Center"
+           PlacementTarget="{Binding ElementName=WebBrowser}">
+        <TextBlock Text="WebBrowser Control"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" />
+    </Popup>*/
+                /*
+                StackPanel drawlogStackPanel = this.FindName("drawlogStackPanel") as StackPanel;
+                drawlogStackPanel.Height = researchwindowpdf.Height;
+                drawlogStackPanel.Width = researchwindowpdf.Width;
+                //drawlogStackPanel.Background = new SolidColorBrush(Colors.Green);
+                //Grid.SetZIndex(drawlogStackPanel, 100);
+                StackPanel.SetZIndex(drawlogStackPanel, 100);
+
+                drawlogStackPanel.Children.Add(logdrawing);*/
+
+
+
+
+
+
 
                 //Generate_subWindow();
 

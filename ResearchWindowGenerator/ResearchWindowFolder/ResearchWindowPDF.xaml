@@ -25,6 +25,16 @@
         </StackPanel>
 
 
+      <Popup x:Name ="drawlogPopup">
+
+        <TextBlock Text="WebBrowser Control"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center" />
+        
+        
+      </Popup>
+
+
 
 
     </Grid>
