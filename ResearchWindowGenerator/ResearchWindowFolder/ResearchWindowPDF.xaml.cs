@@ -98,6 +98,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Content = "Start",
                 Margin = new Thickness(buttonStackPanel.Width*0.1, buttonStackPanel.Height * 0.1, buttonStackPanel.Width * 0.1, buttonStackPanel.Height * 0.1),
             };
+            buttonStackPanel.Children.Add(loggerButton);
             
 
             StackPanel drawlogStackPanel = this.FindName("drawlogStackPanel") as StackPanel;
