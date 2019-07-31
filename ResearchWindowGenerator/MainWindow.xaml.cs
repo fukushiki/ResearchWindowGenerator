@@ -43,6 +43,8 @@ namespace ResearchWindowGenerator
             Initialize.InitializeDesktopInfo();
 
 
+
+
         }
         //TODO :いつか設定をCSVファイルでできるようにします
         public void ReadCsv()

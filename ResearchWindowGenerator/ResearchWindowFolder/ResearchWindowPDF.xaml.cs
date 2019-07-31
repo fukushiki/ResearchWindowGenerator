@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using WebBrowser = System.Windows.Controls.WebBrowser;
 
 namespace ResearchWindowGenerator.ResearchWindowFolder
 {
@@ -46,6 +48,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             StackPanel myStackPanel = this.FindName("myStackPanel") as StackPanel;
             myStackPanel.Height = researchwindowpdf.Height;
             myStackPanel.Width = researchwindowpdf.Width;
+
+            PDFReader();
 
 
 
@@ -144,6 +148,27 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             logControler.Topmost = true;
             logControler.Show();
 
+        }
+
+
+        private void PDFReader()
+        {
+            String PDFfilePass = @"../../../PDFFolder/smartIoT.pdf";
+            Assembly mainAssembly = Assembly.GetExecutingAssembly();
+
+            WebBrowser pdfviewer = this.FindName("PDFViewer") as WebBrowser;
+            pdfviewer.Width = Screen.PrimaryScreen.WorkingArea.Width / 3;
+            pdfviewer.Height = Screen.PrimaryScreen.WorkingArea.Height;
+
+
+            // Get URI to navigate to  
+            //Uri uri = new Uri("C:/Users/pegaf/source/repos/ResearchWindowGenerator/PDFFolder/smartIoT.pdf", UriKind.RelativeOrAbsolute);
+            Uri uri = new Uri(System.IO.Path.GetFullPath("../../../PDFFolder/smartIoT.pdf"), UriKind.RelativeOrAbsolute);
+            //C:\Users\pegaf\source\repos\ResearchWindowGenerator\PDFFolder\smartIoT.pdf
+
+            pdfviewer.Navigate(uri + "#page=2");// + "#toolbar=1"
+            //pdfviewer.Navigate("http://www.wpf-tutorial.com");
+            DoEvents();
         }
     }
 }

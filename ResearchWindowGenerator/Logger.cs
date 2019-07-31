@@ -40,6 +40,19 @@ namespace ResearchWindowGenerator
             fileName = subjectName + "_" + _v + "_" + start_time;
             //Console.WriteLine();
             //ログファイルの生成
+
+            //フォルダがあるかチェックしてなかったら生成
+            //Directory.Exists(filePass) == true ? Console.WriteLine("ok") : Directory.CreateDirectory(filePass);
+            
+            if (!Directory.Exists(filePass))
+            {
+                Directory.CreateDirectory(filePass);
+                Console.WriteLine("生成しました");
+            }
+      
+
+
+
             filePass = filePass + fileName + ".csv";
             System.IO.File.Create(filePass).Close();
             Console.WriteLine("LogFile: " + filePass + " 生成");

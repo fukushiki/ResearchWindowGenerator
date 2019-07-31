@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using WebBrowser = System.Windows.Controls.WebBrowser;
 
 namespace ResearchWindowGenerator.ResearchWindow
 {
@@ -46,6 +48,8 @@ namespace ResearchWindowGenerator.ResearchWindow
             StackPanel myStackPanel = this.FindName("myStackPanel") as StackPanel;
             myStackPanel.Height = researchwindowpowerpoint.Height;
             myStackPanel.Width = researchwindowpowerpoint.Width;
+
+            //PDFReader();
 
 
 
@@ -145,5 +149,6 @@ namespace ResearchWindowGenerator.ResearchWindow
             logControler.Show();
 
         }
+        
     }
 }
