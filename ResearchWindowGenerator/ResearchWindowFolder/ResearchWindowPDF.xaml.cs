@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using Button = System.Windows.Controls.Button;
+using MouseEventHandler = System.Windows.Input.MouseEventHandler;
 using Panel = System.Windows.Controls.Panel;
 using WebBrowser = System.Windows.Controls.WebBrowser;
 
@@ -82,9 +83,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             StackPanel radiobuttonStackPanel = this.FindName("radiobuttonStackPanel") as StackPanel;
             radiobuttonStackPanel.Height = researchwindowpdf.Height/2 -20;
             radiobuttonStackPanel.Width = researchwindowpdf.Width / 4 - 20;
-            radiobuttonStackPanel.Margin = new Thickness(myStackPanel.Width +10, 0, 10, 10);
+            radiobuttonStackPanel.Margin = new Thickness(myStackPanel.Width, 0, 10, 10);
             //Grid.SetZIndex(radiobuttonStackPanel, 1);
-            radiobuttonStackPanel.Background = new SolidColorBrush(Colors.AliceBlue);
+            radiobuttonStackPanel.Background = new SolidColorBrush(Colors.Black);
             StackPanel.SetZIndex(radiobuttonStackPanel, 1);
 
             StackPanel listviewStackPanel = this.FindName("listviewStackPanel") as StackPanel;
@@ -93,22 +94,24 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             listviewStackPanel.Margin = new Thickness(myStackPanel.Width + radiobuttonStackPanel.Width, 0, 10, 0);
             //Grid.SetZIndex(listviewStackPanel, 1);
             listviewStackPanel.Background = new SolidColorBrush(Colors.Red);
-            StackPanel.SetZIndex(listviewStackPanel, 1);
+            StackPanel.SetZIndex(listviewStackPanel, 2);
 
 
             StackPanel te = this.FindName("temp1StackPanel") as StackPanel;
             te.Height = researchwindowpdf.Height/2 -20;
             te.Width = researchwindowpdf.Width / 4 -20;
             //Grid.SetZIndex(te, 1);
-            StackPanel.SetZIndex(te, 1);
-            te.Margin= new Thickness(myStackPanel.Width+10, listviewStackPanel.Height+10, 10, 10);
+            StackPanel.SetZIndex(te, 3);
+            te.Margin= new Thickness(myStackPanel.Width, listviewStackPanel.Height, 10, 10);
+            te.Background = new SolidColorBrush(Colors.Yellow);
 
             StackPanel buttonStackPanel = this.FindName("buttonStackPanel") as StackPanel;
             buttonStackPanel.Height = researchwindowpdf.Height/2 -20;
             buttonStackPanel.Width = researchwindowpdf.Width / 4 -20;
-            buttonStackPanel.Margin = new Thickness(myStackPanel.Width + radiobuttonStackPanel.Width +10, listviewStackPanel.Height+10, 0, 0);
+            buttonStackPanel.Margin = new Thickness(myStackPanel.Width + radiobuttonStackPanel.Width, listviewStackPanel.Height, 0, 0);
             //Grid.SetZIndex(buttonStackPanel, 1);
-            StackPanel.SetZIndex(buttonStackPanel, 1);
+            StackPanel.SetZIndex(buttonStackPanel, 4);
+            buttonStackPanel.Background = new SolidColorBrush(Colors.Green);
             Button loggerButton = new Button {
                 Width = buttonStackPanel.Width * 0.9,
                 Height = buttonStackPanel.Height * 0.9,
@@ -131,7 +134,39 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 /*
                 Logger.SaveMouseCursorPosition();
                 */
+                /*
+                maingrid.MouseLeftButtonDown += MouseLeftButtonDown;
+                researchwindowpdf.MouseLeftButtonDown += MouseLeftButtonDown;
+                myStackPanel.MouseLeftButtonDown += MouseLeftButtonDown;
+
+                radiobuttonStackPanel.MouseLeftButtonDown += MouseLeftButtonDown;
+                listviewStackPanel.MouseLeftButtonDown += MouseLeftButtonDown;
+                buttonStackPanel.MouseLeftButtonDown += MouseLeftButtonDown;
+                te.MouseLeftButtonDown += MouseLeftButtonDown;
+
+                pdfviewer.MouseLeftButtonDown += MouseLeftButtonDown;
+                loggerButton.MouseLeftButtonDown += MouseLeftButtonDown;
+                */
+
+
+                //pdfviewer.PreviewMouseDown += pdfPreviewMouseDown;
+                
+                /*
+                Popup drawlogPopup = this.FindName("drawlogPopup") as Popup;
+                System.Threading.Thread.Sleep(500);
+                drawlogPopup.IsOpen = true;
+                drawlogPopup.AllowsTransparency = true;
+                //drawlogPopup.Width = 1000;
+                //drawlogPopup.Height = 1000;
+                drawlogPopup.Placement = PlacementMode.Center;
+                drawlogPopup.PlacementTarget = maingrid;
+                //drawlogPopup.MouseLeftButtonDown += MouseLeftButtonDown;
+                drawlogPopup.PreviewMouseDown += pdfPreviewMouseDown;
+                */
+
                 StartTimer();
+                
+
             }
             if(log_flag == true){
 
@@ -157,35 +192,24 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 drawlogPopup.PlacementTarget = maingrid;
                 drawlogPopup.Child = logdrawing;
 
-                
-                /*<Popup IsOpen="True"
-           AllowsTransparency="True"
-           Placement="Center"
-           PlacementTarget="{Binding ElementName=WebBrowser}">
-        <TextBlock Text="WebBrowser Control"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center" />
-    </Popup>*/
-                /*
-                StackPanel drawlogStackPanel = this.FindName("drawlogStackPanel") as StackPanel;
-                drawlogStackPanel.Height = researchwindowpdf.Height;
-                drawlogStackPanel.Width = researchwindowpdf.Width;
-                //drawlogStackPanel.Background = new SolidColorBrush(Colors.Green);
-                //Grid.SetZIndex(drawlogStackPanel, 100);
-                StackPanel.SetZIndex(drawlogStackPanel, 100);
-
-                drawlogStackPanel.Children.Add(logdrawing);*/
-
-
-
-
-
-
 
                 //Generate_subWindow();
 
             }
         }
+
+        private void pdfPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Point p = e.GetPosition(researchWindowPDF);
+            Console.WriteLine(p.X + "|" + p.Y);
+        }
+
+        private void MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Point p = e.GetPosition(maingrid);
+            Console.WriteLine(p.X +"|"+ p.Y);
+        }
+
 
         //https://moewe-net.com/csharp/forms-timer
         private void StartTimer()
