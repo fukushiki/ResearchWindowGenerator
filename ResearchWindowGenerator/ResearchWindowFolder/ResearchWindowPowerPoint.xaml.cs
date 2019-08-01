@@ -89,7 +89,7 @@ namespace ResearchWindowGenerator.ResearchWindow
                 myStackPanel.Children.Add(logdrawing);
 
 
-                logdrawing.setFilePath(filePath);
+                //logdrawing.setFilePath(filePath);
 
 
                 Generate_subWindow();

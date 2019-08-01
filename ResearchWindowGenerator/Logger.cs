@@ -8,6 +8,7 @@ namespace ResearchWindowGenerator
     {
         static String fileName;
         static String filePass = @"../../../LogFolder/";
+        static String filePassClick = @"../../../LogFolderClick/";
         static Encoding enCording = Encoding.UTF8;
         static String subjectName;
         static String subjectBelong;
@@ -49,14 +50,21 @@ namespace ResearchWindowGenerator
                 Directory.CreateDirectory(filePass);
                 Console.WriteLine("生成しました");
             }
-      
-
-
-
             filePass = filePass + fileName + ".csv";
             System.IO.File.Create(filePass).Close();
             Console.WriteLine("LogFile: " + filePass + " 生成");
-            //System.IO.File.Create(filePass);
+
+
+            if (!Directory.Exists(filePassClick))
+            {
+                Directory.CreateDirectory(filePassClick);
+                Console.WriteLine("生成しました");
+            }
+
+            filePassClick = filePassClick + fileName + ".csv";
+            System.IO.File.Create(filePassClick).Close();
+            Console.WriteLine("LogFile: " + filePassClick + " 生成");
+
         }
 
         /// <summary>
@@ -74,6 +82,13 @@ namespace ResearchWindowGenerator
             w.Close();
         }
 
-        
+        internal static void SaveMouseClickPosition(double _timeCount, double _x, double _y)
+        {
+            String write_data = _timeCount + "," + _x + "," + _y;
+            //Console.WriteLine(write_data);
+            StreamWriter w = new StreamWriter(filePassClick, true, Encoding.UTF8);
+            w.Write(write_data + "\n");
+            w.Close();
+        }
     }
 }

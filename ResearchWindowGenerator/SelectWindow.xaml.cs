@@ -59,7 +59,7 @@ namespace ResearchWindowGenerator
                     researchWindowPowerPoint.Show();
                     break;
                 case "ResearchWindowPDF":
-                    ResearchWindowPDF researchWindowPDF = new ResearchWindowPDF("",false);
+                    ResearchWindowPDF researchWindowPDF = new ResearchWindowPDF("","",false);
                     researchWindowPDF.Show();
                     break;
                 /*

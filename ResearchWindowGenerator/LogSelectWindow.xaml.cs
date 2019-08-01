@@ -25,6 +25,7 @@ namespace ResearchWindowGenerator
     public partial class LogSelectWindow : Window
     {
         String filePath = @"../../../LogFolder/";
+        String filePathClick = @"../../../LogFolderClick/";
         String[] csvlist;
         public LogSelectWindow()
         {
@@ -74,6 +75,8 @@ namespace ResearchWindowGenerator
             int csvNum = Array.IndexOf(csvlist, selectedCsvName);
             string file_pass = this.csvList_ConboBox.Text;
 
+            
+
             string csv_file_name =
                 System.IO.Path.GetFileName(file_pass);
             string[] csv_window_name = csv_file_name.Split('_');
@@ -81,9 +84,12 @@ namespace ResearchWindowGenerator
             {
                 Console.WriteLine(a);
             }
-
+            string fm = csv_window_name[0];
             string fn = csv_window_name[1];
+            string fo = csv_window_name[2];
             Console.WriteLine(fn);
+            string filepassclick = filePathClick + fm + "_" + fn + "_" + fo;
+            Console.WriteLine("clickfile:" + filepassclick);
             switch (fn)
             {
                 case "ResarchWindowTest":
@@ -95,7 +101,7 @@ namespace ResearchWindowGenerator
                     researchWindowPowerPoint.Show();
                     break;
                 case "ResearchWindowPDF":
-                    ResearchWindowPDF researchWindowPDF = new ResearchWindowPDF(file_pass, true);
+                    ResearchWindowPDF researchWindowPDF = new ResearchWindowPDF(file_pass, filepassclick, true);
                     researchWindowPDF.Show();
                     break;
 

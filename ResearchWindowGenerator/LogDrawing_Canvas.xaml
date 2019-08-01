@@ -11,7 +11,10 @@
         <Canvas x:Name ="mycanvas">
             
         </Canvas>
-        
+        <Canvas x:Name ="mycanvasClick">
+
+        </Canvas>
+
     </Grid>
 </UserControl>
 <!--d:DesignHeight="1020" d:DesignWidth="1980"-->

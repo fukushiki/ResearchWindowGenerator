@@ -32,17 +32,19 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         static bool LogFlag;
 
         string filePath;
+        string clickfilePath;
         //TODO : できるならLISTのLISTにしたい　https://teratail.com/questions/40608
         static List<double>[] csvContentsList = new List<double>[100000];
 
         
 
         LogDrawing_Canvas logdrawing;
-        public ResearchWindowPDF(string file_name, bool log_flag)
+        public ResearchWindowPDF(string file_name, string click_file_name, bool log_flag)
         {
             
             LogFlag = log_flag;
             filePath = file_name;
+            clickfilePath = click_file_name;
             InitializeComponent();
             Window researchwindowpdf = this.FindName("researchWindowPDF") as Window;
             researchwindowpdf.WindowState = WindowState.Maximized;
@@ -118,10 +120,13 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Content = "Start",
                 Margin = new Thickness(buttonStackPanel.Width*0.1, buttonStackPanel.Height * 0.1, buttonStackPanel.Width * 0.1, buttonStackPanel.Height * 0.1),
             };
+            
             buttonStackPanel.Children.Add(loggerButton);
-            
+            DoEvents();
 
-            
+
+
+
 
 
 
@@ -150,21 +155,10 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
 
                 //pdfviewer.PreviewMouseDown += pdfPreviewMouseDown;
-                
-                /*
-                Popup drawlogPopup = this.FindName("drawlogPopup") as Popup;
-                System.Threading.Thread.Sleep(500);
-                drawlogPopup.IsOpen = true;
-                drawlogPopup.AllowsTransparency = true;
-                //drawlogPopup.Width = 1000;
-                //drawlogPopup.Height = 1000;
-                drawlogPopup.Placement = PlacementMode.Center;
-                drawlogPopup.PlacementTarget = maingrid;
-                //drawlogPopup.MouseLeftButtonDown += MouseLeftButtonDown;
-                drawlogPopup.PreviewMouseDown += pdfPreviewMouseDown;
-                */
 
-                StartTimer();
+                loggerButton.Click += startbutton_Click;
+
+                //StartTimer();
                 
 
             }
@@ -180,7 +174,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     VerticalAlignment = System.Windows.VerticalAlignment.Top,
                     Margin = new Thickness(0, 0, 0, 0),
                 };
-                logdrawing.setFilePath(filePath);
+                logdrawing.setFilePath(filePath, clickfilePath);
 
                 Popup drawlogPopup = this.FindName("drawlogPopup") as Popup;
                 System.Threading.Thread.Sleep(500);
@@ -194,29 +188,46 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
 
                 //Generate_subWindow();
+                DoEvents();
 
             }
         }
 
-        private void pdfPreviewMouseDown(object sender, MouseButtonEventArgs e)
+        private void startbutton_Click(object sender, RoutedEventArgs e)
         {
-            Point p = e.GetPosition(researchWindowPDF);
-            Console.WriteLine(p.X + "|" + p.Y);
-        }
+            
+            //Console.WriteLine("aaaaaaaaaaa"+ ((Button)sender).Content);
+            
+            if(((Button)sender).Content == "Start")
+            {
+                StartTimer();
+                ((Button)sender).Content = "Finish";
+                System.Drawing.Point point = System.Windows.Forms.Control.MousePosition;
+                Logger.SaveMouseClickPosition(TimeCount, point.X, point.Y);
 
-        private void MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            Point p = e.GetPosition(maingrid);
-            Console.WriteLine(p.X +"|"+ p.Y);
-        }
+            }
+            else if (((Button)sender).Content == "Finish")
+            {
+                StopTimer();
+                ((Button)sender).Content = "End";
+                System.Drawing.Point point = System.Windows.Forms.Control.MousePosition;
 
+                Logger.SaveMouseClickPosition(TimeCount, point.X, point.Y);
+
+            }
+
+
+
+
+        }
 
         //https://moewe-net.com/csharp/forms-timer
         private void StartTimer()
         {
             Timer timer = new Timer();
             timer.Tick += new EventHandler(TickHandler);
-            timer.Interval = 20;
+            //timer.Interval = 20;
+            timer.Interval = 50;
             timer.Start();
             _timer = timer;
         }
@@ -237,7 +248,11 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             //Console.WriteLine(DateTime.Now.ToString());
             //マウスカーソルの座標を取得
             System.Drawing.Point p = System.Windows.Forms.Control.MousePosition;
-            TimeCount += 0.02;
+            //Console.WriteLine("=================");
+            //Console.WriteLine(p.X+"|"+ p.Y);
+            //Console.WriteLine(System.Windows.Forms.Cursor.Position.X +"|" +System.Windows.Forms.Cursor.Position.Y);
+            //TimeCount += 0.02;
+            TimeCount += 0.05;
             Logger.SaveMouseCursorPosition(TimeCount, p.X, p.Y);
         }
 
