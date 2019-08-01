@@ -12,16 +12,16 @@
         <StackPanel x:Name="myStackPanel" Margin="0,0,0,0"  Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Top" >
             
         </StackPanel>
-        <StackPanel x:Name="radiobuttonStackPanel" Margin="0,0,0,0"  Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Top">
+        <StackPanel x:Name="radiobuttonStackPanel" Margin="0,0,0,0"  Orientation="Vertical"  HorizontalAlignment="Left" VerticalAlignment="Top">
         </StackPanel>
-        <StackPanel x:Name="listviewStackPanel" Margin="0,0,0,0"  Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Top">
+        <StackPanel x:Name="CheckboxStackPanel" Margin="0,0,0,0"  Orientation="Vertical"  HorizontalAlignment="Left" VerticalAlignment="Top">
         </StackPanel>
-        <StackPanel x:Name="temp1StackPanel" Margin="0,0,0,0"  Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Top">
+        <StackPanel x:Name="ComboboxStackPanel" Margin="0,0,0,0"  Orientation="Vertical"  HorizontalAlignment="Left" VerticalAlignment="Top">
         </StackPanel>
-        <StackPanel x:Name="buttonStackPanel" Margin="0,0,0,0"  Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Top">
+        <StackPanel x:Name="practiceStackPanel" Margin="0,0,0,0"  Orientation="Vertical"  HorizontalAlignment="Left" VerticalAlignment="Top">
         </StackPanel>
 
-        <StackPanel x:Name="drawlogStackPanel" Margin="0,0,0,0"  Orientation="Horizontal"  HorizontalAlignment="Left" VerticalAlignment="Top">
+        <StackPanel x:Name="drawlogStackPanel" Margin="0,0,0,0"  Orientation="Vertical"  HorizontalAlignment="Left" VerticalAlignment="Top">
         </StackPanel>
 
 
