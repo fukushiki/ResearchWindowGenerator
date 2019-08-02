@@ -42,7 +42,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         static List<double>[] csvContentsList = new List<double>[100000];
         WebBrowser pdfviewer;
         static Uri uri;
-        int viewpage = 1;
+        int viewpage = 7;
         //①7 ②34 ③37
         
 
