@@ -42,7 +42,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         static List<double>[] csvContentsList = new List<double>[100000];
         WebBrowser pdfviewer;
         static Uri uri;
-        int viewpage = 7;
+        int viewpage = 34;
         //①7 ②34 ③37
         
 
@@ -90,11 +90,14 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
 
 
-
+            
             StackPanel radiobuttonStackPanel = this.FindName("radiobuttonStackPanel") as StackPanel;
             radiobuttonStackPanel.Height = researchwindowpdf.Height/2 -20;
             radiobuttonStackPanel.Width = researchwindowpdf.Width / 4 - 20;
             radiobuttonStackPanel.Margin = new Thickness(myStackPanel.Width, 0, 10, 10);
+            
+
+
 
             TextBlock radiobuttonStackPanelTextBlock = new TextBlock
             {
@@ -176,15 +179,6 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             //radiobuttonStackPanel.Children.Add(radiobuttonGroupBox);
             radiobuttonStackPanel.Children.Add(radiobuttonGroupingStackPanel);
             radiobuttonStackPanel.Children.Add(radiobuttonStackPanel_Button);
-
-
-
-
-
-
-
-
-
 
 
 
