@@ -299,18 +299,6 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
             StackPanel ComboboxStackPanel = this.FindName("ComboboxStackPanel") as StackPanel;
             ComboboxStackPanel.Height = researchwindowpdf.Height/2 -20;
             ComboboxStackPanel.Width = researchwindowpdf.Width / 4 -20;
@@ -363,16 +351,6 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             ComboboxStackPanel.Children.Add(ComboboxStackPanel_Button);
             
 
-
-
-
-
-
-
-
-
-
-
             StackPanel practiceStackPanel = this.FindName("practiceStackPanel") as StackPanel;
             practiceStackPanel.Height = researchwindowpdf.Height/2 -20;
             practiceStackPanel.Width = researchwindowpdf.Width / 4 -20;
@@ -392,9 +370,6 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
             };
             practiceStackPanel.Children.Add(practiceTextBlock);
-
-
-
 
             ComboBox practiceCombobox = new ComboBox
             {
