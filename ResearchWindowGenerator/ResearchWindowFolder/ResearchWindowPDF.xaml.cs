@@ -56,9 +56,13 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             InitializeComponent();
             Window researchwindowpdf = this.FindName("researchWindowPDF") as Window;
             researchwindowpdf.WindowState = WindowState.Maximized;
-            researchwindowpdf.Width = Screen.PrimaryScreen.WorkingArea.Width;
-            researchwindowpdf.Height = Screen.PrimaryScreen.WorkingArea.Height;
-            
+            //researchwindowpdf.Width = Screen.PrimaryScreen.WorkingArea.Width;
+            //researchwindowpdf.Height = Screen.PrimaryScreen.WorkingArea.Height;
+            Console.WriteLine(SystemParameters.WorkArea.Width);
+            Console.WriteLine(SystemParameters.WorkArea.Height);
+            researchWindowPDF.Width = SystemParameters.WorkArea.Width;
+            researchWindowPDF.Height = SystemParameters.WorkArea.Height;
+
 
 
             StackPanel myStackPanel = this.FindName("myStackPanel") as StackPanel;
@@ -202,8 +206,6 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             };
             CheckboxStackPanel.Children.Add(checkboxTextBlock);
 
-
-
             StackPanel checkboxGroupingStackPanel = new StackPanel
             {
                 Name = "checkboxGroupingStackPanel",
@@ -212,9 +214,6 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 //Margin = new Thickness(radiobuttonStackPanel.Width * 0.1, radiobuttonStackPanel.Height * 0.1, radiobuttonStackPanel.Width * 0.1, radiobuttonStackPanel.Height * 0.1),
 
             };
-
-
-
             CheckBox checkbox1 = new CheckBox
             {
                 Name = "checkbox1",
@@ -526,26 +525,6 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             if (log_flag == false)
             {
                 Logger.LoggerInitialize("ResearchWindowPDF");
-                /*
-                Logger.SaveMouseCursorPosition();
-                */
-                /*
-                maingrid.MouseLeftButtonDown += MouseLeftButtonDown;
-                researchwindowpdf.MouseLeftButtonDown += MouseLeftButtonDown;
-                myStackPanel.MouseLeftButtonDown += MouseLeftButtonDown;
-
-                radiobuttonStackPanel.MouseLeftButtonDown += MouseLeftButtonDown;
-                listviewStackPanel.MouseLeftButtonDown += MouseLeftButtonDown;
-                buttonStackPanel.MouseLeftButtonDown += MouseLeftButtonDown;
-                te.MouseLeftButtonDown += MouseLeftButtonDown;
-
-                pdfviewer.MouseLeftButtonDown += MouseLeftButtonDown;
-                loggerButton.MouseLeftButtonDown += MouseLeftButtonDown;
-                */
-
-
-                //pdfviewer.PreviewMouseDown += pdfPreviewMouseDown;
-
                 loggerButton.Click += startbutton_Click;
                 radiobuttonStackPanel_Button.Click += startbutton_Click;
                 ComboboxStackPanel_Button.Click += startbutton_Click;
@@ -588,9 +567,6 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
         private void startbutton_Click(object sender, RoutedEventArgs e)
         {
-
-            //Console.WriteLine("aaaaaaaaaaa"+ ((Button)sender).Content);
-
             if (((Button)sender).Content == "Start")
             {
                 StartTimer();
@@ -601,36 +577,12 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Button sender1 = (System.Windows.Controls.Button)sender;
                 Console.WriteLine("aaaaaaaaaa"+sender1.Name);
 
-                /*
-                switch (sender1.Name){
-                    case "radiobuttonStackPanel_Button":
-                        //pdfviewer.Navigate("about:blank");
-                        
-                        pdfviewer.Navigate(uri + "#page=7&scrollbar=0&toolbar=0&view=Fit&zoom=75");// + "#toolbar=1"
-                        break;
-                    /*
-                    case "radiobuttonStackPanel_Button":
-
-                        break;
-                    case "radiobuttonStackPanel_Button":
-
-                        break;
-                    case "radiobuttonStackPanel_Button":
-
-                        break;
-                    default:
-                        break;
-                }*/
 
             }
             else if (((Button)sender).Content == "Finish")
             {
                 StopTimer();
                 ((Button)sender).Content = "End";
-                //System.Drawing.Point point = System.Windows.Forms.Control.MousePosition;
-
-                //Logger.SaveMouseClickPosition(TimeCount, point.X, point.Y);
-
             }
 
 
@@ -661,14 +613,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
         private void TickHandler(object sender, EventArgs e)
         {
-
-            //Console.WriteLine(DateTime.Now.ToString());
             //マウスカーソルの座標を取得
             System.Drawing.Point p = System.Windows.Forms.Control.MousePosition;
-            //Console.WriteLine("=================");
-            //Console.WriteLine(p.X+"|"+ p.Y);
-            //Console.WriteLine(System.Windows.Forms.Cursor.Position.X +"|" +System.Windows.Forms.Cursor.Position.Y);
-            //TimeCount += 0.02;
             TimeCount += 0.05;
             Logger.SaveMouseCursorPosition(TimeCount, p.X, p.Y);
         }

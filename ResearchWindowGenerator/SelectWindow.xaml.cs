@@ -21,7 +21,7 @@ namespace ResearchWindowGenerator
     /// </summary>
     public partial class SelectWindow : Window
     {
-        string[] windowNames = { "ResearchWindowPowerPoint", "ResearchWindowPDF", "ResearchWindowCalendar", "ResearchWindowTest","ResearchWindowTest_Log" };
+        string[] windowNames = { "ResearchWindowPowerPoint", "ResearchWindowPDF", "ResearchWindowCalendar", "ResearchWindowTest","ResearchWindowTest_Log" , "WindowTemplate" };
 
         public SelectWindow()
         {
@@ -62,7 +62,11 @@ namespace ResearchWindowGenerator
                     ResearchWindowPDF researchWindowPDF = new ResearchWindowPDF("","",false);
                     researchWindowPDF.Show();
                     break;
-                /*
+                case "WindowTemplate":
+                    WindowTemplate windowTemplate = new WindowTemplate("WindowTemplate","","", false);
+                    windowTemplate.Show();
+                    break;
+                    /*
                 case 3:
                     Console.WriteLine(windowNames[3]);
                     break;

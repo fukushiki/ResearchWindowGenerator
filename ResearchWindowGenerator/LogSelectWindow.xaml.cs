@@ -104,6 +104,10 @@ namespace ResearchWindowGenerator
                     ResearchWindowPDF researchWindowPDF = new ResearchWindowPDF(file_pass, filepassclick, true);
                     researchWindowPDF.Show();
                     break;
+                case "WindowTemplate":
+                    WindowTemplate windowTemplate = new WindowTemplate("WindowTemplate",file_pass, filepassclick, true);
+                    windowTemplate.Show();
+                    break;
 
                 default:
                     Console.WriteLine("ファイルがないじゃん");
