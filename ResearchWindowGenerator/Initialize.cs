@@ -25,5 +25,6 @@ namespace ResearchWindowGenerator
             //TODO : SettingFileを生成できるようにして一度きりの保存にする
 
         }
+
     }
 }
