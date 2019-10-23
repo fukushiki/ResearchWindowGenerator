@@ -25,7 +25,20 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
     {
         string WindowName;
         /*コンポーネントの宣言*/
-        StackPanel tmpStackPanel;
+        /*Grid*/
+        Grid maingrid;
+        RowDefinition rowDef1;
+        RowDefinition rowDef2;
+        ColumnDefinition colDef1;
+        ColumnDefinition colDef2;
+
+
+
+
+        /*StackPanel*/
+        StackPanel no1_stack;
+        StackPanel no2_stack;
+        StackPanel no3_stack;
 
 
         /*Log関係*/
@@ -48,34 +61,103 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         public ResearchWindowPowerPoint(string windowname, string file_name, string click_file_name, bool log_flag)
         {
             InitializeComponent();
+
+            /*引数の保存*/
             WindowName = windowname;
             LogFlag = log_flag;
             filePath = file_name;
             clickfilePath = click_file_name;
+
             /*Windowのサイズ指定*/
-            //Console.WriteLine(SystemParameters.WorkArea.Width);
-            //Console.WriteLine(SystemParameters.WorkArea.Height);
             this.Width = SystemParameters.WorkArea.Width;
             this.Height = SystemParameters.WorkArea.Height;
+            this.WindowState = WindowState.Maximized;
 
+            /*初期化メソッドの宣言*/
+            this.GridInit();
             this.CompornentInit();
             this.LogSetting();
+        }
 
+        /// <summary>
+        /// Gridの初期化
+        /// </summary>
+        /// memo https://docs.microsoft.com/ja-jp/dotnet/api/system.windows.controls.grid?view=netframework-4.8
+        private void GridInit()
+        {
+            maingrid = new Grid
+            {
+                Width = this.Width,
+                Height = this.Height,
+                Background = Brushes.Aquamarine,
+                ShowGridLines = true
+            };
+            this.AddChild(maingrid);
+
+            //Row : 列 Height
+            rowDef1 = new RowDefinition();
+            rowDef2 = new RowDefinition { };
+            maingrid.RowDefinitions.Add(rowDef1);
+            maingrid.RowDefinitions.Add(rowDef2);
+            
+            //Column : 行 Width
+            colDef1 = new ColumnDefinition();
+            colDef2 = new ColumnDefinition();
+            maingrid.ColumnDefinitions.Add(colDef1);
+            maingrid.ColumnDefinitions.Add(colDef2);
 
         }
+
         /// <summary>
         /// コンポーネントの読み込み
         /// </summary>
         private void CompornentInit()
         {
-            //TODO : ここで再現   
+            //① PowerPoint-ツールバー
+            no1_stack = new StackPanel
+            {
+                //Width = this.Width * 0.3,
+                //Height = this.Height * 0.7,
+                Background = Brushes.Blue,                
+            };
+            maingrid.Children.Add(no1_stack);
+            //rowDef1.Height = no1_stack.Height;
+
+            //Grid.SetRowSpan(no1_stack,2);
+            Grid.SetRow(no1_stack, 0);
+            Grid.SetColumn(no1_stack, 0);
+            Grid.SetColumnSpan(no1_stack, 2);
+            
+            
+
+            //② PowerPoint-項目選択
+            no2_stack = new StackPanel
+            {
+                Width = this.Width * 0.7,
+                Height = this.Height * 0.7,
+                Background = Brushes.Yellow
+            };
+            maingrid.Children.Add(no2_stack);
+
+            Grid.SetRow(no2_stack, 1);
+            Grid.SetColumn(no2_stack, 0);
+
+            //③ PowerPoint-メインコンテンツ
+            no3_stack = new StackPanel
+            {
+                Width = this.Width,
+                Height = this.Height * 0.1,
+                Background = Brushes.Green,
+            };
+            maingrid.Children.Add(no3_stack);
+            Grid.SetRow(no3_stack, 1);
+            Grid.SetColumn(no3_stack, 1);
 
 
         }
 
         private void LogSetting()
         {
-
             //TODO : マウスカーソルの座標位置のログを取得できるようにする
             if (LogFlag == false)
             {
@@ -83,8 +165,6 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 //ここでログ取得ボタンのクリック定義
                 //loggerButton.Click += startbutton_Click;
                 //StartTimer();
-
-
             }
             if (LogFlag == true)
             {
@@ -102,24 +182,17 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 //Popup drawlogPopup = this.FindName("drawlogPopup") as Popup;
                 Popup drawlogPopup = new Popup
                 {
-
-                };
+                    IsOpen = true,
+                    AllowsTransparency = true,
+                    Placement = PlacementMode.Center,
+                    PlacementTarget = maingrid,
+                    Child = logdrawing
+            };
                 maingrid.Children.Add(drawlogPopup);
                 System.Threading.Thread.Sleep(500);
-                drawlogPopup.IsOpen = true;
-                drawlogPopup.AllowsTransparency = true;
-                drawlogPopup.Placement = PlacementMode.Center;
-                drawlogPopup.PlacementTarget = maingrid;
-                drawlogPopup.Child = logdrawing;
-
-
-                //Generate_subWindow();
                 DoEvents();
-
             }
         }
-
-
 
         private void startbutton_Click(object sender, RoutedEventArgs e)
         {
@@ -132,18 +205,12 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
                 Button sender1 = (System.Windows.Controls.Button)sender;
                 Console.WriteLine("aaaaaaaaaa" + sender1.Name);
-
-
             }
             else if (((Button)sender).Content == "Finish")
             {
                 StopTimer();
                 ((Button)sender).Content = "End";
             }
-
-
-
-
         }
 
         //https://moewe-net.com/csharp/forms-timer
@@ -166,7 +233,6 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             _timer.Stop();
             _timer = null;
         }
-
         private void TickHandler(object sender, EventArgs e)
         {
             //マウスカーソルの座標を取得
@@ -174,9 +240,6 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             TimeCount += 0.05;
             Logger.SaveMouseCursorPosition(TimeCount, p.X, p.Y);
         }
-
-
-
         private void DoEvents()
         {
             DispatcherFrame frame = new DispatcherFrame();
@@ -188,8 +251,5 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Background, callback, frame);
             Dispatcher.PushFrame(frame);
         }
-
-
     }
-
 }
