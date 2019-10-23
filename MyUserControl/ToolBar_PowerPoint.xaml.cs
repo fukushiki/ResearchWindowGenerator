@@ -22,8 +22,9 @@ namespace MyUserControl
     {
         public ToolBar_PowerPoint()
         {
-            InitializeComponent();
-
+            //InitializeComponent();
+            Button A = new Button();
+            this.AddChild(A);
         }
     }
 }

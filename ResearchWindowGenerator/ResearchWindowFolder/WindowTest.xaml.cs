@@ -21,7 +21,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
     /// <summary>
     /// WindowTemplate.xaml の相互作用ロジック
     /// </summary>
-    public partial class ResearchWindowPowerPoint : Window
+    public partial class WindowTest : Window
     {
         string WindowName;
         /*コンポーネントの宣言*/
@@ -45,7 +45,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         /// <param name="click_file_name">クリック位置を保存する/したファイル名</param>
         /// <param name="log_flag">true : ログの線を描きだし
         ///                        false : ログ取得</param>
-        public ResearchWindowPowerPoint(string windowname, string file_name, string click_file_name, bool log_flag)
+        public WindowTest(string windowname, string file_name, string click_file_name, bool log_flag)
         {
             InitializeComponent();
             WindowName = windowname;
@@ -70,7 +70,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         {
             //TODO : ここで再現   
 
-
+         
         }
 
         private void LogSetting()
@@ -119,7 +119,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             }
         }
 
-
+        
 
         private void startbutton_Click(object sender, RoutedEventArgs e)
         {
@@ -191,5 +191,5 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
 
     }
-
+    
 }

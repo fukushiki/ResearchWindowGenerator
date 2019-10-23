@@ -1,5 +1,4 @@
-﻿using ResearchWindowGenerator.ResearchWindow;
-using ResearchWindowGenerator.ResearchWindowFolder;
+﻿using ResearchWindowGenerator.ResearchWindowFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +20,7 @@ namespace ResearchWindowGenerator
     /// </summary>
     public partial class SelectWindow : Window
     {
-        string[] windowNames = { "ResearchWindowPowerPoint", "ResearchWindowPDF", "ResearchWindowCalendar", "ResearchWindowTest","ResearchWindowTest_Log" , "WindowTemplate" };
+        string[] windowNames = { "ResearchWindowPowerPoint", "ResearchWindowPDF", "ResearchWindowCalendar", "ResearchWindowTest","ResearchWindowTest_Log" , "WindowTemplate" , "WindowTest"};
 
         public SelectWindow()
         {
@@ -55,7 +54,7 @@ namespace ResearchWindowGenerator
                     researchWindowTest.Show();
                     break;
                 case "ResearchWindowPowerPoint":
-                    ResearchWindowPowerPoint researchWindowPowerPoint = new ResearchWindowPowerPoint("", false);
+                    ResearchWindowPowerPoint researchWindowPowerPoint = new ResearchWindowPowerPoint("ResarchWindowPowerPoint","","", false);
                     researchWindowPowerPoint.Show();
                     break;
                 case "ResearchWindowPDF":
@@ -66,24 +65,10 @@ namespace ResearchWindowGenerator
                     WindowTemplate windowTemplate = new WindowTemplate("WindowTemplate","","", false);
                     windowTemplate.Show();
                     break;
-                    /*
-                case 3:
-                    Console.WriteLine(windowNames[3]);
+                case "WindowTest":
+                    WindowTest windowTest = new WindowTest("WindowTest", "", "", false);
+                    windowTest.Show();
                     break;
-                case 4:
-                    Console.WriteLine(windowNames[4]);
-                    break;
-                case 5:
-                    Console.WriteLine(windowNames[5]);
-                    ResearchWindowTest researchWindowTest = new ResearchWindowTest("",false);
-                    researchWindowTest.Show();
-                    break;
-                case 6:
-                    Console.WriteLine(windowNames[5]);
-                    ResearchWindowTest_Log researchWindowTest_Log = new ResearchWindowTest_Log("test");
-                    researchWindowTest_Log.Show();
-                    break;
-                */
                 default:
                     Console.WriteLine("Default case");
                     break;
