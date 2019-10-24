@@ -27,19 +27,24 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         /*コンポーネントの宣言*/
         /*Grid*/
         Grid maingrid;
-        RowDefinition rowDef1;
-        RowDefinition rowDef2;
+        
+
         ColumnDefinition colDef1;
         ColumnDefinition colDef2;
+        RowDefinition rowDef1;
+        RowDefinition rowDef2;
 
-
-
-
+        Double columnWidth1;
+        Double columnWidth2;
+        Double rowHeight1;
+        Double rowHeight2;
+        
+        
+        
         /*StackPanel*/
-        StackPanel no1_stack;
-        StackPanel no2_stack;
-        StackPanel no3_stack;
-
+        StackPanel toolbarStack;
+        StackPanel contentbarStack;
+        StackPanel mainContentStack;
 
         /*Log関係*/
         private Timer _timer = null;
@@ -93,18 +98,21 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 ShowGridLines = true
             };
             this.AddChild(maingrid);
-
-            //Row : 列 Height
-            rowDef1 = new RowDefinition();
-            rowDef2 = new RowDefinition { };
-            maingrid.RowDefinitions.Add(rowDef1);
-            maingrid.RowDefinitions.Add(rowDef2);
-            
             //Column : 行 Width
-            colDef1 = new ColumnDefinition();
-            colDef2 = new ColumnDefinition();
+            columnWidth1 = this.Width * 1 / 5;
+            columnWidth2 = this.Width * 4 / 5;
+            colDef1 = new ColumnDefinition { Width = new GridLength(columnWidth1) };
+            colDef2 = new ColumnDefinition { Width = new GridLength(columnWidth2) };
             maingrid.ColumnDefinitions.Add(colDef1);
             maingrid.ColumnDefinitions.Add(colDef2);
+
+            //Row : 列 Height
+            rowHeight1 = this.Height * 0.13;
+            rowHeight2 = this.Height * 0.87;
+            rowDef1 = new RowDefinition { Height = new GridLength(rowHeight1)};
+            rowDef2 = new RowDefinition { Height = new GridLength(rowHeight2)};
+            maingrid.RowDefinitions.Add(rowDef1);
+            maingrid.RowDefinitions.Add(rowDef2);
 
         }
 
@@ -114,48 +122,76 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         private void CompornentInit()
         {
             //① PowerPoint-ツールバー
-            no1_stack = new StackPanel
+            toolbarStack = new StackPanel
             {
                 //Width = this.Width * 0.3,
                 //Height = this.Height * 0.7,
+                Width = this.Width,
+                Height = rowHeight2,
                 Background = Brushes.Blue,                
             };
-            maingrid.Children.Add(no1_stack);
-            //rowDef1.Height = no1_stack.Height;
+            maingrid.Children.Add(toolbarStack);
+            //rowDef1.Height = toolbarStack.Height;
 
-            //Grid.SetRowSpan(no1_stack,2);
-            Grid.SetRow(no1_stack, 0);
-            Grid.SetColumn(no1_stack, 0);
-            Grid.SetColumnSpan(no1_stack, 2);
-            
-            
+            //Grid.SetRowSpan(toolbarStack,2);
+            Grid.SetRow(toolbarStack, 0);
+            Grid.SetColumn(toolbarStack, 0);
+            Grid.SetColumnSpan(toolbarStack, 2);
+
+            //Button追加
+
+
 
             //② PowerPoint-項目選択
-            no2_stack = new StackPanel
+            contentbarStack = new StackPanel
             {
-                Width = this.Width * 0.7,
-                Height = this.Height * 0.7,
+                Width = columnWidth1,
+                Height = rowHeight2,
                 Background = Brushes.Yellow
             };
-            maingrid.Children.Add(no2_stack);
+            maingrid.Children.Add(contentbarStack);
 
-            Grid.SetRow(no2_stack, 1);
-            Grid.SetColumn(no2_stack, 0);
+            //Button追加
+            double contentbarButtonWidth = columnWidth1;
+            double contentbarButtonHeight = rowHeight2 * 1/5;
+
+            Button[] contentbarButton = new Button[5];
+            for(int i = 0; i < 5; i++)
+            {
+                contentbarButton[i] = new Button();
+                contentbarButton[i].Width = contentbarButtonWidth;
+                contentbarButton[i].Height = contentbarButtonHeight;
+                contentbarButton[i].Content = "Content"+i;
+                contentbarStack.Children.Add(contentbarButton[i]);
+            }
+            
+            Grid.SetRow(contentbarStack, 1);
+            Grid.SetColumn(contentbarStack, 0);
 
             //③ PowerPoint-メインコンテンツ
-            no3_stack = new StackPanel
+            mainContentStack = new StackPanel
             {
-                Width = this.Width,
-                Height = this.Height * 0.1,
+                Width = this.Width * 4/5,
+                Height = this.Height * 4/5,
                 Background = Brushes.Green,
             };
-            maingrid.Children.Add(no3_stack);
-            Grid.SetRow(no3_stack, 1);
-            Grid.SetColumn(no3_stack, 1);
+            maingrid.Children.Add(mainContentStack);
+            Rectangle mainContent = new Rectangle
+            {
+                Width = mainContentStack.Width*2/3,
+                Height = mainContentStack.Height*2/3,
+                Fill = Brushes.IndianRed,
+                VerticalAlignment = VerticalAlignment.Center
+            };
+            mainContentStack.Children.Add(mainContent);
 
-
+            Grid.SetRow(mainContentStack, 1);
+            Grid.SetColumn(mainContentStack, 1);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void LogSetting()
         {
             //TODO : マウスカーソルの座標位置のログを取得できるようにする
@@ -168,7 +204,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             }
             if (LogFlag == true)
             {
-                //ログ描画機構の
+                //ログ描画機構のやつ
                 logdrawing = new LogDrawing_Canvas
                 {
                     Height = this.Height,
@@ -194,9 +230,14 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void startbutton_Click(object sender, RoutedEventArgs e)
         {
-            if (((Button)sender).Content == "Start")
+            if (((Button)sender).Content.Equals("Start"))
             {
                 StartTimer();
                 ((System.Windows.Controls.Button)sender).Content = "Finish";
@@ -206,14 +247,19 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Button sender1 = (System.Windows.Controls.Button)sender;
                 Console.WriteLine("aaaaaaaaaa" + sender1.Name);
             }
-            else if (((Button)sender).Content == "Finish")
+            else if (((Button)sender).Content.Equals("Finish"))
             {
                 StopTimer();
                 ((Button)sender).Content = "End";
             }
         }
 
-        //https://moewe-net.com/csharp/forms-timer
+
+        /// <summary>
+        /// 
+        /// https://moewe-net.com/csharp/forms-timer
+        /// </summary>
+
         private void StartTimer()
         {
             Timer timer = new Timer();
@@ -224,6 +270,10 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             _timer = timer;
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
         private void StopTimer()
         {
             if (_timer == null)
@@ -233,6 +283,12 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             _timer.Stop();
             _timer = null;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TickHandler(object sender, EventArgs e)
         {
             //マウスカーソルの座標を取得
@@ -240,6 +296,10 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             TimeCount += 0.05;
             Logger.SaveMouseCursorPosition(TimeCount, p.X, p.Y);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
         private void DoEvents()
         {
             DispatcherFrame frame = new DispatcherFrame();
