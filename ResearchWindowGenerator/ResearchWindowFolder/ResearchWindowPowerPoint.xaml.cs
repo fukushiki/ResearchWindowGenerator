@@ -28,7 +28,6 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         /*Grid*/
         Grid maingrid;
         
-
         ColumnDefinition colDef1;
         ColumnDefinition colDef2;
         RowDefinition rowDef1;
@@ -139,7 +138,6 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             Grid.SetColumnSpan(toolbarStack, 2);
 
             //Button追加
-
 
 
             //② PowerPoint-項目選択
