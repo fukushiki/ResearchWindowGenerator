@@ -20,7 +20,7 @@ namespace ResearchWindowGenerator
     /// <summary>
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
-
+    ///
 
     public partial class MainWindow : Window
     {
@@ -85,7 +85,11 @@ namespace ResearchWindowGenerator
 
         }
 
-        //ボタンをクリックした際の挙動
+        /// <summary>
+        /// ボタンクリックのイベントハンドラ
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             //中身の有無のチェック
@@ -116,6 +120,11 @@ namespace ResearchWindowGenerator
 
         }
 
+        /// <summary>
+        /// ログ選択画面
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void LogSlect_Click(object sender, RoutedEventArgs e)
         {
             //TODO : ログ選択Windowへ
