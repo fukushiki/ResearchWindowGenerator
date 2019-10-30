@@ -78,6 +78,9 @@
     <Compile Include="ResearchWindowFolder\ResearchWindowPowerPoint.xaml.cs">
       <DependentUpon>ResearchWindowPowerPoint.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ResearchWindowFolder\ResearchWindowLayout.xaml.cs">
+      <DependentUpon>ResearchWindowLayout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ResearchWindowFolder\WindowTest.xaml.cs">
       <DependentUpon>WindowTest.xaml</DependentUpon>
     </Compile>
@@ -124,6 +127,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ResearchWindowFolder\ResearchWindowPowerPoint.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ResearchWindowFolder\ResearchWindowLayout.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

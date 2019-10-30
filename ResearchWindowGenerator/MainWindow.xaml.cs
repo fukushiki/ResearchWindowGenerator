@@ -44,9 +44,6 @@ namespace ResearchWindowGenerator
             //TODO:設定ファイルがないなら設定メモファイルを生成するように設計
             Initialize.InitializeDesktopInfo();
 
-
-
-
         }
         //TODO :いつか設定をCSVファイルでできるようにします
         public void ReadCsv()

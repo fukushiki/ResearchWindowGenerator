@@ -20,8 +20,8 @@ namespace ResearchWindowGenerator
     /// </summary>
     public partial class SelectWindow : Window
     {
-        string[] windowNames = { "ResearchWindowPowerPoint", "ResearchWindowPDF", "ResearchWindowCalendar", "ResearchWindowTest","ResearchWindowTest_Log" , "WindowTemplate" , "WindowTest"};
-
+        //string[] windowNames = { "ResearchWindowPowerPoint", "ResearchWindowPDF", "ResearchWindowCalendar", "ResearchWindowTest","ResearchWindowTest_Log" , "WindowTemplate" , "WindowTest"};
+        string[] windowNames = { "ResarchWindowLayout" };
         public SelectWindow()
         {
             InitializeComponent();
@@ -47,6 +47,7 @@ namespace ResearchWindowGenerator
             string selected_windowname = Windowlist_ComboBox.Text;
             Console.WriteLine(selected_windowname);
 
+            /*
             switch (selected_windowname)
             {
                 case "ResearchWindowTest":
@@ -72,6 +73,20 @@ namespace ResearchWindowGenerator
                 default:
                     Console.WriteLine("Default case");
                     break;
+            }
+            */
+
+            switch (selected_windowname)
+            {
+                case "ResarchWindowLayout":
+
+                    ResearchWindowLayout researchWindowLayout = new ResearchWindowLayout("ResarchWindowLayout", "", "", false);
+                    researchWindowLayout.Show();
+                    break;
+                default:
+                    Console.WriteLine("Default case");
+                    break;
+
             }
             this.Close();
         }
