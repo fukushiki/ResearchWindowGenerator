@@ -102,7 +102,13 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
             //Patternによってスタックパネルを切り替えるようにできないかな？
             //あらかじめStackPanelをそれぞれに当てはまるようなものを用意して
-            
+            /**
+             * 各レイアウトについて
+             * MainContents
+             * Width =  Height= 
+             * ToolBar =
+             * SelectBar = 
+             */
 
 
         }
@@ -123,9 +129,13 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
             this.AddChild(maingrid);
 
+           
+
+
+
             // Layout1 
             /**/
-             
+
 
             // Layout2
             /**/

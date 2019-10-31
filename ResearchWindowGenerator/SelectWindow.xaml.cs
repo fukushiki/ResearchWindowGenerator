@@ -79,8 +79,9 @@ namespace ResearchWindowGenerator
             switch (selected_windowname)
             {
                 case "ResarchWindowLayout":
-
-                    ResearchWindowLayout researchWindowLayout = new ResearchWindowLayout("ResarchWindowLayout", "", "", false);
+                    //TODO: ここを動的に設定
+                    int patternnum = 1;
+                    ResearchWindowLayout researchWindowLayout = new ResearchWindowLayout("ResarchWindowLayout", patternnum, "", "", false);
                     researchWindowLayout.Show();
                     break;
                 default:
