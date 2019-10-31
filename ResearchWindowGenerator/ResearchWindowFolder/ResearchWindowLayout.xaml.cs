@@ -38,6 +38,17 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         Double rowHeight1;
         Double rowHeight2;
 
+        
+        /*機能のサイズ*/
+        /*MainContents*/
+        Double mainContents_Height;
+        Double mainContents_Width;
+        /*ContentsBar*/
+        Double contentsBar_Height;
+        Double contentsBar_Width;
+        /*ToolBar*/
+        Double toolBar_Height;
+        Double toolBar_Width;
 
 
         /*StackPanel*/
@@ -54,15 +65,19 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         LogDrawing_Canvas logdrawing;
 
 
+
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="windowname">このwindowの名前</param>
+        /// <param name="patternnum">表示するWindowの種類</param>
         /// <param name="file_name">マウスの移動座標を保存する/したファイル名</param>
         /// <param name="click_file_name">クリック位置を保存する/したファイル名</param>
         /// <param name="log_flag">true : ログの線を描きだし
         ///                        false : ログ取得</param>
-        public ResearchWindowLayout(string windowname, string file_name, string click_file_name, bool log_flag)
+        ///                        
+        public ResearchWindowLayout(string windowname, int patternnum, string file_name, string click_file_name, bool log_flag)
         {
             InitializeComponent();
 
@@ -81,6 +96,15 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             this.GridInit();
             this.CompornentInit();
             this.LogSetting();
+
+            /**/
+            //Vector toolbar = new Vector{1,1};
+
+            //Patternによってスタックパネルを切り替えるようにできないかな？
+            //あらかじめStackPanelをそれぞれに当てはまるようなものを用意して
+            
+
+
         }
 
         /// <summary>
@@ -96,7 +120,23 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Background = Brushes.Aquamarine,
                 ShowGridLines = true
             };
+
             this.AddChild(maingrid);
+
+            // Layout1 
+            /**/
+             
+
+            // Layout2
+            /**/
+
+            // Layout3
+            /**/
+
+            // Layout4
+            /**/
+
+
             //Column : 行 Width
             columnWidth1 = this.Width * 1 / 5;
             columnWidth2 = this.Width * 4 / 5;
@@ -120,6 +160,15 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         /// </summary>
         private void CompornentInit()
         {
+            
+            // MainContents
+
+
+            // ToolBar
+            // SelectBar
+
+
+            /*
             //① PowerPoint-ツールバー
             toolbarStack = new StackPanel
             {
@@ -185,6 +234,12 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
             Grid.SetRow(mainContentStack, 1);
             Grid.SetColumn(mainContentStack, 1);
+            */
+
+
+
+
+
         }
 
         /// <summary>
