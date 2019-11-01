@@ -65,8 +65,6 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         LogDrawing_Canvas logdrawing;
 
 
-
-
         /// <summary>
         /// 
         /// </summary>
@@ -97,6 +95,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             this.CompornentInit();
             this.LogSetting();
 
+            
             /**/
             //Vector toolbar = new Vector{1,1};
 
