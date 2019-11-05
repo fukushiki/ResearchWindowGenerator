@@ -72,6 +72,9 @@
     <Compile Include="LogShowSlideBar.xaml.cs">
       <DependentUpon>LogShowSlideBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ResearchWindowFolder\MyContentsBar.cs" />
+    <Compile Include="ResearchWindowFolder\MyMainContents.cs" />
+    <Compile Include="ResearchWindowFolder\MyToolBar.cs" />
     <Compile Include="ResearchWindowFolder\ResearchWindowPDF.xaml.cs">
       <DependentUpon>ResearchWindowPDF.xaml</DependentUpon>
     </Compile>

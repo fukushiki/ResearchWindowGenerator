@@ -51,10 +51,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         Double toolBar_Width;
 
 
-        /*StackPanel*/
-        StackPanel toolbarStack;
-        StackPanel contentbarStack;
-        StackPanel mainContentStack;
+        
 
         /*Log関係*/
         private Timer _timer = null;
@@ -95,7 +92,18 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             this.CompornentInit();
             this.LogSetting();
 
-            
+
+            //LoadSettingPattern();
+
+            MyMainContents maincontents = new MyMainContents();
+            MyContentsBar contentsBar = new MyContentsBar();
+            MyToolBar toolBar = new MyToolBar();
+            //3つの機能
+            /*StackPanel
+            StackPanel toolbarStack;
+            StackPanel contentbarStack;
+            StackPanel mainContentStack;
+            */
             /**/
             //Vector toolbar = new Vector{1,1};
 
@@ -127,10 +135,6 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             };
 
             this.AddChild(maingrid);
-
-           
-
-
 
             // Layout1 
             /**/
