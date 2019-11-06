@@ -28,6 +28,14 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         /*Grid*/
         Grid maingrid;
 
+        /*機能*/
+        MyMainContents maincontents;
+        MyContentsBar contentsBar;
+        MyToolBar toolBar;
+
+
+
+
         ColumnDefinition colDef1;
         ColumnDefinition colDef2;
         RowDefinition rowDef1;
@@ -37,19 +45,6 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         Double columnWidth2;
         Double rowHeight1;
         Double rowHeight2;
-
-        
-        /*機能のサイズ*/
-        /*MainContents*/
-        Double mainContents_Height;
-        Double mainContents_Width;
-        /*ContentsBar*/
-        Double contentsBar_Height;
-        Double contentsBar_Width;
-        /*ToolBar*/
-        Double toolBar_Height;
-        Double toolBar_Width;
-
 
         
 
@@ -89,33 +84,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
             /*初期化メソッドの宣言*/
             this.GridInit();
-            this.CompornentInit();
             this.LogSetting();
-
-
-            //LoadSettingPattern();
-
-            MyMainContents maincontents = new MyMainContents();
-            MyContentsBar contentsBar = new MyContentsBar();
-            MyToolBar toolBar = new MyToolBar();
-            //3つの機能
-            /*StackPanel
-            StackPanel toolbarStack;
-            StackPanel contentbarStack;
-            StackPanel mainContentStack;
-            */
-            /**/
-            //Vector toolbar = new Vector{1,1};
-
-            //Patternによってスタックパネルを切り替えるようにできないかな？
-            //あらかじめStackPanelをそれぞれに当てはまるようなものを用意して
-            /**
-             * 各レイアウトについて
-             * MainContents
-             * Width =  Height= 
-             * ToolBar =
-             * SelectBar = 
-             */
 
 
         }
@@ -135,125 +104,149 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             };
 
             this.AddChild(maingrid);
+            this.CompornentInit();
 
-            // Layout1 
-            /**/
-
-
-            // Layout2
-            /**/
-
-            // Layout3
-            /**/
-
-            // Layout4
-            /**/
+            columnWidth1 = contentsBar.GetWidth();
+            columnWidth2 = maincontents.GetWidth();
+            rowHeight1 = toolBar.GetHeight();
+            rowHeight2 = contentsBar.GetHeight();
 
 
-            //Column : 行 Width
-            columnWidth1 = this.Width * 1 / 5;
-            columnWidth2 = this.Width * 4 / 5;
-            colDef1 = new ColumnDefinition { Width = new GridLength(columnWidth1) };
-            colDef2 = new ColumnDefinition { Width = new GridLength(columnWidth2) };
+            String layoutNum = "1";
+            setLayout("Layout" + layoutNum);
+
+            setObject2Layout("Layout" + layoutNum);
+            
+        }
+
+
+        private void setLayout(String _layout_name)
+        {
+            switch (_layout_name)
+            {
+                case ("Layout1"):
+                    //Column : 行 Width
+                    colDef1 = new ColumnDefinition { Width = new GridLength(columnWidth1) };
+                    colDef2 = new ColumnDefinition { Width = new GridLength(columnWidth2) };
+                    //Row : 列 Height
+                    rowDef1 = new RowDefinition { Height = new GridLength(rowHeight1) };
+                    rowDef2 = new RowDefinition { Height = new GridLength(rowHeight2) };
+                    break;
+                case ("Layout2"):
+                    //Column : 行 Width
+                    colDef1 = new ColumnDefinition { Width = new GridLength(columnWidth2) };
+                    colDef2 = new ColumnDefinition { Width = new GridLength(columnWidth1) };
+                    //Row : 列 Height
+                    rowDef1 = new RowDefinition { Height = new GridLength(rowHeight1) };
+                    rowDef2 = new RowDefinition { Height = new GridLength(rowHeight2) };
+                    break;
+                case ("Layout3"):
+                    //Column : 行 Width
+                    colDef1 = new ColumnDefinition { Width = new GridLength(columnWidth1) };
+                    colDef2 = new ColumnDefinition { Width = new GridLength(columnWidth2) };
+                    //Row : 列 Height
+                    rowDef1 = new RowDefinition { Height = new GridLength(rowHeight2) };
+                    rowDef2 = new RowDefinition { Height = new GridLength(rowHeight1) };
+                    break;
+                case ("Layout4"):
+                    //Column : 行 Width
+                    colDef1 = new ColumnDefinition { Width = new GridLength(columnWidth2) };
+                    colDef2 = new ColumnDefinition { Width = new GridLength(columnWidth1) };
+                    //Row : 列 Height
+                    rowDef1 = new RowDefinition { Height = new GridLength(rowHeight2) };
+                    rowDef2 = new RowDefinition { Height = new GridLength(rowHeight1) };
+                    break;
+                default:
+                    break;
+            }
             maingrid.ColumnDefinitions.Add(colDef1);
             maingrid.ColumnDefinitions.Add(colDef2);
-
-            //Row : 列 Height
-            rowHeight1 = this.Height * 0.13;
-            rowHeight2 = this.Height * 0.87;
-            rowDef1 = new RowDefinition { Height = new GridLength(rowHeight1) };
-            rowDef2 = new RowDefinition { Height = new GridLength(rowHeight2) };
             maingrid.RowDefinitions.Add(rowDef1);
             maingrid.RowDefinitions.Add(rowDef2);
 
+
         }
+
 
         /// <summary>
         /// コンポーネントの読み込み
         /// </summary>
         private void CompornentInit()
         {
-            
-            // MainContents
-
-
-            // ToolBar
-            // SelectBar
-
-
-            /*
-            //① PowerPoint-ツールバー
-            toolbarStack = new StackPanel
-            {
-                //Width = this.Width * 0.3,
-                //Height = this.Height * 0.7,
-                Width = this.Width,
-                Height = rowHeight2,
-                Background = Brushes.Blue,
-            };
-            maingrid.Children.Add(toolbarStack);
-            //rowDef1.Height = toolbarStack.Height;
-
-            //Grid.SetRowSpan(toolbarStack,2);
-            Grid.SetRow(toolbarStack, 0);
-            Grid.SetColumn(toolbarStack, 0);
-            Grid.SetColumnSpan(toolbarStack, 2);
-
-            //Button追加
-
-
-            //② PowerPoint-項目選択
-            contentbarStack = new StackPanel
-            {
-                Width = columnWidth1,
-                Height = rowHeight2,
-                Background = Brushes.Yellow
-            };
-            maingrid.Children.Add(contentbarStack);
-
-            //Button追加
-            double contentbarButtonWidth = columnWidth1;
-            double contentbarButtonHeight = rowHeight2 * 1 / 5;
-
-            Button[] contentbarButton = new Button[5];
-            for (int i = 0; i < 5; i++)
-            {
-                contentbarButton[i] = new Button();
-                contentbarButton[i].Width = contentbarButtonWidth;
-                contentbarButton[i].Height = contentbarButtonHeight;
-                contentbarButton[i].Content = "Content" + i;
-                contentbarStack.Children.Add(contentbarButton[i]);
-            }
-
-            Grid.SetRow(contentbarStack, 1);
-            Grid.SetColumn(contentbarStack, 0);
-
-            //③ PowerPoint-メインコンテンツ
-            mainContentStack = new StackPanel
-            {
-                Width = this.Width * 4 / 5,
-                Height = this.Height * 4 / 5,
-                Background = Brushes.Green,
-            };
-            maingrid.Children.Add(mainContentStack);
-            Rectangle mainContent = new Rectangle
-            {
-                Width = mainContentStack.Width * 2 / 3,
-                Height = mainContentStack.Height * 2 / 3,
-                Fill = Brushes.IndianRed,
-                VerticalAlignment = VerticalAlignment.Center
-            };
-            mainContentStack.Children.Add(mainContent);
-
-            Grid.SetRow(mainContentStack, 1);
-            Grid.SetColumn(mainContentStack, 1);
-            */
-
-
-
-
-
+            contentsBar = new MyContentsBar(this.Width * 1 / 5, this.Height * 0.87);
+            toolBar = new MyToolBar(this.Width, this.Height * 0.13);
+            maincontents = new MyMainContents(this.Width * 4 / 5, this.Height * 0.87);
         }
+
+        private void setObject2Layout(String _layout_num)
+        {
+            switch (_layout_num)
+            {
+                case ("Layout1"):
+                    maingrid.Children.Add(maincontents.mainContentsGrid);
+                    Grid.SetRow(maincontents.mainContentsGrid, 1);
+                    Grid.SetColumn(maincontents.mainContentsGrid, 1);
+
+                    maingrid.Children.Add(contentsBar.myContentsBarGrid);
+                    Grid.SetRow(contentsBar.myContentsBarGrid, 1);
+                    Grid.SetColumn(contentsBar.myContentsBarGrid, 0);
+
+                    maingrid.Children.Add(toolBar.myToolBarGrid);
+                    Grid.SetRow(toolBar.myToolBarGrid, 0);
+                    Grid.SetColumn(toolBar.myToolBarGrid, 0);
+                    Grid.SetColumnSpan(toolBar.myToolBarGrid, 2);
+
+                    break;
+                case ("Layout2"):
+                    maingrid.Children.Add(maincontents.mainContentsGrid);
+                    Grid.SetRow(maincontents.mainContentsGrid, 1);
+                    Grid.SetColumn(maincontents.mainContentsGrid, 0);
+
+                    maingrid.Children.Add(contentsBar.myContentsBarGrid);
+                    Grid.SetRow(contentsBar.myContentsBarGrid, 1);
+                    Grid.SetColumn(contentsBar.myContentsBarGrid, 1);
+
+                    maingrid.Children.Add(toolBar.myToolBarGrid);
+                    Grid.SetRow(toolBar.myToolBarGrid, 0);
+                    Grid.SetColumn(toolBar.myToolBarGrid, 0);
+                    Grid.SetColumnSpan(toolBar.myToolBarGrid, 2);
+                    break;
+                case ("Layout3"):
+                    maingrid.Children.Add(maincontents.mainContentsGrid);
+                    Grid.SetRow(maincontents.mainContentsGrid, 0);
+                    Grid.SetColumn(maincontents.mainContentsGrid, 1);
+
+                    maingrid.Children.Add(contentsBar.myContentsBarGrid);
+                    Grid.SetRow(contentsBar.myContentsBarGrid, 0);
+                    Grid.SetColumn(contentsBar.myContentsBarGrid, 0);
+
+                    maingrid.Children.Add(toolBar.myToolBarGrid);
+                    Grid.SetRow(toolBar.myToolBarGrid, 1);
+                    Grid.SetColumn(toolBar.myToolBarGrid, 0);
+                    Grid.SetColumnSpan(toolBar.myToolBarGrid, 2);
+                    break;
+                case ("Layout4"):
+                    maingrid.Children.Add(maincontents.mainContentsGrid);
+                    Grid.SetRow(maincontents.mainContentsGrid, 0);
+                    Grid.SetColumn(maincontents.mainContentsGrid, 0);
+
+                    maingrid.Children.Add(contentsBar.myContentsBarGrid);
+                    Grid.SetRow(contentsBar.myContentsBarGrid, 0);
+                    Grid.SetColumn(contentsBar.myContentsBarGrid, 1);
+
+                    maingrid.Children.Add(toolBar.myToolBarGrid);
+                    Grid.SetRow(toolBar.myToolBarGrid, 1);
+                    Grid.SetColumn(toolBar.myToolBarGrid, 0);
+                    Grid.SetColumnSpan(toolBar.myToolBarGrid, 2);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+
+
+
 
         /// <summary>
         /// 
