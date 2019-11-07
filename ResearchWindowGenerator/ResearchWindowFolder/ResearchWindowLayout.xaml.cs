@@ -99,7 +99,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             {
                 Width = this.Width,
                 Height = this.Height,
-                Background = Brushes.Aquamarine,
+                //Background = Brushes.Aquamarine,
                 ShowGridLines = true
             };
 

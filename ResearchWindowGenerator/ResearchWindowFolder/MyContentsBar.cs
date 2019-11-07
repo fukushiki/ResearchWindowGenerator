@@ -105,7 +105,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             {
                 Width = this.Width,
                 Height = this.Height,
-                Background = Brushes.Blue,
+                //Background = Brushes.Blue,
                 ShowGridLines = true
             };
 
