@@ -157,13 +157,14 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
                     };
 
-                    Image img = new Image();
+                    /*Image img = new Image();
                     Uri uri = new Uri(System.IO.Path.GetFullPath("../../../ImageFolder/food_nabe_mizutaki.png"), UriKind.RelativeOrAbsolute);
                     img.Source = new BitmapImage(uri);
-                    stackPanels[j].Children.Add(img);
+                    stackPanels[j].Children.Add(img);*/
+
 
                     TextBlock textBlock = new TextBlock();
-                    textBlock.Text = "Row:" + i + ", Col:" + j;
+                    textBlock.Text = "ContentsBar"+"Row:" + i + ", Col:" + j;
                     stackPanels[j].Children.Add(textBlock);
 
                     this.myContentsBarGrid.Children.Add(stackPanels[j]);

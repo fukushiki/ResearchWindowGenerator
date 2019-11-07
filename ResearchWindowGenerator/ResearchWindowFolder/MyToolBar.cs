@@ -164,9 +164,6 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     //一覧
                     //並べて表示
                     //コンテンツ
-
-
-
                 }
                 stackPanelList.Add(stackPanels);
 

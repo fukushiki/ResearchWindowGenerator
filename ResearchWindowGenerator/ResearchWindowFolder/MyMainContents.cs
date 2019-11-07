@@ -183,7 +183,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     };
 
                     Image img = new Image();
-                    Uri uri = new Uri(System.IO.Path.GetFullPath("../../../ImageFolder/food_nabe_mizutaki.png"), UriKind.RelativeOrAbsolute);
+                    Uri uri = new Uri(System.IO.Path.GetFullPath("../../../ImageFolder/PowerPoint.png"), UriKind.RelativeOrAbsolute);
                     img.Source = new BitmapImage(uri);
                     stackPanels[j].Children.Add(img);
 
