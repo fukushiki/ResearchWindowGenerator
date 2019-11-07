@@ -30,10 +30,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
         public MyContentsBar(double width, double height)
         {
-           this.Width = width;
-           this.Height = height;
-
-
+            this.Width = width;
+            this.Height = height;
 
             SetButton(1);
             SetGrid();
@@ -92,6 +90,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 for (int j = 0; j < GridColumn; j++)
                 {
                     button[j] = new Button();
+                    button[j].Click += MyContentsBarButton_Clicked;
 
                 }
                 buttonList.Add(button);
@@ -157,20 +156,21 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
                     };
 
-                    /*Image img = new Image();
-                    Uri uri = new Uri(System.IO.Path.GetFullPath("../../../ImageFolder/food_nabe_mizutaki.png"), UriKind.RelativeOrAbsolute);
-                    img.Source = new BitmapImage(uri);
-                    stackPanels[j].Children.Add(img);*/
-
+                    TextBlock textBlock_ = new TextBlock();
+                    textBlock_.Text = i.ToString();
+                    textBlock_.FontSize = 20;
+                    textBlock_.FontWeight = FontWeights.Bold;
+                    stackPanels[j].Children.Add(textBlock_);
 
                     TextBlock textBlock = new TextBlock();
                     textBlock.Text = "ContentsBar"+"Row:" + i + ", Col:" + j;
                     stackPanels[j].Children.Add(textBlock);
 
-                    this.myContentsBarGrid.Children.Add(stackPanels[j]);
-                    Grid.SetRow(stackPanels[j], i);
-                    Grid.SetColumn(stackPanels[j], j);
+                    buttonList[i][j].Content=stackPanels[j];
 
+                    this.myContentsBarGrid.Children.Add(buttonList[i][j]);
+                    Grid.SetRow(buttonList[i][j], i);
+                    Grid.SetColumn(buttonList[i][j], j);
 
 
 
@@ -179,6 +179,33 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
             }
 
+
+        }
+
+        private void MyContentsBarButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            /*
+            if (((Button)sender).Content == "Start")
+            {
+                StartTimer();
+                ((Button)sender).Content = "Finish";
+                //System.Drawing.Point point = System.Windows.Forms.Control.MousePosition;
+                //Logger.SaveMouseClickPosition(TimeCount, point.X, point.Y);
+
+                Button sender1 = (System.Windows.Controls.Button)sender;
+                Console.WriteLine("aaaaaaaaaa" + sender1.Name);
+
+
+            }
+            else if (((Button)sender).Content == "Finish")
+            {
+                StopTimer();
+                ((Button)sender).Content = "End";
+            }*/
+
+
+            Button sender1 = (System.Windows.Controls.Button)sender;
+            Console.WriteLine("aaaaaaaaaa" + sender1.Name);
 
         }
 

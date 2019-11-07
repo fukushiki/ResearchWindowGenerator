@@ -77,6 +77,10 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             filePath = file_name;
             clickfilePath = click_file_name;
 
+            //this.WindowStyle = WindowStyle.None;
+            //this.AllowsTransparency = true;
+            
+
             /*Windowのサイズ指定*/
             this.Width = SystemParameters.WorkArea.Width;
             this.Height = SystemParameters.WorkArea.Height;

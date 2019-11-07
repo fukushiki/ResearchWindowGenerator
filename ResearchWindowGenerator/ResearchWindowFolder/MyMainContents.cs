@@ -118,7 +118,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 for(int j = 0; j < GridColumn; j++)
                 {
                     button[j] = new Button();
-                    
+                    button[j].Click += MyMainContentsButton_Clicked;
+                    button[j].Name = "MainContentsButton";
                 }
                 buttonList.Add(button);
             }
@@ -191,9 +192,14 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     textBlock.Text = "Row:" + i + ", Col:" + j;
                     stackPanels[j].Children.Add(textBlock);
 
-                    this.mainContentsGrid.Children.Add(stackPanels[j]);
-                    Grid.SetRow(stackPanels[j], i);
-                    Grid.SetColumn(stackPanels[j], j);
+
+                    buttonList[i][j].Content = stackPanels[j];
+                    buttonList[i][j].Background = Brushes.Transparent;
+                    
+
+                    this.mainContentsGrid.Children.Add(buttonList[i][j]);
+                    Grid.SetRow(buttonList[i][j], i);
+                    Grid.SetColumn(buttonList[i][j], j);
 
 
 
@@ -231,7 +237,32 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         {
 
         }
+        private void MyMainContentsButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            /*
+            if (((Button)sender).Content == "Start")
+            {
+                StartTimer();
+                ((Button)sender).Content = "Finish";
+                //System.Drawing.Point point = System.Windows.Forms.Control.MousePosition;
+                //Logger.SaveMouseClickPosition(TimeCount, point.X, point.Y);
 
+                Button sender1 = (System.Windows.Controls.Button)sender;
+                Console.WriteLine("aaaaaaaaaa" + sender1.Name);
+
+
+            }
+            else if (((Button)sender).Content == "Finish")
+            {
+                StopTimer();
+                ((Button)sender).Content = "End";
+            }*/
+
+
+            Button sender1 = (System.Windows.Controls.Button)sender;
+            Console.WriteLine("aaaaaaaaaa" + sender1.Name);
+
+        }
 
     }
 }
