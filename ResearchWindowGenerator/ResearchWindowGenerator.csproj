@@ -84,6 +84,7 @@
     <Compile Include="ResearchWindowFolder\ResearchWindowLayout.xaml.cs">
       <DependentUpon>ResearchWindowLayout.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ResearchWindowFolder\SettingReader.cs" />
     <Compile Include="ResearchWindowFolder\WindowTest.xaml.cs">
       <DependentUpon>WindowTest.xaml</DependentUpon>
     </Compile>

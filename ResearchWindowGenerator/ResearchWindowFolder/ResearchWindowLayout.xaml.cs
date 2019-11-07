@@ -87,6 +87,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             this.WindowState = WindowState.Maximized;
 
             /*初期化メソッドの宣言*/
+            
+
             this.GridInit();
             this.LogSetting();
 
@@ -177,6 +179,10 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         /// </summary>
         private void CompornentInit()
         {
+            //TODO : レイアウトのセッティングファイルを読み取る
+            String layoutNum = "Layout1";
+            SettingReader.settingRead(layoutNum);
+
             contentsBar = new MyContentsBar(this.Width * 1 / 5, this.Height * 0.87);
             toolBar = new MyToolBar(this.Width, this.Height * 0.13);
             maincontents = new MyMainContents(this.Width * 4 / 5, this.Height * 0.87);
