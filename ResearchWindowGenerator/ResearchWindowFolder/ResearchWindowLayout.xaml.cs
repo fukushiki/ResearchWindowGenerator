@@ -18,6 +18,11 @@ using Button = System.Windows.Controls.Button;
 
 namespace ResearchWindowGenerator.ResearchWindowFolder
 {
+    //TODO : アプリケーションのレイアウト とりあえずアプリの数値と一緒にしていくつか作ってみる
+    //TODO : MainContents
+    //TODO : ContentsBar
+    //TODO : ToolBar　一つのものと2つのものをそれぞれ作ってみる　位置のやつも考える
+
     /// <summary>
     /// WindowTemplate.xaml の相互作用ロジック
     /// </summary>
@@ -32,9 +37,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         MyMainContents maincontents;
         MyContentsBar contentsBar;
         MyToolBar toolBar;
-
-
-
+        MyToolBar toolBar2;
 
         ColumnDefinition colDef1;
         ColumnDefinition colDef2;
@@ -45,8 +48,6 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         Double columnWidth2;
         Double rowHeight1;
         Double rowHeight2;
-
-        
 
         /*Log関係*/
         private Timer _timer = null;
@@ -87,12 +88,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             this.WindowState = WindowState.Maximized;
 
             /*初期化メソッドの宣言*/
-            
-
             this.GridInit();
             this.LogSetting();
-
-
         }
 
         /// <summary>
@@ -106,12 +103,16 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Width = this.Width,
                 Height = this.Height,
                 //Background = Brushes.Aquamarine,
+                #if DEBUG
                 ShowGridLines = true
+                #endif
+
             };
 
             this.AddChild(maingrid);
             this.CompornentInit();
 
+            //TODO : レイアウトごとにGridを設定
             columnWidth1 = contentsBar.GetWidth();
             columnWidth2 = maincontents.GetWidth();
             rowHeight1 = toolBar.GetHeight();
@@ -121,11 +122,16 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             String layoutNum = "1";
             setLayout("Layout" + layoutNum);
 
-            setObject2Layout("Layout" + layoutNum);
+            //setObject2Layout("Layout" + layoutNum);
             
         }
 
+        //TODO : 複数アプリケーションでのレイアウトにする
 
+        /// <summary>
+        /// Layout毎にGridを設定
+        /// </summary>
+        /// <param name="_layout_name"></param>
         private void setLayout(String _layout_name)
         {
             switch (_layout_name)
@@ -181,11 +187,13 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         {
             //TODO : レイアウトのセッティングファイルを読み取る
             String layoutNum = "Layout1";
-            SettingReader.settingRead(layoutNum);
+            //SettingReader.settingRead(layoutNum);
 
+            //TODO : レイアウトを読み込み反映する
             contentsBar = new MyContentsBar(this.Width * 1 / 5, this.Height * 0.87);
             toolBar = new MyToolBar(this.Width, this.Height * 0.13);
             maincontents = new MyMainContents(this.Width * 4 / 5, this.Height * 0.87);
+
         }
 
         private void setObject2Layout(String _layout_num)
@@ -253,10 +261,6 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     break;
             }
         }
-
-
-
-
 
         /// <summary>
         /// 

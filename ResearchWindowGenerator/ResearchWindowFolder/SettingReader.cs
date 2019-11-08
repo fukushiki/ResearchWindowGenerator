@@ -21,7 +21,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         public double GetMyContentsBar_Width()
         {
 
-            return;
+            return 0;
         }
 
     }
