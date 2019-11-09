@@ -28,15 +28,12 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         ColumnDefinition[] colDef;
         RowDefinition[] rowDef;
 
-        public MyContentsBar(double width, double height)
+        public MyContentsBar()
         {
-            this.Width = width;
-            this.Height = height;
+            
 
-            SetButton(1);
-            SetGrid();
-            SetButtonList();
-            SetStackPanels();
+            
+            
         }
 
 
@@ -48,6 +45,16 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         public double GetHeight()
         {
             return this.Height;
+        }
+
+        public void SetWidth(double w)
+        {
+            this.Width = w;
+        }
+
+        public void SetHeight(double h)
+        {
+            this.Height = h;
         }
 
 
@@ -73,6 +80,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     ;
                     break;
             }
+            SetGrid();
+            SetButtonList();
+            SetStackPanels();
         }
 
 
@@ -104,7 +114,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             {
                 Width = this.Width,
                 Height = this.Height,
-                //Background = Brushes.Blue,
+                Background = Brushes.Blue,
                 ShowGridLines = true
             };
 
@@ -206,7 +216,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
             Button sender1 = (System.Windows.Controls.Button)sender;
             Console.WriteLine("aaaaaaaaaa" + sender1.Name);
-
+            ResearchWindowLayout.SendButtonClickDate(3);
         }
 
 

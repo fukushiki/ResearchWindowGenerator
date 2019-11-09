@@ -30,18 +30,13 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         ColumnDefinition[] colDef;
         RowDefinition[] rowDef;
 
-        public MyToolBar(double width, double height)
+        public MyToolBar()
         {
-            this.Width = width;
-            this.Height = height;
+            
 
 
 
-            SetButton(1);
-            SetGrid();
-            SetButtonList();
-            SetStackPanels();
-            ButtonPlace();
+            
         }
 
 
@@ -55,6 +50,16 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             return this.Height;
         }
 
+
+        public void SetWidth(double w)
+        {
+            this.Width = w;
+        }
+
+        public void SetHeight(double h)
+        {
+            this.Height = h;
+        }
 
         /// <summary>
         /// ボタンのセッティング
@@ -73,6 +78,12 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     ;
                     break;
             }
+
+            
+            SetGrid();
+            SetButtonList();
+            SetStackPanels();
+            ButtonPlace();
         }
 
 

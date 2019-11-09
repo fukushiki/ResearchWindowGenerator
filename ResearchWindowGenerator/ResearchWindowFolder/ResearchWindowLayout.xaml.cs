@@ -31,12 +31,12 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         string WindowName;
         /*コンポーネントの宣言*/
         /*Grid*/
-        Grid maingrid;
+        static Grid maingrid;
 
         /*機能*/
-        MyMainContents maincontents;
+        static MyMainContents maincontents;
         MyContentsBar contentsBar;
-        MyToolBar toolBar;
+        MyToolBar toolBar1;
         MyToolBar toolBar2;
 
         ColumnDefinition colDef1;
@@ -45,13 +45,6 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         RowDefinition rowDef1;
         RowDefinition rowDef2;
         RowDefinition rowDef3;
-
-        Double columnWidth1;
-        Double columnWidth2;
-        Double columnWidth3;
-        Double rowHeight1;
-        Double rowHeight2;
-        Double rowHeight3;
 
         /*Log関係*/
         private Timer _timer = null;
@@ -91,11 +84,39 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             this.Height = SystemParameters.WorkArea.Height;
             this.WindowState = WindowState.Maximized;
 
+
+
+            //TODO: ここで設定を変えるようにしないといけない
+            maincontents = new MyMainContents();
+            maincontents.SetWidth(1610);
+            maincontents.SetHeight(855);
+            maincontents.SetButton(4);
+
+
+            contentsBar = new MyContentsBar();
+            contentsBar.SetWidth(310);
+            contentsBar.SetHeight(855);
+            contentsBar.SetButton(1);
+
+
+            toolBar1 = new MyToolBar();
+            toolBar1.SetWidth(this.Width);
+            toolBar1.SetHeight(165 - 30);
+            toolBar1.SetButton(1);
+
+
+            toolBar2 = new MyToolBar();
+            toolBar2.SetWidth(this.Width);
+            toolBar2.SetHeight(20);
+            toolBar2.SetButton(1);
+
             /*初期化メソッドの宣言*/
             //T
             this.GridInit();
             this.LogSetting();
         }
+
+        
 
         /// <summary>
         /// Gridの初期化
@@ -117,131 +138,41 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             this.AddChild(maingrid);
             this.CompornentInit();
             String layoutNum = "1";
-            //setLayout("Layout" + layoutNum);
-            setLayout("TestMode");
-            //setObject2Layout("Layout" + layoutNum);
 
         }
 
-        //TODO : 複数アプリケーションでのレイアウトにする
+       
+
 
         /// <summary>
-        /// Layout毎にGridを設定
+        /// コンポーネントの読み込み
         /// </summary>
-        /// <param name="_layout_name"></param>
-        private void setLayout(String _layout_name)
+        private void CompornentInit()
         {
-            switch (_layout_name)
-            {
-                case ("Layout1"):
-                    //Column : 行 Width
-                    colDef1 = new ColumnDefinition { Width = new GridLength(columnWidth1) };
-                    colDef2 = new ColumnDefinition { Width = new GridLength(columnWidth2) };
-                    //Row : 列 Height
-                    rowDef1 = new RowDefinition { Height = new GridLength(rowHeight1) };
-                    rowDef2 = new RowDefinition { Height = new GridLength(rowHeight2) };
-                    maingrid.ColumnDefinitions.Add(colDef1);
-                    maingrid.ColumnDefinitions.Add(colDef2);
-                    maingrid.RowDefinitions.Add(rowDef1);
-                    maingrid.RowDefinitions.Add(rowDef2);
-                    break;
-                case ("Layout2"):
-                    //Column : 行 Width
-                    colDef1 = new ColumnDefinition { Width = new GridLength(columnWidth2) };
-                    colDef2 = new ColumnDefinition { Width = new GridLength(columnWidth1) };
-                    //Row : 列 Height
-                    rowDef1 = new RowDefinition { Height = new GridLength(rowHeight1) };
-                    rowDef2 = new RowDefinition { Height = new GridLength(rowHeight2) };
-                    maingrid.ColumnDefinitions.Add(colDef1);
-                    maingrid.ColumnDefinitions.Add(colDef2);
-                    maingrid.RowDefinitions.Add(rowDef1);
-                    maingrid.RowDefinitions.Add(rowDef2);
-                    break;
-                case ("Layout3"):
-                    //Column : 行 Width
-                    colDef1 = new ColumnDefinition { Width = new GridLength(columnWidth1) };
-                    colDef2 = new ColumnDefinition { Width = new GridLength(columnWidth2) };
-                    //Row : 列 Height
-                    rowDef1 = new RowDefinition { Height = new GridLength(rowHeight2) };
-                    rowDef2 = new RowDefinition { Height = new GridLength(rowHeight1) };
-                    maingrid.ColumnDefinitions.Add(colDef1);
-                    maingrid.ColumnDefinitions.Add(colDef2);
-                    maingrid.RowDefinitions.Add(rowDef1);
-                    maingrid.RowDefinitions.Add(rowDef2);
-                    break;
-                case ("Layout4"):
-                    //Column : 行 Width
-                    colDef1 = new ColumnDefinition { Width = new GridLength(columnWidth2) };
-                    colDef2 = new ColumnDefinition { Width = new GridLength(columnWidth1) };
-                    //Row : 列 Height
-                    rowDef1 = new RowDefinition { Height = new GridLength(rowHeight2) };
-                    rowDef2 = new RowDefinition { Height = new GridLength(rowHeight1) };
-                    maingrid.ColumnDefinitions.Add(colDef1);
-                    maingrid.ColumnDefinitions.Add(colDef2);
-                    maingrid.RowDefinitions.Add(rowDef1);
-                    maingrid.RowDefinitions.Add(rowDef2);
-                    break;
-                case ("TestMode"):
-                    TestGridSetting();
+            //TODO : レイアウトのセッティングファイルを読み取る→ ここに値を入れる
 
-
-                    break;
-                default:
-                    break;
-            }
-            
-
-
-        }
-
-        private void TestGridSetting()
-        {
-
-            //TODO:テストする
+            //String layoutName = "PowerPoint";
+            Console.WriteLine("aaaaaok");
+            //とりあえずここではサイズを
+            //PowerPointの場合
+            //TODO : レイアウトを読み込み反映する
             /*
-             * 1: PowerPoint
-             * 2: Calender
-             * 3: 
-             */
-
-            /* Memo
-             * 設定ファイルに入れるべき項目
-             * 1 Gridの幅等
-             * 2 各機能のサイズと配置
-             */
-            int number = 2;
-            switch(number){
-                case(1):
-                    columnWidth1 = contentsBar.GetWidth();
-                    columnWidth2 = maincontents.GetWidth();
-                    columnWidth3 = 0;
-                    rowHeight1 = toolBar.GetHeight();
-                    rowHeight2 = contentsBar.GetHeight();
-                    rowHeight3 = 0;
-                    break;
-                case (2):
-                    columnWidth1 = this.Width * 1 / 5;
-                    columnWidth2 = this.Width * 3 / 5;
-                    columnWidth3 = 0;
-                    rowHeight1 = this.Height * 2 / 10;
-                    rowHeight2 = this.Height * 10 / 10;
-                    rowHeight3 = 0;
-                    break;
-                case (3):
-                    break;
-                default:
-                    break;
-            }
+            maincontents = new MyMainContents(this.Width * (1610 / 1920), this.Height * (855 / 1040));
+            contentsBar = new MyContentsBar(this.Width * (310 / 1920), this.Height * (855 / 1040));
+            toolBar1 = new MyToolBar(this.Width, this.Height * (165 / 1920));
+            toolBar2 = new MyToolBar(this.Width, this.Height * (20 / 1920));
+            */
+            //35
 
 
             //Column : 行 Width
-            colDef1 = new ColumnDefinition { Width = new GridLength(columnWidth1) };
-            colDef2 = new ColumnDefinition { Width = new GridLength(columnWidth2) };
-            colDef3 = new ColumnDefinition { Width = new GridLength(columnWidth2) };
+            colDef1 = new ColumnDefinition { Width = new GridLength(contentsBar.GetWidth()) };
+            colDef2 = new ColumnDefinition { Width = new GridLength(maincontents.GetWidth()) };
+            colDef3 = new ColumnDefinition { Width = new GridLength(0) };
             //Row : 列 Height
-            rowDef1 = new RowDefinition { Height = new GridLength(rowHeight1) };
-            rowDef2 = new RowDefinition { Height = new GridLength(rowHeight2) };
-            rowDef3 = new RowDefinition { Height = new GridLength(rowHeight3) };
+            rowDef1 = new RowDefinition { Height = new GridLength(toolBar1.GetHeight()) };
+            rowDef2 = new RowDefinition { Height = new GridLength(contentsBar.GetHeight()) };
+            rowDef3 = new RowDefinition { Height = new GridLength(toolBar2.GetHeight()) };
 
             maingrid.ColumnDefinitions.Add(colDef1);
             maingrid.ColumnDefinitions.Add(colDef2);
@@ -251,94 +182,47 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             maingrid.RowDefinitions.Add(rowDef2);
             maingrid.RowDefinitions.Add(rowDef3);
 
+
+
+            //maincontents
+            Grid.SetColumn(maincontents.mainContentsGrid, 1);
+            Grid.SetRow(maincontents.mainContentsGrid, 1);
+            maingrid.Children.Add(maincontents.mainContentsGrid);
+            //contentsBar
+            Grid.SetColumn(contentsBar.myContentsBarGrid, 0);
+            Grid.SetRow(contentsBar.myContentsBarGrid, 1);
+            maingrid.Children.Add(contentsBar.myContentsBarGrid);
+            //toolBar1
+            Grid.SetColumn(toolBar1.myToolBarGrid, 0);
+            Grid.SetRow(toolBar1.myToolBarGrid, 0);
+            Grid.SetColumnSpan(toolBar1.myToolBarGrid, 2);
+            maingrid.Children.Add(toolBar1.myToolBarGrid);
+            //toolBar2
+            Grid.SetColumn(toolBar2.myToolBarGrid, 0);
+            Grid.SetRow(toolBar2.myToolBarGrid, 2);
+            Grid.SetColumnSpan(toolBar2.myToolBarGrid, 2);
+            maingrid.Children.Add(toolBar2.myToolBarGrid);
+
         }
 
-
-        /// <summary>
-        /// コンポーネントの読み込み
-        /// </summary>
-        private void CompornentInit()
+        internal static void SendButtonClickDate(int v)
         {
-            //TODO : レイアウトのセッティングファイルを読み取る
-            String layoutNum = "Layout1";
-            //SettingReader.settingRead(layoutNum);
+            //maingrid.Children.Remove(maincontents);
+            MyMainContents maincontents_ = new MyMainContents();
+            
+            maincontents = maincontents_;
+            //TODO: ここで設定を変えるようにしないといけない
+            maincontents_ = new MyMainContents();
+            maincontents_.SetWidth(1610);
+            maincontents_.SetHeight(855);
+            maincontents_.SetButton(v);
 
-            //TODO : レイアウトを読み込み反映する
-            contentsBar = new MyContentsBar(this.Width * 1 / 5, this.Height * 0.87);
-            toolBar = new MyToolBar(this.Width, this.Height * 0.13);
-            maincontents = new MyMainContents(this.Width * 4 / 5, this.Height * 0.87);
-
+            //maincontents
+            Grid.SetColumn(maincontents_.mainContentsGrid, 1);
+            Grid.SetRow(maincontents_.mainContentsGrid, 1);
+            maingrid.Children.Add(maincontents_.mainContentsGrid);
         }
 
-        private void setObject2Layout(String _layout_num)
-        {
-            switch (_layout_num)
-            {
-                case ("Layout1"):
-                    maingrid.Children.Add(maincontents.mainContentsGrid);
-                    Grid.SetRow(maincontents.mainContentsGrid, 1);
-                    Grid.SetColumn(maincontents.mainContentsGrid, 1);
-
-                    maingrid.Children.Add(contentsBar.myContentsBarGrid);
-                    Grid.SetRow(contentsBar.myContentsBarGrid, 1);
-                    Grid.SetColumn(contentsBar.myContentsBarGrid, 0);
-
-                    maingrid.Children.Add(toolBar.myToolBarGrid);
-                    Grid.SetRow(toolBar.myToolBarGrid, 0);
-                    Grid.SetColumn(toolBar.myToolBarGrid, 0);
-                    Grid.SetColumnSpan(toolBar.myToolBarGrid, 2);
-
-                    break;
-                case ("Layout2"):
-                    maingrid.Children.Add(maincontents.mainContentsGrid);
-                    Grid.SetRow(maincontents.mainContentsGrid, 1);
-                    Grid.SetColumn(maincontents.mainContentsGrid, 0);
-
-                    maingrid.Children.Add(contentsBar.myContentsBarGrid);
-                    Grid.SetRow(contentsBar.myContentsBarGrid, 1);
-                    Grid.SetColumn(contentsBar.myContentsBarGrid, 1);
-
-                    maingrid.Children.Add(toolBar.myToolBarGrid);
-                    Grid.SetRow(toolBar.myToolBarGrid, 0);
-                    Grid.SetColumn(toolBar.myToolBarGrid, 0);
-                    Grid.SetColumnSpan(toolBar.myToolBarGrid, 2);
-                    break;
-                case ("Layout3"):
-                    maingrid.Children.Add(maincontents.mainContentsGrid);
-                    Grid.SetRow(maincontents.mainContentsGrid, 0);
-                    Grid.SetColumn(maincontents.mainContentsGrid, 1);
-
-                    maingrid.Children.Add(contentsBar.myContentsBarGrid);
-                    Grid.SetRow(contentsBar.myContentsBarGrid, 0);
-                    Grid.SetColumn(contentsBar.myContentsBarGrid, 0);
-
-                    maingrid.Children.Add(toolBar.myToolBarGrid);
-                    Grid.SetRow(toolBar.myToolBarGrid, 1);
-                    Grid.SetColumn(toolBar.myToolBarGrid, 0);
-                    Grid.SetColumnSpan(toolBar.myToolBarGrid, 2);
-                    break;
-                case ("Layout4"):
-                    maingrid.Children.Add(maincontents.mainContentsGrid);
-                    Grid.SetRow(maincontents.mainContentsGrid, 0);
-                    Grid.SetColumn(maincontents.mainContentsGrid, 0);
-
-                    maingrid.Children.Add(contentsBar.myContentsBarGrid);
-                    Grid.SetRow(contentsBar.myContentsBarGrid, 0);
-                    Grid.SetColumn(contentsBar.myContentsBarGrid, 1);
-
-                    maingrid.Children.Add(toolBar.myToolBarGrid);
-                    Grid.SetRow(toolBar.myToolBarGrid, 1);
-                    Grid.SetColumn(toolBar.myToolBarGrid, 0);
-                    Grid.SetColumnSpan(toolBar.myToolBarGrid, 2);
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         private void LogSetting()
         {
             //TODO : マウスカーソルの座標位置のログを取得できるようにする

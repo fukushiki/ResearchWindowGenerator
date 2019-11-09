@@ -35,24 +35,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         /// </summary>
         /// <param name="w"></param>
         /// <param name="h"></param>
-        public MyMainContents(double w, double h)
+        public MyMainContents()
         {
-            this.Width = w;
-            this.Height = h;
-
-            stackPanel = new StackPanel
-            {
-                Width = this.Width,
-                Height = this.Height
-            };
-
-            //TODO:ここでいろいろ変える
-            SetButton(1);
-            SetGrid();
-            SetButtonList();
-            SetStackPanels();
-
-
         }
 
         public double GetWidth()
@@ -60,10 +44,31 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             return this.Width;
         }
 
+
+        
+
         public double GetHeight()
         {
             return this.Height;
         }
+
+        public void SetWidth(double w)
+        {
+            this.Width = w;
+        }
+
+        public void SetHeight(double h)
+        {
+            this.Height = h;
+        }
+
+
+        /*
+        public void SetButton__(int v)
+        {
+            SetButton(v);
+        }*/
+
 
         /// <summary>
         /// ボタンのセッティング
@@ -77,23 +82,31 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     GridRow = 6;
                     GridColumn = 15;
                     SetButtonList();
+                    SetGrid();
+                    SetStackPanels(1);
                     break;
                 case (2):
                     GridRow = 40;
                     GridColumn = 5;
                     SetButtonList();
+                    SetGrid();
+                    SetStackPanels(2);
                     break;
                 case (3):
                     GridRow = 15;
                     GridColumn = 6;
                     SetButtonList();
+                    SetGrid();
+                    SetStackPanels(3);
                     break;
                 case (4):
-                    GridRow = 7;
+                    GridRow = 17;
                     GridColumn = 1;
                     SetButtonList();
+                    SetGrid();
+                    SetStackPanels(4);
                     break;
-                /*
+                /*ランダムにオブジェクトを配置するケース
                 case (5):
                     SetButtonLayout();
                     break;*/
@@ -111,7 +124,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         /// <param name="_c">Column 列</param>
         private void SetButtonList()
         {
-            buttonList = new List<Button[]>();
+            buttonList= new List<Button[]>();
             for(int i = 0; i < GridRow; i++)
             {
                 Button[] button = new Button[GridColumn];
@@ -160,12 +173,14 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
         }
 
+        
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="_r">Row 行</param>
         /// <param name="_c">Column 列</param>
-        private void SetStackPanels()
+        public void SetStackPanels(int _maingrid_layoutnum)
         {
             stackPanelList = new List<StackPanel[]>();
             for (int i = 0; i < GridRow; i++)
@@ -183,20 +198,107 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                         
                     };
 
+
                     Image img = new Image();
                     Uri uri = new Uri(System.IO.Path.GetFullPath("../../../ImageFolder/PowerPoint.png"), UriKind.RelativeOrAbsolute);
                     img.Source = new BitmapImage(uri);
-                    stackPanels[j].Children.Add(img);
+                    //stackPanels[j].Children.Add(img);
 
-                    TextBlock textBlock = new TextBlock();
+                    TextBlock textBlock = new TextBlock {
+                        VerticalAlignment = VerticalAlignment.Center,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                    };
                     textBlock.Text = "Row:" + i + ", Col:" + j;
-                    stackPanels[j].Children.Add(textBlock);
+                    //stackPanels[j].Children.Add(textBlock);
 
+                    Grid contentsGrid = new Grid
+                    {
+                        Width = stackPanels[j].Width,
+                        Height = stackPanels[j].Height,
+                        #if DEBUG
+                        ShowGridLines = true,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        HorizontalAlignment = HorizontalAlignment.Center
+#endif
+                    };
+                    stackPanels[j].Children.Add(contentsGrid);
+
+                    //ここでそれぞれ_maingrid_layoutnumでmaincontentsの中身を変更する
+
+                    ColumnDefinition colDef1;
+                    ColumnDefinition colDef2;
+                    ColumnDefinition colDef3;
+                    RowDefinition rowDef1;
+                    RowDefinition rowDef2;
+                    RowDefinition rowDef3;
+
+                    
+
+
+                    switch (_maingrid_layoutnum)
+                    {
+                        case (1)://特大アイコン
+                            //Row : 列 Height
+                            rowDef1 = new RowDefinition { Height = new GridLength() };
+                            rowDef2 = new RowDefinition { Height = new GridLength() };
+                            contentsGrid.RowDefinitions.Add(rowDef1);
+                            contentsGrid.RowDefinitions.Add(rowDef2);
+                            contentsGrid.Children.Add(img);
+                            contentsGrid.Children.Add(textBlock);
+                            Grid.SetRow(img, 0);
+                            Grid.SetRow(textBlock, 1);
+                            break;
+                        case (2)://一覧
+                            //Column : 行 Width
+                            colDef1 = new ColumnDefinition { Width = new GridLength() };
+                            colDef2 = new ColumnDefinition { Width = new GridLength() };
+                            contentsGrid.ColumnDefinitions.Add(colDef1);
+                            contentsGrid.ColumnDefinitions.Add(colDef2);
+                            contentsGrid.Children.Add(img);
+                            contentsGrid.Children.Add(textBlock);
+                            Grid.SetColumn(img, 0);
+                            Grid.SetColumn(textBlock, 1);
+                            break;
+                        case (3)://並べて表示
+                            //Column : 行 Width
+                            colDef1 = new ColumnDefinition { Width = new GridLength() };
+                            colDef2 = new ColumnDefinition { Width = new GridLength() };
+                            contentsGrid.ColumnDefinitions.Add(colDef1);
+                            contentsGrid.ColumnDefinitions.Add(colDef2);
+                            contentsGrid.Children.Add(img);
+                            textBlock.Text = "Row:" + i + ", Col:" + j+"\n"+"TXTファイル"+"\n"+"0バイト";
+                            contentsGrid.Children.Add(textBlock);
+                            Grid.SetColumn(img, 0);
+                            Grid.SetColumn(textBlock, 1);
+                            break;
+                        case (4)://コンテンツ
+                            //Column : 行 Width
+                            colDef1 = new ColumnDefinition { Width = new GridLength() };
+                            colDef2 = new ColumnDefinition { Width = new GridLength() };
+                            colDef3 = new ColumnDefinition { Width = new GridLength() };
+                            contentsGrid.ColumnDefinitions.Add(colDef1);
+                            contentsGrid.ColumnDefinitions.Add(colDef2);
+                            contentsGrid.ColumnDefinitions.Add(colDef3);
+                            contentsGrid.Children.Add(img);
+                            contentsGrid.Children.Add(textBlock);
+                            TextBlock textBlock2 = new TextBlock
+                            {
+                                VerticalAlignment = VerticalAlignment.Center,
+                                HorizontalAlignment = HorizontalAlignment.Center,
+                            };
+                            textBlock2.Text = "更新日時: 2019/11/09 20:00" + "\n" + "サイズ: 0バイト";
+                            contentsGrid.Children.Add(textBlock2);
+
+                            Grid.SetColumn(img, 0);
+                            Grid.SetColumn(textBlock, 1);
+                            Grid.SetColumn(textBlock2, 2);
+                            break;
+                        default:
+                            break;
+                    };
 
                     buttonList[i][j].Content = stackPanels[j];
                     buttonList[i][j].Background = Brushes.Transparent;
-                    
-
                     this.mainContentsGrid.Children.Add(buttonList[i][j]);
                     Grid.SetRow(buttonList[i][j], i);
                     Grid.SetColumn(buttonList[i][j], j);
@@ -212,27 +314,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
         }
 
-        /*
-        private void SetButtonLayout2()
-        {
-            //throw new NotImplementedException();
-        }
+        
 
-        private void SetButtonLayout3()
-        {
-            //throw new NotImplementedException();
-        }
-
-        private void SetButtonLayout4()
-        {
-            //throw new NotImplementedException();
-        }
-
-        private void SetButtonLayout5()
-        {
-            //throw new NotImplementedException();
-        }
-        */
         private void AddEventHandler()
         {
 
