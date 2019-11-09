@@ -41,13 +41,17 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
         ColumnDefinition colDef1;
         ColumnDefinition colDef2;
+        ColumnDefinition colDef3;
         RowDefinition rowDef1;
         RowDefinition rowDef2;
+        RowDefinition rowDef3;
 
         Double columnWidth1;
         Double columnWidth2;
+        Double columnWidth3;
         Double rowHeight1;
         Double rowHeight2;
+        Double rowHeight3;
 
         /*Log関係*/
         private Timer _timer = null;
@@ -80,7 +84,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
             //this.WindowStyle = WindowStyle.None;
             //this.AllowsTransparency = true;
-            
+
 
             /*Windowのサイズ指定*/
             this.Width = SystemParameters.WorkArea.Width;
@@ -88,6 +92,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             this.WindowState = WindowState.Maximized;
 
             /*初期化メソッドの宣言*/
+            //T
             this.GridInit();
             this.LogSetting();
         }
@@ -111,19 +116,11 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
             this.AddChild(maingrid);
             this.CompornentInit();
-
-            //TODO : レイアウトごとにGridを設定
-            columnWidth1 = contentsBar.GetWidth();
-            columnWidth2 = maincontents.GetWidth();
-            rowHeight1 = toolBar.GetHeight();
-            rowHeight2 = contentsBar.GetHeight();
-
-
             String layoutNum = "1";
-            setLayout("Layout" + layoutNum);
-
+            //setLayout("Layout" + layoutNum);
+            setLayout("TestMode");
             //setObject2Layout("Layout" + layoutNum);
-            
+
         }
 
         //TODO : 複数アプリケーションでのレイアウトにする
@@ -143,6 +140,10 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     //Row : 列 Height
                     rowDef1 = new RowDefinition { Height = new GridLength(rowHeight1) };
                     rowDef2 = new RowDefinition { Height = new GridLength(rowHeight2) };
+                    maingrid.ColumnDefinitions.Add(colDef1);
+                    maingrid.ColumnDefinitions.Add(colDef2);
+                    maingrid.RowDefinitions.Add(rowDef1);
+                    maingrid.RowDefinitions.Add(rowDef2);
                     break;
                 case ("Layout2"):
                     //Column : 行 Width
@@ -151,6 +152,10 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     //Row : 列 Height
                     rowDef1 = new RowDefinition { Height = new GridLength(rowHeight1) };
                     rowDef2 = new RowDefinition { Height = new GridLength(rowHeight2) };
+                    maingrid.ColumnDefinitions.Add(colDef1);
+                    maingrid.ColumnDefinitions.Add(colDef2);
+                    maingrid.RowDefinitions.Add(rowDef1);
+                    maingrid.RowDefinitions.Add(rowDef2);
                     break;
                 case ("Layout3"):
                     //Column : 行 Width
@@ -159,6 +164,10 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     //Row : 列 Height
                     rowDef1 = new RowDefinition { Height = new GridLength(rowHeight2) };
                     rowDef2 = new RowDefinition { Height = new GridLength(rowHeight1) };
+                    maingrid.ColumnDefinitions.Add(colDef1);
+                    maingrid.ColumnDefinitions.Add(colDef2);
+                    maingrid.RowDefinitions.Add(rowDef1);
+                    maingrid.RowDefinitions.Add(rowDef2);
                     break;
                 case ("Layout4"):
                     //Column : 行 Width
@@ -167,15 +176,80 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     //Row : 列 Height
                     rowDef1 = new RowDefinition { Height = new GridLength(rowHeight2) };
                     rowDef2 = new RowDefinition { Height = new GridLength(rowHeight1) };
+                    maingrid.ColumnDefinitions.Add(colDef1);
+                    maingrid.ColumnDefinitions.Add(colDef2);
+                    maingrid.RowDefinitions.Add(rowDef1);
+                    maingrid.RowDefinitions.Add(rowDef2);
+                    break;
+                case ("TestMode"):
+                    TestGridSetting();
+
+
                     break;
                 default:
                     break;
             }
+            
+
+
+        }
+
+        private void TestGridSetting()
+        {
+
+            //TODO:テストする
+            /*
+             * 1: PowerPoint
+             * 2: Calender
+             * 3: 
+             */
+
+            /* Memo
+             * 設定ファイルに入れるべき項目
+             * 1 Gridの幅等
+             * 2 各機能のサイズと配置
+             */
+            int number = 2;
+            switch(number){
+                case(1):
+                    columnWidth1 = contentsBar.GetWidth();
+                    columnWidth2 = maincontents.GetWidth();
+                    columnWidth3 = 0;
+                    rowHeight1 = toolBar.GetHeight();
+                    rowHeight2 = contentsBar.GetHeight();
+                    rowHeight3 = 0;
+                    break;
+                case (2):
+                    columnWidth1 = this.Width * 1 / 5;
+                    columnWidth2 = this.Width * 3 / 5;
+                    columnWidth3 = 0;
+                    rowHeight1 = this.Height * 2 / 10;
+                    rowHeight2 = this.Height * 10 / 10;
+                    rowHeight3 = 0;
+                    break;
+                case (3):
+                    break;
+                default:
+                    break;
+            }
+
+
+            //Column : 行 Width
+            colDef1 = new ColumnDefinition { Width = new GridLength(columnWidth1) };
+            colDef2 = new ColumnDefinition { Width = new GridLength(columnWidth2) };
+            colDef3 = new ColumnDefinition { Width = new GridLength(columnWidth2) };
+            //Row : 列 Height
+            rowDef1 = new RowDefinition { Height = new GridLength(rowHeight1) };
+            rowDef2 = new RowDefinition { Height = new GridLength(rowHeight2) };
+            rowDef3 = new RowDefinition { Height = new GridLength(rowHeight3) };
+
             maingrid.ColumnDefinitions.Add(colDef1);
             maingrid.ColumnDefinitions.Add(colDef2);
+            maingrid.ColumnDefinitions.Add(colDef3);
+
             maingrid.RowDefinitions.Add(rowDef1);
             maingrid.RowDefinitions.Add(rowDef2);
-
+            maingrid.RowDefinitions.Add(rowDef3);
 
         }
 
