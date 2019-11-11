@@ -28,6 +28,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         ColumnDefinition[] colDef;
         RowDefinition[] rowDef;
 
+        ColumnDefinition colDef_;
+        RowDefinition rowDef_;
+
 
 
         /// <summary>
@@ -106,15 +109,45 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     SetGrid();
                     SetStackPanels(4);
                     break;
-                /*ランダムにオブジェクトを配置するケース
+                
                 case (5):
-                    SetButtonLayout();
-                    break;*/
+                    RandomButtonPlace();
+                    break;
                 default:
                     ;
                     break;
             }
         }
+
+
+        private void RandomButtonPlace()
+        {
+            mainContentsGrid = new Grid
+            {
+                Width = this.Width,
+                Height = this.Height,
+                //Background = Brushes.Red,
+                ShowGridLines = true
+            };
+
+            //GridRow 行
+            //GridColumn 列
+            gridHeight = this.Height;
+            gridWidth = this.Width;
+
+            rowDef_ = new RowDefinition {Height = new GridLength(gridHeight) };
+            colDef_ = new ColumnDefinition { Width = new GridLength(gridWidth) };
+
+            //オブジェクトを複数配置
+            //オブジェクトの中をタッチしたら外枠を点線へ
+            //TOOLBarで色を変えられるようにする
+
+
+
+
+
+        }
+
 
         
         /// <summary>
@@ -132,7 +165,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 {
                     button[j] = new Button();
                     button[j].Click += MyMainContentsButton_Clicked;
-                    button[j].Name = "MainContentsButton";
+                    button[j].Name = "C"+j+"R"+i;
                 }
                 buttonList.Add(button);
             }
@@ -293,6 +326,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                             Grid.SetColumn(textBlock, 1);
                             Grid.SetColumn(textBlock2, 2);
                             break;
+                        case (5)://ランダム表示
+
                         default:
                             break;
                     };
@@ -316,10 +351,6 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
         
 
-        private void AddEventHandler()
-        {
-
-        }
         private void MyMainContentsButton_Clicked(object sender, RoutedEventArgs e)
         {
             /*

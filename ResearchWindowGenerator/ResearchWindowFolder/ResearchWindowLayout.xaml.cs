@@ -29,15 +29,17 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
     public partial class ResearchWindowLayout : Window
     {
         string WindowName;
+        static double WindowWidth;
+        static double WindowHeight;
         /*コンポーネントの宣言*/
         /*Grid*/
         static Grid maingrid;
 
         /*機能*/
         static MyMainContents maincontents;
-        MyContentsBar contentsBar;
-        MyToolBar toolBar1;
-        MyToolBar toolBar2;
+        static MyContentsBar contentsBar;
+        static MyToolBar toolBar1;
+        static MyToolBar toolBar2;
 
         ColumnDefinition colDef1;
         ColumnDefinition colDef2;
@@ -54,6 +56,12 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         string clickfilePath;
         LogDrawing_Canvas logdrawing;
 
+
+        /*レイアウト*/
+        static int LayoutNum;
+        static int ContentsBarNum;
+        static int ToolBarNum;
+        static int MainContentsNum;
 
         /// <summary>
         /// 
@@ -84,38 +92,66 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             this.Height = SystemParameters.WorkArea.Height;
             this.WindowState = WindowState.Maximized;
 
+            WindowWidth = this.Width;
+            WindowHeight = this.Height;
+
+            LoadSetting();
 
 
-            //TODO: ここで設定を変えるようにしないといけない
-            maincontents = new MyMainContents();
-            maincontents.SetWidth(1610);
-            maincontents.SetHeight(855);
-            maincontents.SetButton(4);
+            InitToolBar(ToolBarNum);
+            InitContentsBar(ContentsBarNum);
+            InitmainContents(1);
+
+            this.Title = "Layout"+LayoutNum+", ToolBar" + ToolBarNum + ", ContentsBar" + ContentsBarNum;
+            
+            
 
 
-            contentsBar = new MyContentsBar();
-            contentsBar.SetWidth(310);
-            contentsBar.SetHeight(855);
-            contentsBar.SetButton(1);
-
-
-            toolBar1 = new MyToolBar();
-            toolBar1.SetWidth(this.Width);
-            toolBar1.SetHeight(165 - 30);
-            toolBar1.SetButton(1);
-
-
-            toolBar2 = new MyToolBar();
-            toolBar2.SetWidth(this.Width);
-            toolBar2.SetHeight(20);
-            toolBar2.SetButton(1);
+            
 
             /*初期化メソッドの宣言*/
             //T
             this.GridInit();
+
             this.LogSetting();
         }
 
+        public static void LoadSetting()
+        {
+            /**
+             * Layoutの種類
+             * 1 : PowerPoint
+             * 2 : カレンダー
+            **/
+
+            LayoutNum = 3;
+            
+
+            /**
+             * ToolBar
+             **/
+
+            ToolBarNum = LayoutNum;
+
+
+            /**
+             * ContentsBarの種類
+             * 1 : 縦一列
+             * 2 : Grid
+             **/
+
+            ContentsBarNum = 1;
+
+            
+
+            /**
+             * MainContentsの初期配置
+            */
+
+            MainContentsNum = 3;
+
+            
+        }
         
 
         /// <summary>
@@ -136,8 +172,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             };
 
             this.AddChild(maingrid);
-            this.CompornentInit();
-            String layoutNum = "1";
+            this.CompornentInit(LayoutNum);
+            
 
         }
 
@@ -147,7 +183,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         /// <summary>
         /// コンポーネントの読み込み
         /// </summary>
-        private void CompornentInit()
+        private void CompornentInit(int v)
         {
             //TODO : レイアウトのセッティングファイルを読み取る→ ここに値を入れる
 
@@ -165,64 +201,262 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             //35
 
 
-            //Column : 行 Width
-            colDef1 = new ColumnDefinition { Width = new GridLength(contentsBar.GetWidth()) };
-            colDef2 = new ColumnDefinition { Width = new GridLength(maincontents.GetWidth()) };
-            colDef3 = new ColumnDefinition { Width = new GridLength(0) };
-            //Row : 列 Height
-            rowDef1 = new RowDefinition { Height = new GridLength(toolBar1.GetHeight()) };
-            rowDef2 = new RowDefinition { Height = new GridLength(contentsBar.GetHeight()) };
-            rowDef3 = new RowDefinition { Height = new GridLength(toolBar2.GetHeight()) };
+            switch (v)
+            {
+                case (1):
+                    //Column : 行 Width
+                    colDef1 = new ColumnDefinition { Width = new GridLength(contentsBar.GetWidth()) };
+                    colDef2 = new ColumnDefinition { Width = new GridLength(maincontents.GetWidth()) };
+                    colDef3 = new ColumnDefinition { Width = new GridLength(0) };
 
-            maingrid.ColumnDefinitions.Add(colDef1);
-            maingrid.ColumnDefinitions.Add(colDef2);
-            maingrid.ColumnDefinitions.Add(colDef3);
+                    Console.WriteLine(colDef1.Width + "; " + colDef2.Width + "; " + colDef3.Width + "");
+                    //Row : 列 Height
+                    rowDef1 = new RowDefinition { Height = new GridLength(toolBar1.GetHeight()) };
+                    rowDef2 = new RowDefinition { Height = new GridLength(contentsBar.GetHeight())};
+                    rowDef3 = new RowDefinition { Height = new GridLength(toolBar2.GetHeight()) };
+                    Console.WriteLine(rowDef1.Height + "; " + rowDef2.Height + "; " + rowDef3.Height + "");
 
-            maingrid.RowDefinitions.Add(rowDef1);
-            maingrid.RowDefinitions.Add(rowDef2);
-            maingrid.RowDefinitions.Add(rowDef3);
+                    maingrid.ColumnDefinitions.Add(colDef1);
+                    maingrid.ColumnDefinitions.Add(colDef2);
+                    maingrid.ColumnDefinitions.Add(colDef3);
+
+                    maingrid.RowDefinitions.Add(rowDef1);
+                    maingrid.RowDefinitions.Add(rowDef2);
+                    maingrid.RowDefinitions.Add(rowDef3);
 
 
 
-            //maincontents
-            Grid.SetColumn(maincontents.mainContentsGrid, 1);
-            Grid.SetRow(maincontents.mainContentsGrid, 1);
-            maingrid.Children.Add(maincontents.mainContentsGrid);
-            //contentsBar
-            Grid.SetColumn(contentsBar.myContentsBarGrid, 0);
-            Grid.SetRow(contentsBar.myContentsBarGrid, 1);
-            maingrid.Children.Add(contentsBar.myContentsBarGrid);
-            //toolBar1
-            Grid.SetColumn(toolBar1.myToolBarGrid, 0);
-            Grid.SetRow(toolBar1.myToolBarGrid, 0);
-            Grid.SetColumnSpan(toolBar1.myToolBarGrid, 2);
-            maingrid.Children.Add(toolBar1.myToolBarGrid);
-            //toolBar2
-            Grid.SetColumn(toolBar2.myToolBarGrid, 0);
-            Grid.SetRow(toolBar2.myToolBarGrid, 2);
-            Grid.SetColumnSpan(toolBar2.myToolBarGrid, 2);
-            maingrid.Children.Add(toolBar2.myToolBarGrid);
+                    //maincontents
+                    Grid.SetColumn(maincontents.mainContentsGrid, 1);
+                    Grid.SetRow(maincontents.mainContentsGrid, 1);
+                    maingrid.Children.Add(maincontents.mainContentsGrid);
+                    //contentsBar
+                    Grid.SetColumn(contentsBar.myContentsBarGrid, 0);
+                    Grid.SetRow(contentsBar.myContentsBarGrid, 1);
+                    maingrid.Children.Add(contentsBar.myContentsBarGrid);
+                    //toolBar1
+                    Grid.SetColumn(toolBar1.myToolBarGrid, 0);
+                    Grid.SetRow(toolBar1.myToolBarGrid, 0);
+                    Grid.SetColumnSpan(toolBar1.myToolBarGrid, 2);
+                    maingrid.Children.Add(toolBar1.myToolBarGrid);
+                    //toolBar2
+                    Grid.SetColumn(toolBar2.myToolBarGrid, 0);
+                    Grid.SetRow(toolBar2.myToolBarGrid, 2);
+                    Grid.SetColumnSpan(toolBar2.myToolBarGrid, 2);
+                    maingrid.Children.Add(toolBar2.myToolBarGrid);
+                    break;
+                case (2):
+                    //Column : 行 Width
+                    colDef1 = new ColumnDefinition { Width = new GridLength(contentsBar.GetWidth()) };
+                    colDef2 = new ColumnDefinition { Width = new GridLength(maincontents.GetWidth()) };
+                  
+                    //Row : 列 Height
+                    rowDef1 = new RowDefinition { Height = new GridLength(toolBar1.GetHeight()) };
+                    rowDef2 = new RowDefinition { Height = new GridLength(contentsBar.GetHeight()) };
+                    
+                    maingrid.ColumnDefinitions.Add(colDef1);
+                    maingrid.ColumnDefinitions.Add(colDef2);
+                    
+                    maingrid.RowDefinitions.Add(rowDef1);
+                    maingrid.RowDefinitions.Add(rowDef2);
+                    
+
+
+                    //maincontents
+                    Grid.SetColumn(maincontents.mainContentsGrid, 1);
+                    Grid.SetRow(maincontents.mainContentsGrid, 1);
+                    maingrid.Children.Add(maincontents.mainContentsGrid);
+                    //contentsBar
+                    /*
+                    Grid.SetColumn(contentsBar.myContentsBarGrid, 0);
+                    Grid.SetRow(contentsBar.myContentsBarGrid, 0);
+                    Grid.SetRowSpan(contentsBar.myContentsBarGrid, 2);
+                    maingrid.Children.Add(contentsBar.myContentsBarGrid);
+                    */
+                    //contentsBar
+                    Grid.SetColumn(contentsBar.myContentsBarGrid, 0);
+                    Grid.SetRow(contentsBar.myContentsBarGrid, 0);
+                    Grid.SetRowSpan(contentsBar.myContentsBarGrid, 2);
+                    maingrid.Children.Add(contentsBar.myContentsBarGrid);
+
+
+                    //toolBar1
+                    Grid.SetColumn(toolBar1.myToolBarGrid, 1);
+                    Grid.SetRow(toolBar1.myToolBarGrid, 0);
+                    maingrid.Children.Add(toolBar1.myToolBarGrid);
+                    
+                    
+                    break;
+                case (3):
+                    //Column : 行 Width
+                    colDef1 = new ColumnDefinition { Width = new GridLength(contentsBar.GetWidth()) };
+                    colDef2 = new ColumnDefinition { Width = new GridLength(maincontents.GetWidth()) };
+                    colDef3 = new ColumnDefinition { Width = new GridLength(0) };
+
+                    Console.WriteLine(colDef1.Width + "; " + colDef2.Width + "; " + colDef3.Width + "");
+                    //Row : 列 Height
+                    rowDef1 = new RowDefinition { Height = new GridLength(toolBar1.GetHeight()) };
+                    rowDef2 = new RowDefinition { Height = new GridLength(contentsBar.GetHeight()) };
+                    rowDef3 = new RowDefinition { Height = new GridLength(toolBar2.GetHeight()) };
+                    Console.WriteLine(rowDef1.Height + "; " + rowDef2.Height + "; " + rowDef3.Height + "");
+
+                    maingrid.ColumnDefinitions.Add(colDef1);
+                    maingrid.ColumnDefinitions.Add(colDef2);
+                    maingrid.ColumnDefinitions.Add(colDef3);
+
+                    maingrid.RowDefinitions.Add(rowDef1);
+                    maingrid.RowDefinitions.Add(rowDef2);
+                    maingrid.RowDefinitions.Add(rowDef3);
+
+
+
+                    //maincontents
+                    Grid.SetColumn(maincontents.mainContentsGrid, 1);
+                    Grid.SetRow(maincontents.mainContentsGrid, 1);
+                    maingrid.Children.Add(maincontents.mainContentsGrid);
+                    //contentsBar
+                    Grid.SetColumn(contentsBar.myContentsBarGrid, 0);
+                    Grid.SetRow(contentsBar.myContentsBarGrid, 1);
+                    maingrid.Children.Add(contentsBar.myContentsBarGrid);
+                    //toolBar1
+                    Grid.SetColumn(toolBar1.myToolBarGrid, 0);
+                    Grid.SetRow(toolBar1.myToolBarGrid, 0);
+                    Grid.SetColumnSpan(toolBar1.myToolBarGrid, 2);
+                    maingrid.Children.Add(toolBar1.myToolBarGrid);
+                    //toolBar2
+                    Grid.SetColumn(toolBar2.myToolBarGrid, 0);
+                    Grid.SetRow(toolBar2.myToolBarGrid, 2);
+                    Grid.SetColumnSpan(toolBar2.myToolBarGrid, 2);
+                    maingrid.Children.Add(toolBar2.myToolBarGrid);
+                    break;
+            }
+
+
+
+            
 
         }
 
-        internal static void SendButtonClickDate(int v)
+        internal static void InitToolBar(int v)
         {
-            maingrid.Children.Remove(maincontents.mainContentsGrid);
-            
-            
-            
+
+
+            switch (v)
+            {
+                case (1):
+                    toolBar1 = new MyToolBar();
+                    toolBar1.SetWidth(WindowWidth);
+                    toolBar1.SetHeight(165 - 30);
+                    toolBar1.SetButton(1);
+
+
+                    toolBar2 = new MyToolBar();
+                    toolBar2.SetWidth(WindowWidth);
+                    toolBar2.SetHeight(20);
+                    toolBar2.SetButton(1);
+                    break;
+                case (2):
+                    toolBar1 = new MyToolBar();
+                    toolBar1.SetWidth(1755);
+                    toolBar1.SetHeight(75 - 30);
+                    toolBar1.SetButton(1);
+                    ;
+                    break;
+                case (3):
+                    toolBar1 = new MyToolBar();
+                    toolBar1.SetWidth(WindowWidth);
+                    toolBar1.SetHeight(170 - 30);
+                    toolBar1.SetButton(1);
+
+
+                    toolBar2 = new MyToolBar();
+                    toolBar2.SetWidth(WindowWidth);
+                    toolBar2.SetHeight(20);
+                    toolBar2.SetButton(1);
+                    break;
+            }
+
+
+
+
+
+        }
+
+
+        internal static void InitContentsBar(int v)
+        {
+            contentsBar = new MyContentsBar();
+
+            switch (v)
+            {
+                case (1):
+                    contentsBar.SetWidth(310);
+                    contentsBar.SetHeight(WindowHeight - (20 + toolBar1.GetHeight() +toolBar2.GetHeight()));
+                    contentsBar.SetButton(1);
+                    ;
+                    break;
+                case (2):
+                    //TODO : ここあとで変える
+                    contentsBar.SetWidth(310);
+                    contentsBar.SetHeight(WindowHeight - (toolBar1.GetHeight()));
+                    contentsBar.SetButton(2);
+                    ;
+                    break;
+                case (3):
+                    //TODO : ここあとで変える
+                    contentsBar.SetWidth(265);
+                    contentsBar.SetHeight(WindowHeight - (toolBar1.GetHeight()));
+                    contentsBar.SetButton(1);
+                    ;
+                    break;
+
+            }
+        }
+
+
+        internal static void InitmainContents(int v)
+        {
             //maincontents = maincontents_;
             //TODO: ここで設定を変えるようにしないといけない
             maincontents = new MyMainContents();
+            /*
             maincontents.SetWidth(1610);
             maincontents.SetHeight(855);
             maincontents.SetButton(v);
+            */
 
+            maincontents.SetWidth(WindowWidth - contentsBar.GetWidth());
+            maincontents.SetHeight(contentsBar.GetHeight());
+            maincontents.SetButton(v);
+
+
+            //maincontents
+
+        }
+
+        public static void ChangeMaincontents(int v)
+        {
+            Console.WriteLine(v);
+            maingrid.Children.Remove(maincontents.mainContentsGrid);
+
+            maincontents = new MyMainContents();
+
+            maincontents.SetWidth(WindowWidth - contentsBar.GetWidth());
+            maincontents.SetHeight(contentsBar.GetHeight());
+            maincontents.SetButton(v);
             //maincontents
             Grid.SetColumn(maincontents.mainContentsGrid, 1);
             Grid.SetRow(maincontents.mainContentsGrid, 1);
             maingrid.Children.Add(maincontents.mainContentsGrid);
+
+
         }
+
+        
+
+        
+
+
 
         private void LogSetting()
         {

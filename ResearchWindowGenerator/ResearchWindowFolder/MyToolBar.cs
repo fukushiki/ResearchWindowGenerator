@@ -74,6 +74,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     GridColumn = 4;
                     SetButtonList();
                     break;
+                
+                    
                 default:
                     ;
                     break;
