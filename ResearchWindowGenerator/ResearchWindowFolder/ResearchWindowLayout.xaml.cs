@@ -207,20 +207,21 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
         internal static void SendButtonClickDate(int v)
         {
-            //maingrid.Children.Remove(maincontents);
-            MyMainContents maincontents_ = new MyMainContents();
+            maingrid.Children.Remove(maincontents.mainContentsGrid);
             
-            maincontents = maincontents_;
+            
+            
+            //maincontents = maincontents_;
             //TODO: ここで設定を変えるようにしないといけない
-            maincontents_ = new MyMainContents();
-            maincontents_.SetWidth(1610);
-            maincontents_.SetHeight(855);
-            maincontents_.SetButton(v);
+            maincontents = new MyMainContents();
+            maincontents.SetWidth(1610);
+            maincontents.SetHeight(855);
+            maincontents.SetButton(v);
 
             //maincontents
-            Grid.SetColumn(maincontents_.mainContentsGrid, 1);
-            Grid.SetRow(maincontents_.mainContentsGrid, 1);
-            maingrid.Children.Add(maincontents_.mainContentsGrid);
+            Grid.SetColumn(maincontents.mainContentsGrid, 1);
+            Grid.SetRow(maincontents.mainContentsGrid, 1);
+            maingrid.Children.Add(maincontents.mainContentsGrid);
         }
 
         private void LogSetting()

@@ -101,10 +101,11 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 {
                     button[j] = new Button();
                     button[j].Click += MyContentsBarButton_Clicked;
-
+                    button[j].Name = "C"+j+"R"+i;
                 }
                 buttonList.Add(button);
             }
+             
 
         }
 
