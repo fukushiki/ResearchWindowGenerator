@@ -40,6 +40,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         static MyContentsBar contentsBar;
         static MyToolBar toolBar1;
         static MyToolBar toolBar2;
+        static MyToolBar toolBar3;
 
         ColumnDefinition colDef1;
         ColumnDefinition colDef2;
@@ -287,17 +288,17 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     
                     
                     break;
-                case (3):
+                case (3)://PDFType
                     //Column : 行 Width
                     colDef1 = new ColumnDefinition { Width = new GridLength(contentsBar.GetWidth()) };
                     colDef2 = new ColumnDefinition { Width = new GridLength(maincontents.GetWidth()) };
-                    colDef3 = new ColumnDefinition { Width = new GridLength(0) };
+                    colDef3 = new ColumnDefinition { Width = new GridLength(toolBar3.GetWidth()) };
 
                     Console.WriteLine(colDef1.Width + "; " + colDef2.Width + "; " + colDef3.Width + "");
                     //Row : 列 Height
                     rowDef1 = new RowDefinition { Height = new GridLength(toolBar1.GetHeight()) };
                     rowDef2 = new RowDefinition { Height = new GridLength(contentsBar.GetHeight()) };
-                    rowDef3 = new RowDefinition { Height = new GridLength(toolBar2.GetHeight()) };
+                    rowDef3 = new RowDefinition { Height = new GridLength(0) };
                     Console.WriteLine(rowDef1.Height + "; " + rowDef2.Height + "; " + rowDef3.Height + "");
 
                     maingrid.ColumnDefinitions.Add(colDef1);
@@ -306,7 +307,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
                     maingrid.RowDefinitions.Add(rowDef1);
                     maingrid.RowDefinitions.Add(rowDef2);
-                    maingrid.RowDefinitions.Add(rowDef3);
+                    //maingrid.RowDefinitions.Add(rowDef3);
 
 
 
@@ -321,13 +322,13 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     //toolBar1
                     Grid.SetColumn(toolBar1.myToolBarGrid, 0);
                     Grid.SetRow(toolBar1.myToolBarGrid, 0);
-                    Grid.SetColumnSpan(toolBar1.myToolBarGrid, 2);
+                    Grid.SetColumnSpan(toolBar1.myToolBarGrid, 3);
                     maingrid.Children.Add(toolBar1.myToolBarGrid);
-                    //toolBar2
-                    Grid.SetColumn(toolBar2.myToolBarGrid, 0);
-                    Grid.SetRow(toolBar2.myToolBarGrid, 2);
-                    Grid.SetColumnSpan(toolBar2.myToolBarGrid, 2);
-                    maingrid.Children.Add(toolBar2.myToolBarGrid);
+                    //toolBar3
+                    Grid.SetColumn(toolBar3.myToolBarGrid, 2);
+                    Grid.SetRow(toolBar3.myToolBarGrid, 1);
+                    //Grid.SetColumnSpan(toolBar3.myToolBarGrid, 2);
+                    maingrid.Children.Add(toolBar3.myToolBarGrid);
                     break;
             }
 
@@ -344,35 +345,35 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             switch (v)
             {
                 case (1):
-                    toolBar1 = new MyToolBar();
+                    toolBar1 = new MyToolBar(1);
                     toolBar1.SetWidth(WindowWidth);
                     toolBar1.SetHeight(165 - 30);
                     toolBar1.SetButton(1);
 
 
-                    toolBar2 = new MyToolBar();
+                    toolBar2 = new MyToolBar(2);
                     toolBar2.SetWidth(WindowWidth);
                     toolBar2.SetHeight(20);
                     toolBar2.SetButton(1);
                     break;
                 case (2):
-                    toolBar1 = new MyToolBar();
+                    toolBar1 = new MyToolBar(1);
                     toolBar1.SetWidth(1755);
                     toolBar1.SetHeight(75 - 30);
                     toolBar1.SetButton(1);
                     ;
                     break;
                 case (3):
-                    toolBar1 = new MyToolBar();
+                    toolBar1 = new MyToolBar(1);
                     toolBar1.SetWidth(WindowWidth);
-                    toolBar1.SetHeight(170 - 30);
+                    toolBar1.SetHeight(130 - 30);
                     toolBar1.SetButton(1);
 
 
-                    toolBar2 = new MyToolBar();
-                    toolBar2.SetWidth(WindowWidth);
-                    toolBar2.SetHeight(20);
-                    toolBar2.SetButton(1);
+                    toolBar3 = new MyToolBar(3);
+                    toolBar3.SetWidth(310);
+                    toolBar3.SetHeight(910);
+                    toolBar3.SetButton(1);
                     break;
             }
 
@@ -386,31 +387,61 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         internal static void InitContentsBar(int v)
         {
             contentsBar = new MyContentsBar();
-
-            switch (v)
+            if(LayoutNum == 3)
             {
-                case (1):
-                    contentsBar.SetWidth(310);
-                    contentsBar.SetHeight(WindowHeight - (20 + toolBar1.GetHeight() +toolBar2.GetHeight()));
-                    contentsBar.SetButton(1);
-                    ;
-                    break;
-                case (2):
-                    //TODO : ここあとで変える
-                    contentsBar.SetWidth(310);
-                    contentsBar.SetHeight(WindowHeight - (toolBar1.GetHeight()));
-                    contentsBar.SetButton(2);
-                    ;
-                    break;
-                case (3):
-                    //TODO : ここあとで変える
-                    contentsBar.SetWidth(265);
-                    contentsBar.SetHeight(WindowHeight - (toolBar1.GetHeight()));
-                    contentsBar.SetButton(1);
-                    ;
-                    break;
+                switch (v)
+                {
+                    case (1):
+                        contentsBar.SetWidth(310);
+                        contentsBar.SetHeight(WindowHeight - (20 + toolBar1.GetHeight()));
+                        contentsBar.SetButton(1);
+                        ;
+                        break;
+                    case (2):
+                        //TODO : ここあとで変える
+                        contentsBar.SetWidth(310);
+                        contentsBar.SetHeight(WindowHeight - (toolBar1.GetHeight()));
+                        contentsBar.SetButton(2);
+                        ;
+                        break;
+                    case (3):
+                        //TODO : ここあとで変える
+                        contentsBar.SetWidth(310);
+                        contentsBar.SetHeight(WindowHeight - (toolBar1.GetHeight()));
+                        contentsBar.SetButton(1);
+                        ;
+                        break;
 
+                }
             }
+            else
+            {
+                switch (v)
+                {
+                    case (1):
+                        contentsBar.SetWidth(310);
+                        contentsBar.SetHeight(WindowHeight - (20 + toolBar1.GetHeight() + toolBar2.GetHeight()));
+                        contentsBar.SetButton(1);
+                        ;
+                        break;
+                    case (2):
+                        //TODO : ここあとで変える
+                        contentsBar.SetWidth(310);
+                        contentsBar.SetHeight(WindowHeight - (toolBar1.GetHeight()));
+                        contentsBar.SetButton(2);
+                        ;
+                        break;
+                    case (3):
+                        //TODO : ここあとで変える
+                        contentsBar.SetWidth(265);
+                        contentsBar.SetHeight(WindowHeight - (toolBar1.GetHeight()));
+                        contentsBar.SetButton(1);
+                        ;
+                        break;
+
+                }
+            }
+            
         }
 
 
@@ -424,10 +455,20 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             maincontents.SetHeight(855);
             maincontents.SetButton(v);
             */
+            if(LayoutNum == 3)
+            {
+                maincontents.SetWidth(WindowWidth - contentsBar.GetWidth() - toolBar3.GetWidth()) ;
+                maincontents.SetHeight(contentsBar.GetHeight());
+                maincontents.SetButton(v);
+            }
+            else
+            {
+                maincontents.SetWidth(WindowWidth - contentsBar.GetWidth());
+                maincontents.SetHeight(contentsBar.GetHeight());
+                maincontents.SetButton(v);
+            }
 
-            maincontents.SetWidth(WindowWidth - contentsBar.GetWidth());
-            maincontents.SetHeight(contentsBar.GetHeight());
-            maincontents.SetButton(v);
+            
 
 
             //maincontents
@@ -441,12 +482,25 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
             maincontents = new MyMainContents();
 
-            maincontents.SetWidth(WindowWidth - contentsBar.GetWidth());
-            maincontents.SetHeight(contentsBar.GetHeight());
-            maincontents.SetButton(v);
-            //maincontents
-            Grid.SetColumn(maincontents.mainContentsGrid, 1);
-            Grid.SetRow(maincontents.mainContentsGrid, 1);
+            if (LayoutNum == 3)
+            {
+                maincontents.SetWidth(WindowWidth - contentsBar.GetWidth() - toolBar3.GetWidth());
+                maincontents.SetHeight(contentsBar.GetHeight());
+                maincontents.SetButton(v);
+                //maincontents
+                Grid.SetColumn(maincontents.mainContentsGrid, 1);
+                Grid.SetRow(maincontents.mainContentsGrid, 1);
+            }
+            else
+            {
+                maincontents.SetWidth(WindowWidth - contentsBar.GetWidth());
+                maincontents.SetHeight(contentsBar.GetHeight());
+                maincontents.SetButton(v);
+                //maincontents
+                Grid.SetColumn(maincontents.mainContentsGrid, 1);
+                Grid.SetRow(maincontents.mainContentsGrid, 1);
+            }
+            
             maingrid.Children.Add(maincontents.mainContentsGrid);
 
 
