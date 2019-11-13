@@ -9,7 +9,7 @@ using System.Windows.Threading;
 
 namespace ResearchWindowGenerator.ResearchWindowFolder
 {
-    public class MyToolBar
+    public class MyToolBar2
     {
         private double Width;
         private double Height;
@@ -40,7 +40,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         static int ToolBarTypeNum;
 
 
-        public MyToolBar(int n)
+        public MyToolBar2(int n)
         {
             ToolBarTypeNum = n;
 
@@ -87,8 +87,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     
                     SetGrid();
                     SetButtonList1(0);
-                    SetButtonList2(1);
-                    SetButtonList3(2);
+                    //SetButtonList2(1);
+                    //SetButtonList3(2);
                     
                     break;
                 
@@ -144,20 +144,15 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 ShowGridLines = true,
                 Background = Brushes.AliceBlue
             };
-
-            ButtonList1_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength((this.Height - 40) / 3) });
-            ButtonList1_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(20) });
-            ButtonList1_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength((this.Height - 40) / 3) });
-            ButtonList1_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(20) });
-            ButtonList1_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength((this.Height - 40)/3) });
-            //myContentsBarGrid.RowDefinitions.Add(MainrowDef3);
+            //190
+            
             ButtonList1_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(ButtonList1_Grid.Width/3) });
-            ButtonList1_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(20 * 9) });
+            ButtonList1_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(ButtonList1_Grid.Width / 3) });
             ButtonList1_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(ButtonList1_Grid.Width/3) });
 
 
             myToolBarGrid.Children.Add(ButtonList1_Grid);
-            Grid.SetColumn(ButtonList1_Grid, placenum);
+            Grid.SetColumn(ButtonList1_Grid, 2);
 
             
 

@@ -39,8 +39,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         static MyMainContents maincontents;
         static MyContentsBar contentsBar;
         static MyToolBar toolBar1;
-        static MyToolBar toolBar2;
-        static MyToolBar toolBar3;
+        static MyToolBar2 toolBar2;
+        static MyToolBar3 toolBar3;
 
         ColumnDefinition colDef1;
         ColumnDefinition colDef2;
@@ -125,7 +125,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
              * 2 : カレンダー
             **/
 
-            LayoutNum = 3;
+            LayoutNum = 1;
             
 
             /**
@@ -351,7 +351,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     toolBar1.SetButton(1);
 
 
-                    toolBar2 = new MyToolBar(2);
+                    toolBar2 = new MyToolBar2(2);
                     toolBar2.SetWidth(WindowWidth);
                     toolBar2.SetHeight(20);
                     toolBar2.SetButton(1);
@@ -370,7 +370,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     toolBar1.SetButton(1);
 
 
-                    toolBar3 = new MyToolBar(3);
+                    toolBar3 = new MyToolBar3(3);
                     toolBar3.SetWidth(310);
                     toolBar3.SetHeight(910);
                     toolBar3.SetButton(1);

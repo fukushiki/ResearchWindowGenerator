@@ -74,6 +74,8 @@
     </Compile>
     <Compile Include="ResearchWindowFolder\MyContentsBar.cs" />
     <Compile Include="ResearchWindowFolder\MyMainContents.cs" />
+    <Compile Include="ResearchWindowFolder\MyToolBar2.cs" />
+    <Compile Include="ResearchWindowFolder\MyToolBar3.cs" />
     <Compile Include="ResearchWindowFolder\MyToolBar.cs" />
     <Compile Include="ResearchWindowFolder\ResearchWindowPDF.xaml.cs">
       <DependentUpon>ResearchWindowPDF.xaml</DependentUpon>
