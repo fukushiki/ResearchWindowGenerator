@@ -143,20 +143,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
                     SetGrid(numberListbuffer);
 
-                    myToolBarGrid.Children.Add(ButtonList1_Grid);
-                    Grid.SetColumn(ButtonList1_Grid, numberList.IndexOf(0));
-
-                    myToolBarGrid.Children.Add(ButtonList2_Grid);
-                    Grid.SetColumn(ButtonList2_Grid, numberList.IndexOf(1));
-
-                    myToolBarGrid.Children.Add(ButtonList3_Grid);
-                    Grid.SetColumn(ButtonList3_Grid, numberList.IndexOf(2));
-
-                    myToolBarGrid.Children.Add(ButtonList4_Grid);
-                    Grid.SetColumn(ButtonList4_Grid, numberList.IndexOf(3));
-
-                    myToolBarGrid.Children.Add(ButtonList5_Grid);
-                    Grid.SetColumn(ButtonList5_Grid, numberList.IndexOf(4));
+                    
 
 
 
@@ -216,7 +203,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Width = 60+20*9,
                 Height = this.Height,
                 ShowGridLines = true,
-                //Background = Brushes.Blue
+                Background = Brushes.Blue
             };
 
             ButtonList1_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength((this.Height - 40) / 3) });
@@ -311,14 +298,14 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Width = 60 + 70*5,
                 Height = this.Height,
                 ShowGridLines = true,
-                //Background = Brushes.AliceBlue
+                Background = Brushes.Gray
             };
             //70*50
 
 
-            ButtonList2_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength((this.Height - 40) / 3) });
+            ButtonList2_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength((this.Height - 50) / 2) });
             ButtonList2_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
-            ButtonList2_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength((this.Height - 40) / 3) });
+            ButtonList2_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength((this.Height - 50) / 2) });
             
             //myContentsBarGrid.RowDefinitions.Add(MainrowDef3);
             ButtonList2_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(60)});
@@ -339,9 +326,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Button[] button = new Button[buttonColumn];
                 Grid buttonGrid = new Grid
                 {
-                    Width = ButtonList2_Grid.Width,
+                    Width = 70*5,
                     Height = 50,
-                    Background = Brushes.Azure,
+                    Background = Brushes.Blue,
                     ShowGridLines = true
                 };
 
@@ -389,21 +376,18 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             ButtonList3_Grid = new Grid
             {
                 //Width = this.Width / 5,
-                Width = 60 + 20 * 9,
+                Width = 60 + 60 * 5,
                 Height = this.Height,
                 ShowGridLines = true,
-                //Background = Brushes.Red
+                Background = Brushes.Red
             };
 
-            ButtonList3_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength((this.Height - 40) / 3) });
-            ButtonList3_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(20) });
-            ButtonList3_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength((this.Height - 40) / 3) });
-            ButtonList3_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(20) });
-            ButtonList3_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength((this.Height - 40) / 3) });
-            //myContentsBarGrid.RowDefinitions.Add(MainrowDef3);
+            ButtonList3_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength((this.Height - 75) / 2) });
+            ButtonList3_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(75) });
+            ButtonList3_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength((this.Height - 75) / 2) });
             ButtonList3_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength((60) )});
-            ButtonList3_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(20 * 9) });
-            ButtonList3_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength() });
+            ButtonList3_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(60 * 5) });
+            //ButtonList3_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength() });
 
 
 
@@ -412,39 +396,30 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
 
             buttonList3 = new List<Button[]>();
-            int buttonRow = 2;
-            int buttonColumn = 9;
+            int buttonRow = 1;
+            int buttonColumn = 5;
             for (int i = 0; i < buttonRow; i++)
             {
                 Button[] button = new Button[buttonColumn];
                 Grid buttonGrid = new Grid
                 {
-                    Width = ButtonList3_Grid.Width,
-                    Height = 20,
-                    Background = Brushes.Azure,
+                    Width = 60 * 5,
+                    Height = 75,
+                    //Background = Brushes.Red,
                     ShowGridLines = true
                 };
 
-                if (i == 0)
-                {
-                    ButtonList3_Grid.Children.Add(buttonGrid);
-                    Grid.SetRow(buttonGrid, 1);
-                    Grid.SetColumn(buttonGrid, 1);
 
+                ButtonList3_Grid.Children.Add(buttonGrid);
+                Grid.SetRow(buttonGrid, 1);
+                Grid.SetColumn(buttonGrid, 1);
 
-                }
-                else
-                {
-                    ButtonList3_Grid.Children.Add(buttonGrid);
-                    Grid.SetRow(buttonGrid, 3);
-                    Grid.SetColumn(buttonGrid, 1);
-                }
 
 
                 for (int j = 0; j < buttonColumn; j++)
                 {
-                    buttonGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(20) });
-                    button[j] = new Button { Width = 20, Height = 20 };
+                    buttonGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(60) });
+                    button[j] = new Button { Width = 60, Height = buttonGrid.Height };
                     button[j].Name = "buttonL3" + "C" + j + "R" + i;
                     button[j].Click += ToolBarButton_Clicked;
                     buttonGrid.Children.Add(button[j]);
@@ -477,17 +452,17 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             ButtonList4_Grid = new Grid
             {
                 //Width = this.Width / 5,
-                Width = 60 + 20 * 9,
+                Width = 60 + 210 * 3,
                 Height = this.Height,
                 ShowGridLines = true,
-                //Background = Brushes.Red
+                Background = Brushes.GreenYellow
             };
 
-            ButtonList4_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength((this.Height - 40) / 3) });
-            ButtonList4_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(20) });
-            ButtonList4_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength((this.Height - 40) / 3) });
-            ButtonList4_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(20) });
-            ButtonList4_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength((this.Height - 40) / 3) });
+            ButtonList4_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
+            ButtonList4_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(70) });
+            ButtonList4_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(70) });
+            ButtonList4_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(70) });
+            ButtonList4_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(50) });
             //myContentsBarGrid.RowDefinitions.Add(MainrowDef3);
             ButtonList4_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(60) });
             ButtonList4_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(20 * 9) });
@@ -513,20 +488,15 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     ShowGridLines = true
                 };
 
-                if (i == 0)
+                if (i == 0 || i == 1 || i == 2)
                 {
                     ButtonList4_Grid.Children.Add(buttonGrid);
-                    Grid.SetRow(buttonGrid, 1);
-                    Grid.SetColumn(buttonGrid, 1);
+                    Grid.SetRow(buttonGrid, i+1);
+                    Grid.SetColumn(buttonGrid, i+1);
 
 
                 }
-                else
-                {
-                    ButtonList4_Grid.Children.Add(buttonGrid);
-                    Grid.SetRow(buttonGrid, 3);
-                    Grid.SetColumn(buttonGrid, 1);
-                }
+                
 
 
                 for (int j = 0; j < buttonColumn; j++)
@@ -695,28 +665,60 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             for (int gridColumn_num = 0; gridColumn_num < GridColumn; gridColumn_num++)
             {
                 int gridWidth_;
+                Console.WriteLine("Console" + vs.IndexOf(gridColumn_num));
                 switch (vs.IndexOf(gridColumn_num))
                 {
+                    
                     case (0):
                         
                         colDef[gridColumn_num] = new ColumnDefinition { Width = new GridLength(ButtonList1_Grid.Width) };
+                        myToolBarGrid.Children.Add(ButtonList1_Grid);
+                        Grid.SetColumn(ButtonList1_Grid, gridColumn_num);
                         break;
                     case (1):
                         colDef[gridColumn_num] = new ColumnDefinition { Width = new GridLength(ButtonList2_Grid.Width) };
+                        myToolBarGrid.Children.Add(ButtonList2_Grid);
+                        Grid.SetColumn(ButtonList2_Grid, gridColumn_num);
+
                         break;
                     case (2):
                         colDef[gridColumn_num] = new ColumnDefinition { Width = new GridLength(ButtonList3_Grid.Width) };
+                        myToolBarGrid.Children.Add(ButtonList3_Grid);
+                        Grid.SetColumn(ButtonList3_Grid, gridColumn_num);
                         break;
                     case (3):
                         colDef[gridColumn_num] = new ColumnDefinition { Width = new GridLength(ButtonList4_Grid.Width) };
+                        myToolBarGrid.Children.Add(ButtonList4_Grid);
+                        Grid.SetColumn(ButtonList4_Grid, gridColumn_num);
                         break;
                     case (4):
                         colDef[gridColumn_num] = new ColumnDefinition { Width = new GridLength(ButtonList5_Grid.Width) };
+                        myToolBarGrid.Children.Add(ButtonList5_Grid);
+                        Grid.SetColumn(ButtonList5_Grid, gridColumn_num);
                         break;
                 };
+                /*
+                 myToolBarGrid.Children.Add(ButtonList1_Grid);
+                    Grid.SetColumn(ButtonList1_Grid, numberList.IndexOf(0));
+
+                    myToolBarGrid.Children.Add(ButtonList2_Grid);
+                    Grid.SetColumn(ButtonList2_Grid, numberList.IndexOf(1));
+
+                    myToolBarGrid.Children.Add(ButtonList3_Grid);
+                    Grid.SetColumn(ButtonList3_Grid, numberList.IndexOf(2));
+
+                    myToolBarGrid.Children.Add(ButtonList4_Grid);
+                    Grid.SetColumn(ButtonList4_Grid, numberList.IndexOf(3));
+
+                    myToolBarGrid.Children.Add(ButtonList5_Grid);
+                    Grid.SetColumn(ButtonList5_Grid, numberList.IndexOf(4));
+                 
+                 
+                 
+                 
+                 */
 
 
-                
                 myToolBarGrid.ColumnDefinitions.Add(colDef[gridColumn_num]);
             }
 
