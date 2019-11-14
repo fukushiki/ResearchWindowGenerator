@@ -125,7 +125,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
              * 2 : カレンダー
             **/
 
-            LayoutNum = 1;
+            LayoutNum = 2;
             
 
             /**
@@ -141,7 +141,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
              * 2 : Grid
              **/
 
-            ContentsBarNum = 1;
+            ContentsBarNum = 2;
 
             
 
@@ -189,7 +189,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             //TODO : レイアウトのセッティングファイルを読み取る→ ここに値を入れる
 
             //String layoutName = "PowerPoint";
-            Console.WriteLine("aaaaaok");
+            //Console.WriteLine("aaaaaok");
             //とりあえずここではサイズを
             //PowerPointの場合
             //TODO : レイアウトを読み込み反映する
@@ -359,15 +359,16 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 case (2):
                     toolBar1 = new MyToolBar(1);
                     toolBar1.SetWidth(1755);
-                    toolBar1.SetHeight(75 - 30);
-                    toolBar1.SetButton(1);
+                    //toolBar1.SetHeight(75 - 30);
+                    toolBar1.SetHeight(60);
+                    toolBar1.SetButton(2);
                     ;
                     break;
                 case (3):
                     toolBar1 = new MyToolBar(1);
                     toolBar1.SetWidth(WindowWidth);
                     toolBar1.SetHeight(130 - 30);
-                    toolBar1.SetButton(1);
+                    toolBar1.SetButton(3);
 
 
                     toolBar3 = new MyToolBar3(3);
@@ -387,7 +388,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         internal static void InitContentsBar(int v)
         {
             contentsBar = new MyContentsBar();
-            if(LayoutNum == 3)
+            if (LayoutNum == 3)
             {
                 switch (v)
                 {
@@ -420,7 +421,16 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 {
                     case (1):
                         contentsBar.SetWidth(310);
-                        contentsBar.SetHeight(WindowHeight - (20 + toolBar1.GetHeight() + toolBar2.GetHeight()));
+                        if(LayoutNum == 1)
+                        {
+                            contentsBar.SetHeight(WindowHeight - (20 + toolBar1.GetHeight() + toolBar2.GetHeight()));
+                        }
+                        else
+                        {
+                            contentsBar.SetHeight(WindowHeight - (toolBar1.GetHeight() ));
+                        }
+                        
+                        
                         contentsBar.SetButton(1);
                         ;
                         break;
@@ -441,6 +451,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
                 }
             }
+            
             
         }
 
