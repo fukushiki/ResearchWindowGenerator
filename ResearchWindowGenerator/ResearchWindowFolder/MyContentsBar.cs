@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -96,8 +97,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     SetStackPanels(0);
                     break;
                 case (2):
-                    GridRow = 7;
-                    GridColumn = 7;
+                    GridRow = 5;
+                    GridColumn = 5;
                     SetGrid(1);
                     SetBigGrid(_button_num);
                     SetButtonList(1);
@@ -159,13 +160,13 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     break;
                 case (2):
                     //Column : 行 Width
-                    MaincolDef1 = new ColumnDefinition { Width = new GridLength((this.Width - 230) / 2) };
-                    MaincolDef2 = new ColumnDefinition { Width = new GridLength(230) };
-                    MaincolDef3 = new ColumnDefinition { Width = new GridLength((this.Width - 230) / 2) };
+                    MaincolDef1 = new ColumnDefinition { Width = new GridLength(0) };
+                    MaincolDef2 = new ColumnDefinition { Width = new GridLength(this.Width) };
+                    MaincolDef3 = new ColumnDefinition { Width = new GridLength(0) };
                     //Row : 列 Height
                     MainrowDef1 = new RowDefinition { Height = new GridLength(this.Height * 0.3) };
-                    MainrowDef2 = new RowDefinition { Height = new GridLength(230) };
-                    MainrowDef3 = new RowDefinition { Height = new GridLength(1040 - (this.Height * 0.3) - 230) };
+                    MainrowDef2 = new RowDefinition { Height = new GridLength(this.Width) };
+                    MainrowDef3 = new RowDefinition { Height = new GridLength() };
 
                     myContentsBarGrid.ColumnDefinitions.Add(MaincolDef1);
                     myContentsBarGrid.ColumnDefinitions.Add(MaincolDef2);
@@ -188,7 +189,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Width = this.Width,
                 Height = this.Height,
                 //Background = Brushes.Blue,
-                ShowGridLines = true
+                //ShowGridLines = true
 
 
             };
@@ -205,8 +206,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     Grid.SetRow(BigGrid, 1);
                     Grid.SetColumn(BigGrid, 1);
                     /*ここにGridの中に入れる*/
-                    gridHeight = 230 / GridRow;
-                    gridWidth = 230 / GridColumn;
+                    
+                    gridWidth = this.Width / GridColumn;
+                    gridHeight = gridWidth;
                     break;
             }
 
@@ -270,11 +272,34 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
 
 
-            for (int i = 0 + plus; i < GridRow-plus ; i++)
+
+            List<int> numberList = new List<int>();
+            for (int num = 1; num < (((GridRow-1) * (GridColumn-1))); num++)
+            {
+                //Console.WriteLine("朋花"+num);
+                numberList.Add(num);
+            }
+
+            Random r = new Random();
+            numberList = numberList.OrderBy(a => r.Next(numberList.Count)).ToList();
+            //numberListbuffer = numberList;
+
+
+
+            int count = 0;
+            for (int i = 0 ; i < GridRow ; i++)
             {
                 StackPanel[] stackPanels = new StackPanel[GridColumn];
                 for (int j = 0; j < GridColumn; j++)
                 {
+                    //
+                    //Console.WriteLine(i.ToString() + j.ToString());
+                   // Console.WriteLine("XXXXX"+ (GridRow * (i - 1) + j));
+                    //Console.WriteLine("XXXXX朋花好き" + (numberList.IndexOf(GridRow * (i - 1) + j )+2).ToString());
+
+
+                    Console.WriteLine(numberList.IndexOf(0));
+
 
 
                     stackPanels[j] = new StackPanel
@@ -287,7 +312,10 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     };
 
                     TextBlock textBlock_ = new TextBlock();
-                    textBlock_.Text = i.ToString()+j.ToString();
+                    //textBlock_.Text = i.ToString()+j.ToString();
+                    textBlock_.Text = (numberList.IndexOf((count))).ToString();
+                    count++;
+                    //textBlock_.FontSize = stackPanels[j].Width * 0.5;
                     textBlock_.FontSize = 20;
                     textBlock_.FontWeight = FontWeights.Bold;
                     stackPanels[j].Children.Add(textBlock_);

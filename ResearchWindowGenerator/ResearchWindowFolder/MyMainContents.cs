@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -216,6 +217,41 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         public void SetStackPanels(int _maingrid_layoutnum)
         {
             stackPanelList = new List<StackPanel[]>();
+
+
+            List<int> numberList = new List<int>();
+            for (int num = 1; num < (((GridRow - 1) * (GridColumn - 1))); num++)
+            {
+                Console.WriteLine("天空橋" + num);
+                numberList.Add(num);
+            }
+
+            Random r = new Random();
+            numberList = numberList.OrderBy(a => r.Next(numberList.Count)).ToList();
+            //numberListbuffer = numberList;
+
+
+
+            string[] files = Directory.GetFiles("../../../ImageFolder", "*");
+            List<Uri> uriList = new List<Uri>();
+            int x = 0;
+            foreach (string str in files)
+            {
+                Console.WriteLine("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" + x);
+                uriList.Add(new Uri(System.IO.Path.GetFullPath(str), UriKind.RelativeOrAbsolute));
+                x++;
+            }
+
+            uriList = uriList.OrderBy(a => r.Next(uriList.Count)).ToList();
+            //numberListbuffer = numberList;
+
+
+
+
+
+
+
+            int counter = 0;
             for (int i = 0; i < GridRow; i++)
             {
                 StackPanel[] stackPanels = new StackPanel[GridColumn];
@@ -231,19 +267,12 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                         
                     };
 
+                    System.Random r_ = new System.Random(1000);
+                    //シード値を指定しないとシード値として Environment.TickCount が使用される
+                    //System.Random r = new System.Random();
 
-                    Image img = new Image();
-                    Uri uri = new Uri(System.IO.Path.GetFullPath("../../../ImageFolder/PowerPoint.png"), UriKind.RelativeOrAbsolute);
-                    img.Source = new BitmapImage(uri);
-                    //stackPanels[j].Children.Add(img);
-
-                    TextBlock textBlock = new TextBlock {
-                        VerticalAlignment = VerticalAlignment.Center,
-                        HorizontalAlignment = HorizontalAlignment.Center,
-                    };
-                    textBlock.Text = "Row:" + i + ", Col:" + j;
-                    //stackPanels[j].Children.Add(textBlock);
-
+                    //0以上10未満の乱数を整数で返す
+                    int i1 = r_.Next(i+j);
                     Grid contentsGrid = new Grid
                     {
                         Width = stackPanels[j].Width,
@@ -255,6 +284,34 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 #endif
                     };
                     stackPanels[j].Children.Add(contentsGrid);
+
+                    Image img = new Image();
+                    //Console.WriteLine("aaaaaaaaaa" + ((i + j).ToString()));
+                    //img.Source = new BitmapImage(uriList[GridRow * (i - 1) + j + 2 ]);
+                    //Console.WriteLine((i * GridRow).ToString() +"/"+ j.ToString());
+                    //Console.WriteLine("眠たい"+counter);
+                    //img.Source = new BitmapImage(uriList.ElementAt(counter));
+                    img.Source = new BitmapImage(uriList.ElementAt(j+i+i1));
+                    //Console.WriteLine("^^");
+                    counter++;
+
+
+
+
+
+
+
+                    TextBlock textBlock = new TextBlock {
+                        VerticalAlignment = VerticalAlignment.Center,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                    };
+                    //textBlock.Text = "Row:" + i + ", Col:" + j;
+                    textBlock.Text = (numberList.IndexOf((i * GridRow) + j)+2).ToString();
+                    
+                    textBlock.FontWeight = FontWeights.Bold;
+                    //stackPanels[j].Children.Add(textBlock);
+
+                    
 
                     //ここでそれぞれ_maingrid_layoutnumでmaincontentsの中身を変更する
 
@@ -278,6 +335,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                             contentsGrid.RowDefinitions.Add(rowDef2);
                             contentsGrid.Children.Add(img);
                             contentsGrid.Children.Add(textBlock);
+                            textBlock.FontSize = 30;
                             Grid.SetRow(img, 0);
                             Grid.SetRow(textBlock, 1);
                             break;
@@ -289,6 +347,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                             contentsGrid.ColumnDefinitions.Add(colDef2);
                             contentsGrid.Children.Add(img);
                             contentsGrid.Children.Add(textBlock);
+                            textBlock.FontSize = 20;
                             Grid.SetColumn(img, 0);
                             Grid.SetColumn(textBlock, 1);
                             break;
@@ -301,6 +360,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                             contentsGrid.Children.Add(img);
                             textBlock.Text = "Row:" + i + ", Col:" + j+"\n"+"TXTファイル"+"\n"+"0バイト";
                             contentsGrid.Children.Add(textBlock);
+                            textBlock.FontSize = 20;
                             Grid.SetColumn(img, 0);
                             Grid.SetColumn(textBlock, 1);
                             break;
@@ -313,6 +373,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                             contentsGrid.ColumnDefinitions.Add(colDef2);
                             contentsGrid.ColumnDefinitions.Add(colDef3);
                             contentsGrid.Children.Add(img);
+                            textBlock.FontSize = 30;
                             contentsGrid.Children.Add(textBlock);
                             TextBlock textBlock2 = new TextBlock
                             {
@@ -320,14 +381,14 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                                 HorizontalAlignment = HorizontalAlignment.Center,
                             };
                             textBlock2.Text = "更新日時: 2019/11/09 20:00" + "\n" + "サイズ: 0バイト";
-                            contentsGrid.Children.Add(textBlock2);
+                            //contentsGrid.Children.Add(textBlock2);
 
                             Grid.SetColumn(img, 0);
                             Grid.SetColumn(textBlock, 1);
                             Grid.SetColumn(textBlock2, 2);
                             break;
                         case (5)://ランダム表示
-
+                            break;
                         default:
                             break;
                     };

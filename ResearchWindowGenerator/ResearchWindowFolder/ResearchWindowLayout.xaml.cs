@@ -125,7 +125,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
              * 2 : カレンダー
             **/
 
-            LayoutNum = 2;
+            LayoutNum = 3;
             
 
             /**
@@ -141,7 +141,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
              * 2 : Grid
              **/
 
-            ContentsBarNum = 2;
+            ContentsBarNum = 1;
 
             
 
@@ -149,7 +149,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
              * MainContentsの初期配置
             */
 
-            MainContentsNum = 3;
+            MainContentsNum = 1;
 
             
         }

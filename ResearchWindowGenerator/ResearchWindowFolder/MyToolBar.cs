@@ -206,8 +206,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 //Width = 60+20*9,
                 
                 Height = this.Height,
-                ShowGridLines = true,
-                Background = Brushes.Blue
+                //ShowGridLines = true,
+                //Background = Brushes.Blue
             };
 
             ButtonList1_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength((this.Height - 40) / 2) });
@@ -233,8 +233,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Grid buttonGrid = new Grid {
                     Width = ButtonList1_Grid.Width,
                     Height = 20,
-                    Background = Brushes.Azure,
-                    ShowGridLines = true
+                    //Background = Brushes.Azure,
+                    //ShowGridLines = true
                 };
 
                 
@@ -296,8 +296,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Width = 410,
                 //Width = 60 + 70*5,
                 Height = this.Height,
-                ShowGridLines = true,
-                Background = Brushes.Gray
+                //ShowGridLines = true,
+                //Background = Brushes.Gray
             };
             //70*50
 
@@ -327,8 +327,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 {
                     Width = 70*5,
                     Height = 50,
+                    /*
                     Background = Brushes.Purple,
-                    ShowGridLines = true
+                    ShowGridLines = true*/
                 };
 
                 
@@ -377,8 +378,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Width = 380,
                 //Width = 60 + 60 * 5,
                 Height = this.Height,
+                /*
                 ShowGridLines = true,
-                Background = Brushes.Red
+                Background = Brushes.Red*/
             };
 
             ButtonList3_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength((this.Height - 60) / 2) });
@@ -409,8 +411,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     //Width = 60 * 5,
                     Width =ButtonList2_Grid.Width,
                     Height = 20,
-                    //Background = Brushes.Red,
-                    ShowGridLines = true
+                    /*Background = Brushes.Red,
+                    ShowGridLines = true*/
                 };
 
 
@@ -464,8 +466,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Width = 310,
                 //Width = 60 + 210 * 3,
                 Height = this.Height,
+                /*
                 ShowGridLines = true,
-                Background = Brushes.GreenYellow
+                Background = Brushes.GreenYellow*/
             };
 
             ButtonList4_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength((this.Height - 60) / 2) });
@@ -492,8 +495,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 {
                     Width = ButtonList4_Grid.Width,
                     Height = 60,
+                    /*
                     Background = Brushes.Azure,
-                    ShowGridLines = true
+                    ShowGridLines = true*/
                 };
 
                  ButtonList4_Grid.Children.Add(buttonGrid);
@@ -552,8 +556,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Width = 350,
                 //Width = 60 + 20 * 9,
                 Height = this.Height,
+                /*
                 ShowGridLines = true,
-                //Background = Brushes.Red
+                Background = Brushes.Red*/
             };
 
             ButtonList5_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength((this.Height -20)/2) });
@@ -579,8 +584,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 {
                     Width = ButtonList5_Grid.Width,
                     Height = 20,
+                    /*
                     Background = Brushes.Pink,
-                    ShowGridLines = true
+                    ShowGridLines = true*/
                 };
 
                 
@@ -635,7 +641,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Width = this.Width,
                 Height = this.Height,
                 //Background = Brushes.GreenYellow,
-                ShowGridLines = true
+                //ShowGridLines = true
             };
 
             //otherWidths = (this.Width - (ButtonList1_Grid.Width + ButtonList2_Grid.Width + ButtonList3_Grid.Width + ButtonList4_Grid.Width + ButtonList5_Grid.Width)) / 2;
