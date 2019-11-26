@@ -106,7 +106,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             this.Title = "Layout"+LayoutNum+", ToolBar" + ToolBarNum + ", ContentsBar" + ContentsBarNum;
             
             
-
+            //Layout: 1 ToolBar: 上(1 3 5 4 2)＆下 ContentsBar: Grid MainContents 1 5 4 2 3
 
             
 

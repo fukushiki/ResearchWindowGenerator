@@ -1,4 +1,5 @@
-﻿using ResearchWindowGenerator.ResearchWindowFolder;
+﻿using ResearchWindowGenerator.ResearchWindow;
+using ResearchWindowGenerator.ResearchWindowFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,8 @@ namespace ResearchWindowGenerator
     public partial class SelectWindow : Window
     {
         //string[] windowNames = { "ResearchWindowPowerPoint", "ResearchWindowPDF", "ResearchWindowCalendar", "ResearchWindowTest","ResearchWindowTest_Log" , "WindowTemplate" , "WindowTest"};
-        string[] windowNames = { "ResarchWindowLayout" };
+        //string[] windowNames = { "ResarchWindowLayout" };
+        string[] windowNames = { "Layout1", "Layout1_2", "Layout2", "Layout2_2", "Layout3", "Layout3_2" };
         public SelectWindow()
         {
             InitializeComponent();
@@ -83,6 +85,30 @@ namespace ResearchWindowGenerator
                     int patternnum = 1;
                     ResearchWindowLayout researchWindowLayout = new ResearchWindowLayout("ResarchWindowLayout", patternnum, "", "", false);
                     researchWindowLayout.Show();
+                    break;
+                case "Layout1":
+                    Layout1 layout1 = new Layout1();
+                    layout1.Show();
+                    break;
+                case "Layout1_2":
+                    Layout1_2 layout1_2 = new Layout1_2();
+                    layout1_2.Show();
+                    break;
+                case "Layout2":
+                    Layout2 layout2 = new Layout2();
+                    layout2.Show();
+                    break;
+                case "Layout2_2":
+                    Layout2_Grid layout2_Grid = new Layout2_Grid();
+                    layout2_Grid.Show();
+                    break;
+                case "Layout3":
+                    Layout3 layout3 = new Layout3();
+                    layout3.Show();
+                    break;
+                case "Layout3_Grid":
+                    Layout3_Grid layout3_Grid = new Layout3_Grid();
+                    layout3_Grid.Show();
                     break;
                 default:
                     Console.WriteLine("Default case");
