@@ -90,7 +90,7 @@ namespace ResearchWindowGenerator
                     Layout1 layout1 = new Layout1();
                     layout1.Show();
                     break;
-                case "Layout1_2":
+                case "Layout1_Grid":
                     Layout1_2 layout1_2 = new Layout1_2();
                     layout1_2.Show();
                     break;
