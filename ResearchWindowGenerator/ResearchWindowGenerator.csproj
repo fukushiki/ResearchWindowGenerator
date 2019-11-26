@@ -92,7 +92,7 @@
     <Compile Include="ResearchWindow\Layout3_Grid.xaml.cs">
       <DependentUpon>Layout3_Grid.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ResearchWindow\Maincontents.cs" />
+    <Compile Include="ResearchWindow\MainContents.cs" />
     <Compile Include="ResearchWindowFolder\MyContentsBar.cs" />
     <Compile Include="ResearchWindowFolder\MyMainContents.cs" />
     <Compile Include="ResearchWindowFolder\MyToolBar2.cs" />
