@@ -158,6 +158,7 @@ namespace ResearchWindowGenerator.ResearchWindow
                 child_maincontents.SetHeight(contentsBarVector.GetHeight());
                 child_maincontents.SetGridsOrder(x);
                 maincontents.Add(child_maincontents);
+                
             }
             
         }
