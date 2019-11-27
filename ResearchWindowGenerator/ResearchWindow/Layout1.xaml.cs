@@ -156,7 +156,7 @@ namespace ResearchWindowGenerator.ResearchWindow
                 MainContents child_maincontents = new MainContents();
                 child_maincontents.SetWidth(WindowWidth - contentsBarVector.GetWidth());
                 child_maincontents.SetHeight(contentsBarVector.GetHeight());
-                child_maincontents.SetGridsOrder(x);
+                child_maincontents.SetGridsOrder(1);
                 maincontents.Add(child_maincontents);
                 
             }

@@ -129,14 +129,33 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     break;
                 case 2:
 
+                    SetButtonList(40, 5);
+                    //GridRow 行
+                    //GridColumn 列
+                    GridSet(40, 5);
+
+                    //ここでそれぞれ配置
+                    SetStackPanels(40, 5);
                     break;
                 case 3:
+                    SetButtonList(15, 6);
+                    //GridRow 行
+                    //GridColumn 列
+                    GridSet(15, 6);
 
-                    
+                    //ここでそれぞれ配置
+                    SetStackPanels(15, 6);
+
                     break;
                 case 4:
+                    SetButtonList(17, 1);
+                    //GridRow 行
+                    //GridColumn 列
+                    GridSet(17, 1);
 
-                   
+                    //ここでそれぞれ配置
+                    SetStackPanels(17, 1);
+
                     break;
                 case 5:
                     
@@ -247,6 +266,17 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
                     };
 
+                    Grid contentsGrid = new Grid
+                    {
+                        Width = stackPanels[j].Width,
+                        Height = stackPanels[j].Height,
+#if DEBUG
+                        ShowGridLines = true,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        HorizontalAlignment = HorizontalAlignment.Center
+#endif
+                    };
+
                     /*
                     System.Random r_ = new System.Random(1000);
                     //シード値を指定しないとシード値として Environment.TickCount が使用される
@@ -312,10 +342,10 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                             //Row : 列 Height
                             rowDef1 = new RowDefinition { Height = new GridLength() };
                             rowDef2 = new RowDefinition { Height = new GridLength() };
-                            mainContentsGrid.RowDefinitions.Add(rowDef1);
-                            mainContentsGrid.RowDefinitions.Add(rowDef2);
-                            mainContentsGrid.Children.Add(img);
-                            mainContentsGrid.Children.Add(textBlock);
+                            contentsGrid.RowDefinitions.Add(rowDef1);
+                            contentsGrid.RowDefinitions.Add(rowDef2);
+                            contentsGrid.Children.Add(img);
+                            contentsGrid.Children.Add(textBlock);
                             textBlock.FontSize = 30;
                             Grid.SetRow(img, 0);
                             Grid.SetRow(textBlock, 1);
@@ -326,10 +356,10 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
                             colDef1 = new ColumnDefinition { Width = new GridLength() };
                             colDef2 = new ColumnDefinition { Width = new GridLength() };
-                            mainContentsGrid.ColumnDefinitions.Add(colDef1);
-                            mainContentsGrid.ColumnDefinitions.Add(colDef2);
-                            mainContentsGrid.Children.Add(img);
-                            mainContentsGrid.Children.Add(textBlock);
+                            contentsGrid.ColumnDefinitions.Add(colDef1);
+                            contentsGrid.ColumnDefinitions.Add(colDef2);
+                            contentsGrid.Children.Add(img);
+                            contentsGrid.Children.Add(textBlock);
                             textBlock.FontSize = 20;
                             Grid.SetColumn(img, 0);
                             Grid.SetColumn(textBlock, 1);
@@ -338,11 +368,11 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                             //Column : 行 Width
                             colDef1 = new ColumnDefinition { Width = new GridLength() };
                             colDef2 = new ColumnDefinition { Width = new GridLength() };
-                            mainContentsGrid.ColumnDefinitions.Add(colDef1);
-                            mainContentsGrid.ColumnDefinitions.Add(colDef2);
-                            mainContentsGrid.Children.Add(img);
+                            contentsGrid.ColumnDefinitions.Add(colDef1);
+                            contentsGrid.ColumnDefinitions.Add(colDef2);
+                            contentsGrid.Children.Add(img);
                             textBlock.Text = "Row:" + i + ", Col:" + j + "\n" + "TXTファイル" + "\n" + "0バイト";
-                            mainContentsGrid.Children.Add(textBlock);
+                            contentsGrid.Children.Add(textBlock);
                             textBlock.FontSize = 20;
                             Grid.SetColumn(img, 0);
                             Grid.SetColumn(textBlock, 1);
@@ -352,12 +382,12 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                             colDef1 = new ColumnDefinition { Width = new GridLength() };
                             colDef2 = new ColumnDefinition { Width = new GridLength() };
                             colDef3 = new ColumnDefinition { Width = new GridLength() };
-                            mainContentsGrid.ColumnDefinitions.Add(colDef1);
-                            mainContentsGrid.ColumnDefinitions.Add(colDef2);
-                            mainContentsGrid.ColumnDefinitions.Add(colDef3);
-                            mainContentsGrid.Children.Add(img);
+                            contentsGrid.ColumnDefinitions.Add(colDef1);
+                            contentsGrid.ColumnDefinitions.Add(colDef2);
+                            contentsGrid.ColumnDefinitions.Add(colDef3);
+                            contentsGrid.Children.Add(img);
                             textBlock.FontSize = 30;
-                            mainContentsGrid.Children.Add(textBlock);
+                            contentsGrid.Children.Add(textBlock);
                             TextBlock textBlock2 = new TextBlock
                             {
                                 VerticalAlignment = VerticalAlignment.Center,
