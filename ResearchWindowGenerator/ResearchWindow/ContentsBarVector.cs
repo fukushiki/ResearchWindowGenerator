@@ -255,6 +255,33 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
         }
 
+        private void ContentsBarVectorButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            /*
+            if (((Button)sender).Content == "Start")
+            {
+                StartTimer();
+                ((Button)sender).Content = "Finish";
+                //System.Drawing.Point point = System.Windows.Forms.Control.MousePosition;
+                //Logger.SaveMouseClickPosition(TimeCount, point.X, point.Y);
+
+                Button sender1 = (System.Windows.Controls.Button)sender;
+                Console.WriteLine("aaaaaaaaaa" + sender1.Name);
+
+
+            }
+            else if (((Button)sender).Content == "Finish")
+            {
+                StopTimer();
+                ((Button)sender).Content = "End";
+            }*/
+
+
+            Button sender1 = (System.Windows.Controls.Button)sender;
+            Console.WriteLine("aaaaaaaaaa" + sender1.Name);
+
+        }
+
 
 
 

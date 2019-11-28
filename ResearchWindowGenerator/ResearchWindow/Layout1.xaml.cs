@@ -28,6 +28,7 @@ namespace ResearchWindowGenerator.ResearchWindow
 
         //ToolBar
         ToolBarTop toolBarTop;
+        public List<int[]> toolBarTopNumArray;
         int[] ToolBarTopOrder;
         int[] ToolBarTop1NumArray;
         int[] ToolBarTop2NumArray;
@@ -89,16 +90,25 @@ namespace ResearchWindowGenerator.ResearchWindow
         private void ToolBarTop_Arrangement()
         {
             ToolBarTopOrder = new int[] { 1, 2, 3, 4, 5 };
-            ToolBarTop1NumArray = new int[] { 11, 12, 13, 14, 15,
-                                              21, 22, 23, 24, 25 };
-            ToolBarTop2NumArray = new int[] { 11, 12,
-                                              21, 22,
-                                              31, 32 };
-            ToolBarTop3NumArray = new int[] { 1, 2, 3, 4, 5 };
+            toolBarTopNumArray = new List<int[]>();
+            ToolBarTop1NumArray = new int[] { 1, 2, 3, 4, 5,
+                                              6, 7, 8, 9, 10 };
+            toolBarTopNumArray.Add(ToolBarTop1NumArray);
+            ToolBarTop2NumArray = new int[] { 1, 2,
+                                              3, 4,
+                                              5, 6 };
+            toolBarTopNumArray.Add(ToolBarTop2NumArray);
+            ToolBarTop3NumArray = new int[] { 1, 2, 3,
+                                              4, 5,6 };
+            toolBarTopNumArray.Add(ToolBarTop3NumArray);
             ToolBarTop4NumArray = new int[] { 1, 2, 3, 4, 5 };
+            toolBarTopNumArray.Add(ToolBarTop4NumArray);
             ToolBarTop5NumArray = new int[] { 1, 2, 3, 4, 5 };
+            toolBarTopNumArray.Add(ToolBarTop5NumArray);
 
-            toolBarTop = new ToolBarTop();
+
+
+            toolBarTop = new ToolBarTop(toolBarTopNumArray);
             toolBarTop.SetWidth(WindowWidth);
             toolBarTop.SetHeight(165 - 30);
             toolBarTop.SetGridsOrder(ToolBarTopOrder);

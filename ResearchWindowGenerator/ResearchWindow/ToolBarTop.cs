@@ -36,6 +36,13 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
         int[] ToolBarOrder;
 
+        List<int[]> toolBarNumArray;
+
+        public ToolBarTop(List<int[]> numArray)
+        {
+            toolBarNumArray = numArray;
+        }
+
         internal void SetGridsOrder(int[] toolBarTopOrder)
         {
             ToolBarOrder = toolBarTopOrder;
@@ -212,8 +219,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 {
                     buttonGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(20) });
                     button[j] = new Button { Width = 20, Height = 20 };
-                    button[j].Name = "ToolBarTop1" + "_C" + j + "_R" + i;
-                    //button[j].Click += ToolBarButton_Clicked;
+                    button[j].Name = "ToolBarTop1" + "_C" + j+1 + "_R" + i+1;
+                    button[j].Tag = "Number" + toolBarNumArray[0][i * buttonColumn + j];
+                    button[j].Click += ToolBarTopButton_Clicked;
                     buttonGrid.Children.Add(button[j]);
                     Grid.SetColumn(button[j], j);
 
@@ -309,8 +317,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 {
                     buttonGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(70) });
                     button[j] = new Button { Width = 70, Height = buttonGrid.Height };
-                    button[j].Name = "ToolBarTop2" + "_C" + j + "_R" + i;
-                    //button[j].Click += ToolBarButton_Clicked;
+                    button[j].Name = "ToolBarTop2" + "_C" + j+1 + "_R" + i+1;
+                    button[j].Tag = "Number" + toolBarNumArray[1][i * buttonColumn + j];
+                    button[j].Click += ToolBarTopButton_Clicked;
                     buttonGrid.Children.Add(button[j]);
                     Grid.SetColumn(button[j], j);
 
@@ -392,8 +401,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 {
                     buttonGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(160) });
                     button[j] = new Button { Width = 160, Height = buttonGrid.Height };
-                    button[j].Name = "ToolBarTop3" + "_C" + j + "_R" + i;
-                    //button[j].Click += ToolBarButton_Clicked;
+                    button[j].Name = "ToolBarTop3" + "_C" + j+1 + "_R" + i+1;
+                    button[j].Tag = "Number" + toolBarNumArray[2][i * buttonColumn + j];
+                    button[j].Click += ToolBarTopButton_Clicked;
                     buttonGrid.Children.Add(button[j]);
                     Grid.SetColumn(button[j], j);
 
@@ -478,26 +488,32 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 {
                     buttonGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(50) });
                     button[j] = new Button { Width = 50, Height = 60 };
-                    button[j].Name = "ToolBarTop4" + "_C" + j + "_R" + i;
-                    //button[j].Click += ToolBarButton_Clicked;
+                    button[j].Name = "ToolBarTop4" + "_C" + j+1 + "_R" + i+1;
+                    button[j].Tag = "Number" + toolBarNumArray[3][i * buttonColumn + j];
+                    button[j].Click += ToolBarTopButton_Clicked;
                     buttonGrid.Children.Add(button[j]);
                     Grid.SetColumn(button[j], j);
+
+
+                    TextBlock textblock = new TextBlock();
+                    textblock.Text = toolBarNumArray[3][i * buttonColumn + j].ToString();
+                    textblock.FontSize = ButtonList4_Grid.Height * 0.5;
+                    textblock.HorizontalAlignment = HorizontalAlignment.Center;
+                    textblock.VerticalAlignment = VerticalAlignment.Center;
+                    buttonGrid.Children.Add(textblock);
+                    Grid.SetColumn(textblock, 0);
+                    Grid.SetRow(textblock, 0);
+                    Grid.SetRowSpan(textblock, 3);
 
                 }
 
                 buttonList4.Add(button);
 
 
+                
+
             }
-            TextBlock textblock = new TextBlock();
-            textblock.Text = (count).ToString(); ;
-            textblock.FontSize = ButtonList4_Grid.Height * 0.5;
-            textblock.HorizontalAlignment = HorizontalAlignment.Center;
-            textblock.VerticalAlignment = VerticalAlignment.Center;
-            ButtonList4_Grid.Children.Add(textblock);
-            Grid.SetColumn(textblock, 0);
-            Grid.SetRow(textblock, 0);
-            Grid.SetRowSpan(textblock, 3);
+            
 
 
 
@@ -567,8 +583,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 {
                     buttonGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(20) });
                     button[j] = new Button { Width = 20, Height = 20 };
-                    button[j].Name = "ToolBarTop5" + "_C" + j + "_R" + i;
-                    //button[j].Click += ToolBarButton_Clicked;
+                    button[j].Name = "ToolBarTop5" + "_C" + j+1 + "_R" + i+1;
+                    button[j].Tag = "Number" + toolBarNumArray[4][i*buttonColumn + j];
+                    button[j].Click += ToolBarTopButton_Clicked;
                     buttonGrid.Children.Add(button[j]);
                     Grid.SetColumn(button[j], j);
 
@@ -595,6 +612,35 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
 
 
+
+        }
+
+
+        private void ToolBarTopButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            /*
+            if (((Button)sender).Content == "Start")
+            {
+                StartTimer();
+                ((Button)sender).Content = "Finish";
+                //System.Drawing.Point point = System.Windows.Forms.Control.MousePosition;
+                //Logger.SaveMouseClickPosition(TimeCount, point.X, point.Y);
+
+                Button sender1 = (System.Windows.Controls.Button)sender;
+                Console.WriteLine("aaaaaaaaaa" + sender1.Name);
+
+
+            }
+            else if (((Button)sender).Content == "Finish")
+            {
+                StopTimer();
+                ((Button)sender).Content = "End";
+            }*/
+
+
+            Button sender1 = (System.Windows.Controls.Button)sender;
+            Console.WriteLine(sender1.Name);
+            Console.WriteLine(sender1.Tag);
 
         }
 
