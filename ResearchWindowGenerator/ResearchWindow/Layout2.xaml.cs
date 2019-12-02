@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ResearchWindowGenerator.ResearchWindowFolder;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,15 +16,67 @@ using System.Windows.Shapes;
 namespace ResearchWindowGenerator.ResearchWindow
 {
     /// <summary>
-    /// Layout2.xaml の相互作用ロジック
+    /// Layout1.xaml の相互作用ロジック
     /// </summary>
     public partial class Layout2 : Window
     {
         static double WindowWidth;
         static double WindowHeight;
+        private int LayoutNum = 1;
+        public static int MainContentsStatus = 0;
+        public static int ScenarioNum = 1;
+        //public static int MainContentsStatus = 0;
+        //public static int MainContentsStatus = 0;
+
+
+        //ToolBar
+        ToolBarTop toolBarTop;
+        public List<int[]> toolBarTopNumArray;
+        static int[] ToolBarTopOrder;
+        int[] ToolBarTop1NumArray;
+        int[] ToolBarTop2NumArray;
+        int[] ToolBarTop3NumArray;
+        int[] ToolBarTop4NumArray;
+        int[] ToolBarTop5NumArray;
+
+        ToolBarUnder toolBarUnder;
+        int[] ToolBarUnderNumArray;
+
+
+        ContentsBarVector contentsBarVector;
+        int[] ContentsBarNumArray;
+
+
+
+        static List<MainContents> maincontents;
+        int[] MainContentsNumArray;
+
+        List<int[]> maincontentsNumArrayList;
+        int[] MainContents1NumArray;
+        int[] MainContents2NumArray;
+        int[] MainContents3NumArray;
+        int[] MainContents4NumArray;
+        int[] MainContents5NumArray;
+        /*Grid*/
+        static Grid maingrid;
+        ColumnDefinition colDef1;
+        ColumnDefinition colDef2;
+        ColumnDefinition colDef3;
+        RowDefinition rowDef1;
+        RowDefinition rowDef2;
+        RowDefinition rowDef3;
+
+        string ParentClass = "Layout2";
+
+
+        String ContentsBarType = "Vector";
+
+        //public static  Layout1 layout1 { get; private set; }
+
         public Layout2()
         {
             InitializeComponent();
+            // ParentClass = "Layout1";
             /*Windowのサイズ指定*/
             this.Width = SystemParameters.WorkArea.Width;
             this.Height = SystemParameters.WorkArea.Height;
@@ -31,6 +84,507 @@ namespace ResearchWindowGenerator.ResearchWindow
 
             WindowWidth = this.Width;
             WindowHeight = this.Height;
+
+
+
+            GridInit();
+
+            ToolBarTop_Arrangement();
+            //ToolBarUnder_Arrangement();
+            //ToolBarRight_Arrangement();
+
+            ContentsBar_Arrangement();
+
+            Maincontents_Arrangement();
+
+
+            LayoutSetting();
+
+            SaveLayoutSetting();
         }
+
+
+        private void ToolBarTop_Arrangement()
+        {
+            ToolBarTopOrder = new int[] { 1, 2, 3, 4, 5 };
+            toolBarTopNumArray = new List<int[]>();
+            ToolBarTop1NumArray = new int[] { 1, 2, 3, 4, 5,
+                                              6, 7, 8, 9, 10 };
+            toolBarTopNumArray.Add(ToolBarTop1NumArray);
+            ToolBarTop2NumArray = new int[] { 1, 2,
+                                              3, 4,
+                                              5, 6 };
+            toolBarTopNumArray.Add(ToolBarTop2NumArray);
+            ToolBarTop3NumArray = new int[] { 1, 2, 3,
+                                              4, 5,6 };
+            toolBarTopNumArray.Add(ToolBarTop3NumArray);
+            ToolBarTop4NumArray = new int[] { 1, 2, 3, 4, 5 };
+            toolBarTopNumArray.Add(ToolBarTop4NumArray);
+            ToolBarTop5NumArray = new int[] { 1, 2, 3, 4, 5 };
+            toolBarTopNumArray.Add(ToolBarTop5NumArray);
+
+
+
+            toolBarTop = new ToolBarTop(toolBarTopNumArray);
+            toolBarTop.SetParentClass(ParentClass);
+            toolBarTop.Parent(this);
+            toolBarTop.SetWidth(1755);
+            toolBarTop.SetHeight(60);
+            toolBarTop.SetGridsOrder(ToolBarTopOrder);
+
+            /*
+             toolBar1 = new MyToolBar(1);
+                    toolBar1.SetWidth(1755);
+                    //toolBar1.SetHeight(75 - 30);
+                    toolBar1.SetHeight(60);
+                    toolBar1.SetButton(2);
+             */
+
+
+
+
+
+        }
+        private void ToolBarUnder_Arrangement()
+        {
+            ToolBarUnderNumArray = new int[] { 1, 2, 3, 4, 5 };
+            toolBarUnder = new ToolBarUnder();
+            toolBarUnder.SetWidth(WindowWidth);
+            toolBarUnder.SetHeight(20);
+            toolBarUnder.SetGridsOrder(ToolBarUnderNumArray);
+        }
+
+        private void ContentsBar_Arrangement()
+        {
+            if (ContentsBarType.Equals("Vector"))
+            {
+                ContentsBarNumArray = new int[] { 1, 2, 3, 4, 5 };
+                contentsBarVector = new ContentsBarVector(ContentsBarNumArray);
+
+                contentsBarVector.SetParentClass(ParentClass);
+                contentsBarVector.Parent(this);
+                contentsBarVector.SetWidth(265);
+                //contentsBarVector.SetHeight(WindowHeight - (toolBarTop.GetHeight()));
+                contentsBarVector.SetHeight(WindowHeight - (toolBarTop.GetHeight()));
+                contentsBarVector.SetGridsOrder(ContentsBarNumArray);
+            }
+            /*
+            else
+            {
+                ContentsBarNumArray = new int[] { 11, 12, 13, 14, 15,
+                                                  21, 22, 23, 24, 25,
+                                                  31, 32, 33, 34, 35,
+                                                  41, 42, 43, 44, 45,
+                                                  51, 52, 53, 54, 55};
+                contentsBarGrid = new ContentsBarGrid(ContentsBarNumArray);
+                contentsBarGrid.SetParentClass(ParentClass);
+                contentsBarGrid.Parent1(this);
+                contentsBarGrid.SetWidth(310);
+                if (LayoutNum == 1)
+                {
+                    contentsBar.SetHeight(WindowHeight - (20 + toolBar1.GetHeight() + toolBar2.GetHeight()));
+                }
+            }*/
+        }
+
+
+        private void Maincontents_Arrangement()
+        {
+            maincontents = new List<MainContents>();
+            MainContentsNumArray = new int[] { 1, 2, 3, 4, 5 };
+            maincontentsNumArrayList = new List<int[]>();
+
+            MainContents1NumArray = new int[90];
+            for (int i = 0; i < MainContents1NumArray.Length; i++)
+            {
+                MainContents1NumArray[i] = i + 1;
+                //Console.WriteLine(MainContents1NumArray[i] + "うおおおお");
+            }
+            maincontentsNumArrayList.Add(MainContents1NumArray);
+
+            MainContents2NumArray = new int[200];
+            for (int i = 0; i < MainContents2NumArray.Length; i++)
+            {
+                MainContents2NumArray[i] = i + 1;
+                //Console.WriteLine(MainContents2NumArray[i] + "うおおおお");
+            }
+            maincontentsNumArrayList.Add(MainContents2NumArray);
+
+            MainContents3NumArray = new int[90];
+            for (int i = 0; i < MainContents3NumArray.Length; i++)
+            {
+                MainContents3NumArray[i] = i + 1;
+               // Console.WriteLine(MainContents3NumArray[i] + "うおおおお");
+            }
+            maincontentsNumArrayList.Add(MainContents3NumArray);
+
+            MainContents4NumArray = new int[17];
+            for (int i = 0; i < MainContents4NumArray.Length; i++)
+            {
+                MainContents4NumArray[i] = i + 1;
+              //  Console.WriteLine(MainContents4NumArray[i] + "うおおおお");
+            }
+            maincontentsNumArrayList.Add(MainContents4NumArray);
+
+            MainContents5NumArray = new int[5];
+            for (int i = 0; i < MainContents5NumArray.Length; i++)
+            {
+                MainContents5NumArray[i] = i + 1;
+               // Console.WriteLine(MainContents5NumArray[i] + "うおおおお");
+            }
+            maincontentsNumArrayList.Add(MainContents5NumArray);
+
+        }
+
+        private void MaincontentsSet(int i_)
+        {
+            if (i_ > 0)
+            {
+                maincontents[i_ - 1] = null;
+            }
+            //int x = MainContentsNumArray[i_];
+            MainContents child_maincontents = new MainContents(maincontentsNumArrayList[MainContentsNumArray[i_] - 1]);
+            child_maincontents.SetParentClass(ParentClass);
+            child_maincontents.Parent(this);
+            child_maincontents.SetWidth(WindowWidth - contentsBarVector.GetWidth());
+            child_maincontents.SetHeight(contentsBarVector.GetHeight());
+            child_maincontents.SetGridsOrder(MainContentsNumArray[i_]);
+            maincontents.Add(child_maincontents);
+
+            //maincontents
+            Grid.SetColumn(maincontents[i_].mainContentsGrid, 1);
+            Grid.SetRow(maincontents[i_].mainContentsGrid, 1);
+            maingrid.Children.Add(maincontents[i_].mainContentsGrid);
+        }
+
+
+
+
+        private void GridInit()
+        {
+            maingrid = new Grid
+            {
+                Width = this.Width,
+                Height = this.Height,
+                //Background = Brushes.Aquamarine,
+#if DEBUG
+                ShowGridLines = true
+#endif
+
+            };
+
+            this.AddChild(maingrid);
+
+
+
+        }
+
+
+
+        private void LayoutSetting()
+        {
+            //Column : 行 Width
+            colDef1 = new ColumnDefinition { Width = new GridLength(contentsBarVector.GetWidth()) };
+            colDef2 = new ColumnDefinition { Width = new GridLength(WindowWidth - contentsBarVector.GetWidth()) };
+            
+
+            Console.WriteLine(colDef1.Width + "; " + colDef2.Width );
+            //Row : 列 Height
+            rowDef1 = new RowDefinition { Height = new GridLength(toolBarTop.GetHeight()) };
+            rowDef2 = new RowDefinition { Height = new GridLength(contentsBarVector.GetHeight()) };
+           
+            Console.WriteLine(rowDef1.Height + "; " + rowDef2.Height );
+
+            maingrid.ColumnDefinitions.Add(colDef1);
+            maingrid.ColumnDefinitions.Add(colDef2);
+            //maingrid.ColumnDefinitions.Add(colDef3);
+
+            maingrid.RowDefinitions.Add(rowDef1);
+            maingrid.RowDefinitions.Add(rowDef2);
+            //maingrid.RowDefinitions.Add(rowDef3);
+
+
+
+
+            //ContentsBarVector
+            Grid.SetColumn(contentsBarVector.contentsBarMainGrid, 0);
+            Grid.SetRow(contentsBarVector.contentsBarMainGrid, 0);
+            Grid.SetRowSpan(contentsBarVector.contentsBarMainGrid, 2);
+            maingrid.Children.Add(contentsBarVector.contentsBarMainGrid);
+            //toolBarTop
+            Grid.SetColumn(toolBarTop.toolBarGrid, 1);
+            Grid.SetRow(toolBarTop.toolBarGrid, 0);
+            //Grid.SetColumnSpan(toolBarTop.toolBarGrid, 2);
+            maingrid.Children.Add(toolBarTop.toolBarGrid);
+            //toolBarUnder
+            //Grid.SetColumn(toolBarUnder.toolBarGrid, 0);
+            //Grid.SetRow(toolBarUnder.toolBarGrid, 2);
+            //Grid.SetColumnSpan(toolBarUnder.toolBarGrid, 2);
+            //maingrid.Children.Add(toolBarUnder.toolBarGrid);
+        }
+
+
+        private void SaveLayoutSetting()
+        {
+            Console.WriteLine("Layout" + LayoutNum);
+            Console.WriteLine("ToolBarTop" + "True");
+            Console.WriteLine("ToolBarOrder");
+            Console.WriteLine("ToolBarTop1_NumArray");
+            foreach (int i in ToolBarTop1NumArray)
+            {
+                Console.WriteLine(i);
+            }
+            Console.WriteLine("ToolBarTop2_NumArray");
+            foreach (int i in ToolBarTop2NumArray)
+            {
+                Console.WriteLine(i);
+            }
+            Console.WriteLine("ToolBarTop3_NumArray");
+            foreach (int i in ToolBarTop3NumArray)
+            {
+                Console.WriteLine(i);
+            }
+            Console.WriteLine("ToolBarTop4_NumArray");
+            foreach (int i in ToolBarTop4NumArray)
+            {
+                Console.WriteLine(i);
+            }
+            Console.WriteLine("ToolBarTop5_NumArray");
+            foreach (int i in ToolBarTop5NumArray)
+            {
+                Console.WriteLine(i);
+            }
+            Console.WriteLine("ContentsBar" + ContentsBarType);
+            Console.WriteLine("MainContents");
+            foreach (int i in MainContentsNumArray)
+            {
+                Console.WriteLine(i);
+            }
+        }
+
+
+        public void scenario(String text1, String text2)
+        {
+            Console.WriteLine("ScenarioNum" + ScenarioNum);
+
+            switch (ScenarioNum)
+            {
+                //コンテンツバー1番  ContentsBarVector_C01_R01
+                case (1):
+                    if (text1.Equals("ContentsBarVector") && text2.Equals("Number1"))
+                    {
+                        //メインコンテンツ1
+                        MaincontentsSet(0);
+                        ScenarioNum++;
+                    }
+
+                    break;
+
+                case (2):
+                    //クリックした1番の色を変える
+                    if (text1.Equals("MainContents"))
+                        maincontents[0].ChangeColor(1);
+                    ScenarioNum++;
+                    break;
+
+                //ツールバー1-1
+                case (3):
+                    if (text1.Equals("ToolBarTop" + ToolBarTopOrder[0]) && text2.Equals("Number1"))
+                    {
+                        //メインコンテンツの色を変える
+                        maincontents[0].ChangeColor(2);
+                        ScenarioNum++;
+                    }
+                    break;
+
+
+                //メインコンテンツ色の変わったところ
+                case (4):
+                    if (true)
+                    {
+                        ScenarioNum++;
+                    }
+                    break;
+
+                //ツールバーの下の1番
+                case (5):
+                    //色を変える
+                    ScenarioNum++;
+                    break;
+
+
+
+
+                case (6):
+                    if (text1.Equals("ContentsBarVector") && text2.Equals("Number2"))
+                    {
+                        //メインコンテンツ1
+                        MaincontentsSet(1);
+                        ScenarioNum++;
+                    }
+
+                    break;
+
+                case (7):
+                    //クリックした1番の色を変える
+                    ScenarioNum++;
+                    break;
+
+                //ツールバー1-1
+                case (8):
+                    if (text1.Equals("ToolBarTop" + ToolBarTopOrder[1]) && text2.Equals("Number2"))
+                    {
+                        //メインコンテンツの色を変える
+                        maincontents[1].ChangeColor(1);
+                        ScenarioNum++;
+                    }
+                    break;
+
+
+                //メインコンテンツ色の変わったところ
+                case (9):
+                    if (true)
+                    {
+                        ScenarioNum++;
+                    }
+                    break;
+
+                //ツールバーの下の1番
+                case (10):
+                    //色を変える
+                    ScenarioNum++;
+                    break;
+
+
+                case (11):
+                    if (text1.Equals("ContentsBarVector") && text2.Equals("Number3"))
+                    {
+                        //メインコンテンツ1
+                        MaincontentsSet(2);
+                        ScenarioNum++;
+                    }
+
+                    break;
+
+                case (12):
+                    //クリックした1番の色を変える
+                    ScenarioNum++;
+                    break;
+
+                //ツールバー1-1
+                case (13):
+                    if (text1.Equals("ToolBarTop" + ToolBarTopOrder[2]) && text2.Equals("Number3"))
+                    {
+                        //メインコンテンツの色を変える
+                        maincontents[2].ChangeColor(1);
+                        ScenarioNum++;
+                    }
+                    break;
+
+
+                //メインコンテンツ色の変わったところ
+                case (14):
+                    if (true)
+                    {
+                        ScenarioNum++;
+                    }
+                    break;
+
+                //ツールバーの下の1番
+                case (15):
+                    //色を変える
+                    ScenarioNum++;
+                    break;
+
+
+                case (16):
+                    if (text1.Equals("ContentsBarVector") && text2.Equals("Number4"))
+                    {
+                        //メインコンテンツ1
+                        MaincontentsSet(3);
+                        ScenarioNum++;
+                    }
+
+                    break;
+
+                case (17):
+                    //クリックした1番の色を変える
+                    ScenarioNum++;
+                    break;
+
+                //ツールバー1-1
+                case (18):
+                    if (text1.Equals("ToolBarTop" + ToolBarTopOrder[3]) && text2.Equals("Number4"))
+                    {
+                        //メインコンテンツの色を変える
+                        maincontents[3].ChangeColor(1);
+                        ScenarioNum++;
+                    }
+                    break;
+
+
+                //メインコンテンツ色の変わったところ
+                case (19):
+                    if (true)
+                    {
+                        ScenarioNum++;
+                    }
+                    break;
+
+                //ツールバーの下の1番
+                case (20):
+                    //色を変える
+                    ScenarioNum++;
+                    break;
+
+
+
+
+                case (21):
+                    if (text1.Equals("ContentsBarVector") && text2.Equals("Number5"))
+                    {
+                        //メインコンテンツ1
+                        MaincontentsSet(4);
+                        ScenarioNum++;
+                    }
+
+                    break;
+
+                case (22):
+                    //クリックした1番の色を変える
+                    ScenarioNum++;
+                    break;
+
+                //ツールバー1-1
+                case (23):
+                    if (text1.Equals("ToolBarTop" + ToolBarTopOrder[4]) && text2.Equals("Number5"))
+                    {
+                        //メインコンテンツの色を変える
+                        maincontents[4].ChangeColor(1);
+                        ScenarioNum++;
+                    }
+                    break;
+
+
+                //メインコンテンツ色の変わったところ
+                case (24):
+                    if (true)
+                    {
+                        ScenarioNum++;
+                    }
+                    break;
+
+                //ツールバーの下の1番
+                case (25):
+                    //色を変える
+                    ScenarioNum++;
+                    break;
+
+            }
+
+
+
+        }
+
     }
 }

@@ -18,7 +18,7 @@ namespace ResearchWindowGenerator.ResearchWindow
     /// <summary>
     /// Layout1.xaml の相互作用ロジック
     /// </summary>
-    public partial class Layout1 : Window
+    public partial class Layout1_Grid : Window
     {
         static double WindowWidth;
         static double WindowHeight;
@@ -42,13 +42,14 @@ namespace ResearchWindowGenerator.ResearchWindow
         ToolBarUnder toolBarUnder;
         int[] ToolBarUnderNumArray;
 
-        
+
         ContentsBarVector contentsBarVector;
+        ContentsBarGrid contentsBarGrid;
         int[] ContentsBarNumArray;
 
-        
 
-        static List<MainContents>  maincontents;
+
+        static List<MainContents> maincontents;
         int[] MainContentsNumArray;
 
         List<int[]> maincontentsNumArrayList;
@@ -66,17 +67,18 @@ namespace ResearchWindowGenerator.ResearchWindow
         RowDefinition rowDef2;
         RowDefinition rowDef3;
 
-        string ParentClass = "Layout1";
+        string ParentClass = "Layout1_Grid";
 
 
-        String ContentsBarType = "Vector";
+        //String ContentsBarType = "Vector";
+        String ContentsBarType = "Grid";
 
         //public static  Layout1 layout1 { get; private set; }
 
-        public Layout1()
+        public Layout1_Grid()
         {
             InitializeComponent();
-           // ParentClass = "Layout1";
+            // ParentClass = "Layout1";
             /*Windowのサイズ指定*/
             this.Width = SystemParameters.WorkArea.Width;
             this.Height = SystemParameters.WorkArea.Height;
@@ -97,13 +99,13 @@ namespace ResearchWindowGenerator.ResearchWindow
 
             Maincontents_Arrangement();
 
-            
+
             LayoutSetting();
 
             SaveLayoutSetting();
         }
 
-        
+
         private void ToolBarTop_Arrangement()
         {
             ToolBarTopOrder = new int[] { 1, 2, 3, 4, 5 };
@@ -131,9 +133,9 @@ namespace ResearchWindowGenerator.ResearchWindow
             toolBarTop.SetWidth(WindowWidth);
             toolBarTop.SetHeight(165 - 30);
             toolBarTop.SetGridsOrder(ToolBarTopOrder);
-            
 
-  
+
+
 
 
         }
@@ -160,23 +162,22 @@ namespace ResearchWindowGenerator.ResearchWindow
                 contentsBarVector.SetHeight(WindowHeight - (20 + toolBarTop.GetHeight() + toolBarUnder.GetHeight()));
                 contentsBarVector.SetGridsOrder(ContentsBarNumArray);
             }
-            /*
+            
             else
             {
-                ContentsBarNumArray = new int[] { 11, 12, 13, 14, 15,
-                                                  21, 22, 23, 24, 25,
-                                                  31, 32, 33, 34, 35,
-                                                  41, 42, 43, 44, 45,
-                                                  51, 52, 53, 54, 55};
+                ContentsBarNumArray = new int[] { 1, 2, 3, 4, 5,
+                                                  6, 7, 8, 9, 10,
+                                                  11, 12, 13, 14, 15,
+                                                  16, 17, 18, 19, 20,
+                                                  21, 22, 23, 24, 25};
                 contentsBarGrid = new ContentsBarGrid(ContentsBarNumArray);
                 contentsBarGrid.SetParentClass(ParentClass);
-                contentsBarGrid.Parent1(this);
+                contentsBarGrid.Parent(this);
                 contentsBarGrid.SetWidth(310);
-                if (LayoutNum == 1)
-                {
-                    contentsBar.SetHeight(WindowHeight - (20 + toolBar1.GetHeight() + toolBar2.GetHeight()));
-                }
-            }*/
+                contentsBarGrid.SetHeight(WindowHeight - (20 + toolBarTop.GetHeight() + toolBarUnder.GetHeight()));
+                contentsBarGrid.SetGridsOrder(ContentsBarNumArray);
+
+            }
         }
 
 
@@ -187,10 +188,10 @@ namespace ResearchWindowGenerator.ResearchWindow
             maincontentsNumArrayList = new List<int[]>();
 
             MainContents1NumArray = new int[90];
-            for(int i = 0; i < MainContents1NumArray.Length ; i++)
+            for (int i = 0; i < MainContents1NumArray.Length; i++)
             {
                 MainContents1NumArray[i] = i + 1;
-                Console.WriteLine(MainContents1NumArray[i] + "うおおおお");
+                //Console.WriteLine(MainContents1NumArray[i] + "うおおおお");
             }
             maincontentsNumArrayList.Add(MainContents1NumArray);
 
@@ -198,7 +199,7 @@ namespace ResearchWindowGenerator.ResearchWindow
             for (int i = 0; i < MainContents2NumArray.Length; i++)
             {
                 MainContents2NumArray[i] = i + 1;
-                Console.WriteLine(MainContents2NumArray[i] + "うおおおお");
+                //Console.WriteLine(MainContents2NumArray[i] + "うおおおお");
             }
             maincontentsNumArrayList.Add(MainContents2NumArray);
 
@@ -206,7 +207,7 @@ namespace ResearchWindowGenerator.ResearchWindow
             for (int i = 0; i < MainContents3NumArray.Length; i++)
             {
                 MainContents3NumArray[i] = i + 1;
-                Console.WriteLine(MainContents3NumArray[i] + "うおおおお");
+                //Console.WriteLine(MainContents3NumArray[i] + "うおおおお");
             }
             maincontentsNumArrayList.Add(MainContents3NumArray);
 
@@ -214,7 +215,7 @@ namespace ResearchWindowGenerator.ResearchWindow
             for (int i = 0; i < MainContents4NumArray.Length; i++)
             {
                 MainContents4NumArray[i] = i + 1;
-                Console.WriteLine(MainContents4NumArray[i] + "うおおおお");
+                //Console.WriteLine(MainContents4NumArray[i] + "うおおおお");
             }
             maincontentsNumArrayList.Add(MainContents4NumArray);
 
@@ -222,7 +223,7 @@ namespace ResearchWindowGenerator.ResearchWindow
             for (int i = 0; i < MainContents5NumArray.Length; i++)
             {
                 MainContents5NumArray[i] = i + 1;
-                Console.WriteLine(MainContents5NumArray[i] + "うおおおお");
+                //Console.WriteLine(MainContents5NumArray[i] + "うおおおお");
             }
             maincontentsNumArrayList.Add(MainContents5NumArray);
 
@@ -235,11 +236,11 @@ namespace ResearchWindowGenerator.ResearchWindow
                 maincontents[i_ - 1] = null;
             }
             //int x = MainContentsNumArray[i_];
-            MainContents child_maincontents = new MainContents(maincontentsNumArrayList[MainContentsNumArray[i_] -1 ]);
+            MainContents child_maincontents = new MainContents(maincontentsNumArrayList[MainContentsNumArray[i_] - 1]);
             child_maincontents.SetParentClass(ParentClass);
             child_maincontents.Parent(this);
-            child_maincontents.SetWidth(WindowWidth - contentsBarVector.GetWidth());
-            child_maincontents.SetHeight(contentsBarVector.GetHeight());
+            child_maincontents.SetWidth(WindowWidth - contentsBarGrid.GetWidth());
+            child_maincontents.SetHeight(contentsBarGrid.GetHeight());
             child_maincontents.SetGridsOrder(MainContentsNumArray[i_]);
             maincontents.Add(child_maincontents);
 
@@ -266,7 +267,7 @@ namespace ResearchWindowGenerator.ResearchWindow
             };
 
             this.AddChild(maingrid);
-            
+
 
 
         }
@@ -276,14 +277,14 @@ namespace ResearchWindowGenerator.ResearchWindow
         private void LayoutSetting()
         {
             //Column : 行 Width
-            colDef1 = new ColumnDefinition { Width = new GridLength(contentsBarVector.GetWidth()) };
-            colDef2 = new ColumnDefinition { Width = new GridLength(WindowWidth - contentsBarVector.GetWidth()) };
+            colDef1 = new ColumnDefinition { Width = new GridLength(contentsBarGrid.GetWidth()) };
+            colDef2 = new ColumnDefinition { Width = new GridLength(WindowWidth - contentsBarGrid.GetWidth()) };
             colDef3 = new ColumnDefinition { Width = new GridLength(0) };
 
             Console.WriteLine(colDef1.Width + "; " + colDef2.Width + "; " + colDef3.Width + "");
             //Row : 列 Height
             rowDef1 = new RowDefinition { Height = new GridLength(toolBarTop.GetHeight()) };
-            rowDef2 = new RowDefinition { Height = new GridLength(contentsBarVector.GetHeight()) };
+            rowDef2 = new RowDefinition { Height = new GridLength(contentsBarGrid.GetHeight()) };
             rowDef3 = new RowDefinition { Height = new GridLength(toolBarUnder.GetHeight()) };
             Console.WriteLine(rowDef1.Height + "; " + rowDef2.Height + "; " + rowDef3.Height + "");
 
@@ -297,11 +298,11 @@ namespace ResearchWindowGenerator.ResearchWindow
 
 
 
-            
+
             //ContentsBarVector
-            Grid.SetColumn(contentsBarVector.contentsBarMainGrid, 0);
-            Grid.SetRow(contentsBarVector.contentsBarMainGrid, 1);
-            maingrid.Children.Add(contentsBarVector.contentsBarMainGrid);
+            Grid.SetColumn(contentsBarGrid.contentsBarMainGrid, 0);
+            Grid.SetRow(contentsBarGrid.contentsBarMainGrid, 1);
+            maingrid.Children.Add(contentsBarGrid.contentsBarMainGrid);
             //toolBarTop
             Grid.SetColumn(toolBarTop.toolBarGrid, 0);
             Grid.SetRow(toolBarTop.toolBarGrid, 0);
@@ -317,11 +318,12 @@ namespace ResearchWindowGenerator.ResearchWindow
 
         private void SaveLayoutSetting()
         {
-            Console.WriteLine("Layout"+LayoutNum);
+            Console.WriteLine("Layout" + LayoutNum);
             Console.WriteLine("ToolBarTop" + "True");
-            Console.WriteLine("ToolBarOrder" );
+            Console.WriteLine("ToolBarOrder");
             Console.WriteLine("ToolBarTop1_NumArray");
-            foreach(int i in ToolBarTop1NumArray){
+            foreach (int i in ToolBarTop1NumArray)
+            {
                 Console.WriteLine(i);
             }
             Console.WriteLine("ToolBarTop2_NumArray");
@@ -344,7 +346,7 @@ namespace ResearchWindowGenerator.ResearchWindow
             {
                 Console.WriteLine(i);
             }
-            Console.WriteLine("ContentsBar"+ContentsBarType);
+            Console.WriteLine("ContentsBar" + ContentsBarType);
             Console.WriteLine("MainContents");
             foreach (int i in MainContentsNumArray)
             {
@@ -361,7 +363,7 @@ namespace ResearchWindowGenerator.ResearchWindow
             {
                 //コンテンツバー1番  ContentsBarVector_C01_R01
                 case (1):
-                    if (text1.Equals("ContentsBarVector") && text2.Equals("Number1"))
+                    if (text1.Equals("ContentsBarGrid") && text2.Equals("Number1"))
                     {
                         //メインコンテンツ1
                         MaincontentsSet(0);
@@ -372,8 +374,8 @@ namespace ResearchWindowGenerator.ResearchWindow
 
                 case (2):
                     //クリックした1番の色を変える
-                    if(text1.Equals("MainContents"))
-                    maincontents[0].ChangeColor(1);
+                    if (text1.Equals("MainContents"))
+                        maincontents[0].ChangeColor(1);
                     ScenarioNum++;
                     break;
 
@@ -406,7 +408,7 @@ namespace ResearchWindowGenerator.ResearchWindow
 
 
                 case (6):
-                    if (text1.Equals("ContentsBarVector") && text2.Equals("Number2"))
+                    if (text1.Equals("ContentsBarGrid") && text2.Equals("Number2"))
                     {
                         //メインコンテンツ1
                         MaincontentsSet(1);
@@ -447,7 +449,7 @@ namespace ResearchWindowGenerator.ResearchWindow
 
 
                 case (11):
-                    if (text1.Equals("ContentsBarVector") && text2.Equals("Number3"))
+                    if (text1.Equals("ContentsBarGrid") && text2.Equals("Number3"))
                     {
                         //メインコンテンツ1
                         MaincontentsSet(2);
@@ -488,7 +490,7 @@ namespace ResearchWindowGenerator.ResearchWindow
 
 
                 case (16):
-                    if (text1.Equals("ContentsBarVector") && text2.Equals("Number4"))
+                    if (text1.Equals("ContentsBarGrid") && text2.Equals("Number4"))
                     {
                         //メインコンテンツ1
                         MaincontentsSet(3);
@@ -531,7 +533,7 @@ namespace ResearchWindowGenerator.ResearchWindow
 
 
                 case (21):
-                    if (text1.Equals("ContentsBarVector") && text2.Equals("Number5"))
+                    if (text1.Equals("ContentsBarGrid") && text2.Equals("Number5"))
                     {
                         //メインコンテンツ1
                         MaincontentsSet(4);

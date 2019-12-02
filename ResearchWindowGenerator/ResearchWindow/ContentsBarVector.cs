@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ResearchWindowGenerator.ResearchWindow;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
     {
         private double Width;
         private double Height;
-        public Grid contentsBarVectorGrid;
+        public Grid contentsBarMainGrid;
 
 
         int GridRow = 3;
@@ -38,13 +39,61 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
         Grid ButtonGrid;
 
+        int[] contentsBarVectorNumArray;
 
-        public ContentsBarVector()
+        private string parentClass;
+        private Layout1 layout1;
+        private Layout1_Grid layout1_Grid;
+        private Layout2 layout2;
+        private Layout2_Grid layout2_Grid;
+        private Layout3 layout3;
+        private Layout3_Grid layout3_Grid;
+
+        public ContentsBarVector(int[] numArray)
         {
+            contentsBarVectorNumArray = numArray;
+        }
+
+        internal void Parent(Layout1 layout1)
+        {
+            this.layout1 = layout1;
+        }
+
+        internal void Parent(Layout1_Grid layout1_Grid)
+        {
+            this.layout1_Grid = layout1_Grid;
+        }
+
+        internal void Parent(Layout2 layout2)
+        {
+            this.layout2 = layout2;
+        }
+
+        internal void Parent(Layout2_Grid layout2_Grid)
+        {
+            this.layout2_Grid = layout2_Grid;
+        }
+
+        internal void Parent(Layout3 layout3)
+        {
+            this.layout3 = layout3;
+        }
+
+        internal void Parent(Layout3_Grid layout3_Grid)
+        {
+            this.layout3_Grid = layout3_Grid;
         }
 
 
-        
+
+
+        internal void SetParentClass(string v)
+        {
+            parentClass = v;
+        }
+
+
+
 
         internal void SetGridsOrder(int[] contentsBarOrder)
         {
@@ -78,7 +127,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
         private void SetGrid()
         {
-            contentsBarVectorGrid = new Grid
+            contentsBarMainGrid = new Grid
             {
                 Width = this.Width,
                 Height = this.Height,
@@ -166,7 +215,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             gridHeight = this.Height / row_;
 
 
-            contentsBarVectorGrid.Children.Add(ButtonGrid);
+            contentsBarMainGrid.Children.Add(ButtonGrid);
             /*Grid.SetRow(ButtonGrid, 1);
             Grid.SetColumn(ButtonGrid, 1);
             */
@@ -203,6 +252,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     button[j] = new Button();
                     //button[j].Click += MyContentsBarButton_Clicked;
                     button[j].Name = "ContentsBarVector_"+"C" + j+1 + "_R" + i+1;
+                    button[j].Tag = "Number" + contentsBarVectorNumArray[i * column_ + j];
+                    button[j].Click += ContentsBarVectorButton_Clicked;
                     ButtonGrid.Children.Add(button[j]);
                     Grid.SetColumn(button[j], j);
                     Grid.SetRow(button[j], i);
@@ -227,6 +278,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     stackPanels[j] = new StackPanel();
                     //button[j].Click += MyContentsBarButton_Clicked;
                     stackPanels[j].Name = "ContentsBarVector_Number" + "C" + j + 1 + "_R" + i + 1;//TODO変更
+
+                    
                     //stackPanels[j].Background = Brushes.Black;
 
 
@@ -278,8 +331,37 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
 
             Button sender1 = (System.Windows.Controls.Button)sender;
-            Console.WriteLine("aaaaaaaaaa" + sender1.Name);
 
+            Console.WriteLine(sender1.Name);
+            Console.WriteLine(sender1.Tag);
+
+            string[] sprit = sender1.Name.Split('_');
+            string text2 = sender1.Tag.ToString();
+
+            switch (parentClass)
+            {
+                case "Layout1":
+                    layout1.scenario(sprit[0], text2);
+                    break;
+                case "Layout1_Grid":
+                    layout1_Grid.scenario(sprit[0], text2);
+                    break;
+                    
+                    case "Layout2":
+                        layout2.scenario(sprit[0], text2);
+                        break;
+                    
+                    case "Layout2_Grid":
+                        layout2_Grid.scenario(sprit[0], text2);
+                        break;/*
+                    case "Layout3":
+                        layout3.scenario(sprit[0], text2);
+                        break;
+                    case "Layout3_Grid":
+                        layout3_Grid.scenario(sprit[0], text2);
+                        break;
+                    */
+            }
         }
 
 

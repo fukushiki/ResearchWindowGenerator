@@ -23,7 +23,15 @@ namespace ResearchWindowGenerator
     {
         //string[] windowNames = { "ResearchWindowPowerPoint", "ResearchWindowPDF", "ResearchWindowCalendar", "ResearchWindowTest","ResearchWindowTest_Log" , "WindowTemplate" , "WindowTest"};
         //string[] windowNames = { "ResarchWindowLayout" };
-        string[] windowNames = { "Layout1", "Layout1_2", "Layout2", "Layout2_2", "Layout3", "Layout3_2" };
+        string[] windowNames = { "Layout1", "Layout1_Grid", "Layout2", "Layout2_Grid", "Layout3", "Layout3_Grid" };
+
+        static Layout1 layout1;
+        static Layout1_Grid layout1_Grid;
+        Layout2 layout2;
+        Layout2_Grid layout2_Grid;
+        Layout3 layout3;
+        Layout3_Grid layout3_Grid;
+
         public SelectWindow()
         {
             InitializeComponent();
@@ -87,27 +95,27 @@ namespace ResearchWindowGenerator
                     researchWindowLayout.Show();
                     break;
                 case "Layout1":
-                    Layout1 layout1 = new Layout1();
+                    layout1 = new Layout1();
                     layout1.Show();
                     break;
                 case "Layout1_Grid":
-                    Layout1_2 layout1_2 = new Layout1_2();
-                    layout1_2.Show();
+                    layout1_Grid = new Layout1_Grid();
+                    layout1_Grid.Show();
                     break;
                 case "Layout2":
-                    Layout2 layout2 = new Layout2();
+                    layout2 = new Layout2();
                     layout2.Show();
                     break;
-                case "Layout2_2":
-                    Layout2_Grid layout2_Grid = new Layout2_Grid();
+                case "Layout2_Grid":
+                    layout2_Grid = new Layout2_Grid();
                     layout2_Grid.Show();
                     break;
                 case "Layout3":
-                    Layout3 layout3 = new Layout3();
+                    layout3 = new Layout3();
                     layout3.Show();
                     break;
                 case "Layout3_Grid":
-                    Layout3_Grid layout3_Grid = new Layout3_Grid();
+                    layout3_Grid = new Layout3_Grid();
                     layout3_Grid.Show();
                     break;
                 default:

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using ResearchWindowGenerator.ResearchWindow;
 
 namespace ResearchWindowGenerator.ResearchWindowFolder
 {
@@ -37,6 +38,15 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         int[] ToolBarOrder;
 
         List<int[]> toolBarNumArray;
+
+        private string parentClass;
+        private Layout1 layout1;
+        private Layout1_Grid layout1_Grid;
+        private Layout2 layout2;
+        private Layout2_Grid layout2_Grid;
+        private Layout3 layout3;
+        private Layout3_Grid layout3_Grid;
+
 
         public ToolBarTop(List<int[]> numArray)
         {
@@ -167,7 +177,45 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
         }
 
+        
 
+        internal void Parent(Layout1 layout1)
+        {
+            this.layout1 = layout1;
+        }
+
+        internal void Parent(Layout1_Grid layout1_Grid)
+        {
+            this.layout1_Grid = layout1_Grid;
+        }
+
+        internal void Parent(Layout2 layout2)
+        {
+            this.layout2 = layout2;
+        }
+
+        internal void Parent(Layout2_Grid layout2_Grid)
+        {
+            this.layout2_Grid = layout2_Grid;
+        }
+
+        internal void Parent(Layout3 layout3)
+        {
+            this.layout3 = layout3;
+        }
+
+        internal void Parent(Layout3_Grid layout3_Grid)
+        {
+            this.layout3_Grid = layout3_Grid;
+        }
+
+
+
+
+        internal void SetParentClass(string v)
+        {
+            parentClass = v;
+        }
 
         private void SetButtonList1(int count)
         {
@@ -641,6 +689,36 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             Button sender1 = (System.Windows.Controls.Button)sender;
             Console.WriteLine(sender1.Name);
             Console.WriteLine(sender1.Tag);
+
+            string[] sprit = sender1.Name.Split('_');
+            string text2 = sender1.Tag.ToString();
+
+            
+
+            switch (parentClass)
+            {
+                case "Layout1":
+                    layout1.scenario(sprit[0], text2);
+                    break;
+                case "Layout1_Grid":
+                    layout1_Grid.scenario(sprit[0], text2);
+                    break;
+                
+                case "Layout2":
+                    layout2.scenario(sprit[0], text2);
+                    break;
+                case "Layout2_Grid":
+                    layout2_Grid.scenario(sprit[0], text2);
+                    break;
+                case "Layout3":
+                    layout3.scenario(sprit[0], text2);
+                    break;
+                case "Layout3_Grid":
+                    layout3_Grid.scenario(sprit[0], text2);
+                    break;
+                
+            }
+
 
         }
 

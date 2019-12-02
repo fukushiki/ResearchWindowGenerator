@@ -77,8 +77,8 @@
     <Compile Include="ResearchWindow\Layout1.xaml.cs">
       <DependentUpon>Layout1.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ResearchWindow\Layout1_2.xaml.cs">
-      <DependentUpon>Layout1_2.xaml</DependentUpon>
+    <Compile Include="ResearchWindow\Layout1_Grid.cs">
+      <DependentUpon>Layout1_Grid.xaml</DependentUpon>
     </Compile>
     <Compile Include="ResearchWindow\Layout2.xaml.cs">
       <DependentUpon>Layout2.xaml</DependentUpon>
@@ -187,7 +187,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ResearchWindow\Layout1_2.xaml">
+    <Page Include="ResearchWindow\Layout1_Grid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -6,7 +6,5 @@
         xmlns:local="clr-namespace:ResearchWindowGenerator.ResearchWindow"
         mc:Ignorable="d"
         Title="Layout3" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+
 </Window>
