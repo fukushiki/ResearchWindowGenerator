@@ -357,17 +357,17 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     layout1_Grid.scenario(sprit[0], text2);
                     break;
                     
-                    case "Layout2":
+                case "Layout2":
                         layout2.scenario(sprit[0], text2);
                         break;
-                    case "Layout2_Grid":
+                case "Layout2_Grid":
                         layout2_Grid.scenario(sprit[0], text2);
                         break;
                     
-                    case "Layout3":
+                case "Layout3":
                         layout3.scenario(sprit[0], text2);
                         break;
-                    case "Layout3_Grid":
+                case "Layout3_Grid":
                         layout3_Grid.scenario(sprit[0], text2);
                         break;
                     
