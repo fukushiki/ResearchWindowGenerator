@@ -273,6 +273,28 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     buttonGrid.Children.Add(button[j]);
                     Grid.SetColumn(button[j], j);
 
+
+
+                    StackPanel stack = new StackPanel();
+                    stack.Width = button[j].Width;
+                    stack.Height = button[j].Height;
+                    button[j].Content = stack;
+
+
+
+                    TextBlock textblock_ = new TextBlock();
+                    textblock_.Text = toolBarNumArray[0][i * buttonColumn + j].ToString();
+                    textblock_.FontSize = stack.Height * 0.5;
+                    textblock_.HorizontalAlignment = HorizontalAlignment.Center;
+                    textblock_.VerticalAlignment = VerticalAlignment.Center;
+                    stack.Children.Add(textblock_);
+
+
+
+
+
+
+
                 }
 
 
@@ -371,6 +393,21 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     buttonGrid.Children.Add(button[j]);
                     Grid.SetColumn(button[j], j);
 
+
+                    StackPanel stack = new StackPanel();
+                    stack.Width = button[j].Width;
+                    stack.Height = button[j].Height;
+                    button[j].Content = stack;
+
+
+
+                    TextBlock textblock_ = new TextBlock();
+                    textblock_.Text = toolBarNumArray[1][i * buttonColumn + j].ToString();
+                    textblock_.FontSize = stack.Height * 0.5;
+                    textblock_.HorizontalAlignment = HorizontalAlignment.Center;
+                    textblock_.VerticalAlignment = VerticalAlignment.Center;
+                    stack.Children.Add(textblock_);
+
                 }
 
                 buttonList2.Add(button);
@@ -454,6 +491,20 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     button[j].Click += ToolBarTopButton_Clicked;
                     buttonGrid.Children.Add(button[j]);
                     Grid.SetColumn(button[j], j);
+
+                    StackPanel stack = new StackPanel();
+                    stack.Width = button[j].Width;
+                    stack.Height = button[j].Height;
+                    button[j].Content = stack;
+
+
+
+                    TextBlock textblock_ = new TextBlock();
+                    textblock_.Text = toolBarNumArray[2][i * buttonColumn + j].ToString();
+                    textblock_.FontSize = stack.Height * 0.5;
+                    textblock_.HorizontalAlignment = HorizontalAlignment.Center;
+                    textblock_.VerticalAlignment = VerticalAlignment.Center;
+                    stack.Children.Add(textblock_);
 
                 }
 
@@ -543,22 +594,38 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     Grid.SetColumn(button[j], j);
 
 
-                    TextBlock textblock = new TextBlock();
-                    textblock.Text = toolBarNumArray[3][i * buttonColumn + j].ToString();
-                    textblock.FontSize = ButtonList4_Grid.Height * 0.5;
-                    textblock.HorizontalAlignment = HorizontalAlignment.Center;
-                    textblock.VerticalAlignment = VerticalAlignment.Center;
-                    buttonGrid.Children.Add(textblock);
-                    Grid.SetColumn(textblock, 0);
-                    Grid.SetRow(textblock, 0);
-                    Grid.SetRowSpan(textblock, 3);
 
+                    StackPanel stack = new StackPanel();
+                    stack.Width = button[j].Width;
+                    stack.Height = button[j].Height;
+                    button[j].Content = stack;
+
+
+
+                    TextBlock textblock_ = new TextBlock();
+                    textblock_.Text = toolBarNumArray[3][i * buttonColumn + j].ToString();
+                    textblock_.FontSize = stack.Height * 0.5;
+                    textblock_.HorizontalAlignment = HorizontalAlignment.Center;
+                    textblock_.VerticalAlignment = VerticalAlignment.Center;
+                    stack.Children.Add(textblock_);
+                    /*
+                    Grid.SetColumn(textblock_, 0);
+                    Grid.SetRow(textblock_, 0);
+                    Grid.SetRowSpan(textblock_, 3);
+                    */
                 }
 
                 buttonList4.Add(button);
 
+                TextBlock textblock = new TextBlock();
+                textblock.Text = (count).ToString(); ;
+                textblock.FontSize = ButtonList1_Grid.Height * 0.5;
+                textblock.HorizontalAlignment = HorizontalAlignment.Center;
+                textblock.VerticalAlignment = VerticalAlignment.Center;
+                ButtonList4_Grid.Children.Add(textblock);
+                Grid.SetColumn(textblock, 0);
+                Grid.SetRowSpan(textblock, 5);
 
-                
 
             }
             
@@ -595,14 +662,31 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             ButtonList5_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(20) });
             ButtonList5_Grid.RowDefinitions.Add(new RowDefinition { Height = new GridLength((this.Height - 20) / 2) });
             //myContentsBarGrid.RowDefinitions.Add(MainrowDef3);
+
             ButtonList5_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(60) });
-            ButtonList5_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(290) });
+            ButtonList5_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(260) });
+            ButtonList5_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(30) });
+            ButtonList5_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(30) });
             //ButtonList5_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength() });
 
+            int[] numArray = toolBarNumArray[4];
+            //NumArray をシャッフル
+            string[] Number = { " ", toolBarNumArray[4][0].ToString(), toolBarNumArray[4][1].ToString(), toolBarNumArray[4][2].ToString(), toolBarNumArray[4][3].ToString(), toolBarNumArray[4][4].ToString() };
 
+            ComboBox comboBox = new ComboBox();
+            comboBox.Height = 20;
+            comboBox.Width = 260;
 
+            comboBox.SelectedIndex = 0;
+            for(int i =0; i < Number.Length; i++)
+            {
+                comboBox.Items.Add(Number[i]);
+            }
+            
 
-
+            ButtonList5_Grid.Children.Add(comboBox);
+            Grid.SetColumn(comboBox, 1);
+            Grid.SetRow(comboBox, 0);
 
             buttonList5 = new List<Button[]>();
             int buttonRow = 1;
@@ -612,11 +696,11 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Button[] button = new Button[buttonColumn];
                 Grid buttonGrid = new Grid
                 {
-                    Width = ButtonList5_Grid.Width,
+                    Width = 30,
                     Height = 20,
-                    /*
+                    
                     Background = Brushes.Pink,
-                    ShowGridLines = true*/
+                    ShowGridLines = true
                 };
 
 
@@ -625,17 +709,33 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Grid.SetColumn(buttonGrid, 1);
 
 
-
+                
 
                 for (int j = 0; j < buttonColumn; j++)
                 {
                     buttonGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(20) });
-                    button[j] = new Button { Width = 20, Height = 20 };
+                    button[j] = new Button { Width = 30, Height = 20 };
                     button[j].Name = "ToolBarTop5" + "_C" + j+1 + "_R" + i+1;
-                    button[j].Tag = "Number" + toolBarNumArray[4][i*buttonColumn + j];
+                    button[j].Tag = "Number" + j; /*+ toolBarNumArray[4][i*buttonColumn + j];*/
                     button[j].Click += ToolBarTopButton_Clicked;
                     buttonGrid.Children.Add(button[j]);
-                    Grid.SetColumn(button[j], j);
+                    
+
+
+
+                    StackPanel stack = new StackPanel();
+                    stack.Width = button[j].Width;
+                    stack.Height = button[j].Height;
+                    button[j].Content = stack;
+
+
+
+                    TextBlock textblock_ = new TextBlock();
+                    textblock_.Text = j.ToString();
+                    textblock_.FontSize = stack.Height * 0.5;
+                    textblock_.HorizontalAlignment = HorizontalAlignment.Center;
+                    textblock_.VerticalAlignment = VerticalAlignment.Center;
+                    stack.Children.Add(textblock_);
 
                 }
 
@@ -643,6 +743,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
 
             }
+
+
             TextBlock textblock = new TextBlock();
             textblock.Text = (count).ToString(); ;
             textblock.FontSize = ButtonList1_Grid.Height * 0.5;

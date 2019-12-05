@@ -7,8 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace ResearchWindowGenerator.ResearchWindowFolder
 {
@@ -59,7 +61,27 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
         private int[] NumArray;
 
+        private Polygon myPolygonTriangle1;
+        private Polygon myPolygonTriangle2;
+        
+        private Polygon myPolygon_Rectangle1;
+        private Polygon myPolygon_Rectangle2;
 
+        private Polygon myPolygon_Circle;
+
+
+        int[,] Maincontents1 = { { 0, 6 }, { 3, 7 }, { 7, 4 }, { 6, 0 }, { 1, 1 } };
+        int[,] Maincontents2 = { { 1, 0 }, { 5, 5 }, { 7, 7 }, { 4, 0 }, { 0, 4 } };
+        int[,] Maincontents3 = { { 7, 6 }, { 1, 1 }, { 7, 1 }, { 4, 4 }, { 0, 6 } };
+        int[,] Maincontents4 = { { 6, 2 }, { 7, 0 }, { 1, 1 }, { 5, 5 }, { 1, 6 } };
+        int[,] Maincontents5 = { { 3, 6 }, { 7, 7 }, { 0, 0 }, { 0, 6 }, { 6, 2 } };
+        int[,] Maincontents6 = { { 1, 1 }, { 0, 8 }, { 3, 4 }, { 6, 1 }, { 6, 7 } };
+        int[,] Maincontents7 = { { 6, 0 }, { 1, 5 }, { 6, 7 }, { 0, 0 }, { 6, 4 } };
+        int[,] Maincontents8 = { { 8, 7 }, { 3, 6 }, { 1, 0 }, { 0, 3 }, { 6, 1 } };
+        int[,] Maincontents9 = { { 7, 1 }, { 6, 7 }, { 3, 1 }, { 0, 2 }, { 0, 7 } };
+        int[,] Maincontents10 = { { 0, 7 }, { 8, 7 }, { 0, 2 }, { 7, 1 }, { 3, 4 } };
+        List<int[,]> MainContents5Place = new List<int[,]>();
+        private Ellipse ellipse;
 
         public MainContents(int[] v)
         {
@@ -67,7 +89,20 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             MainContentsCreateCount++;
             MainContentsNumber = MainContentsCreateCount;
             
-            
+            MainContents5Place.Add(Maincontents1);
+            MainContents5Place.Add(Maincontents2);
+            MainContents5Place.Add(Maincontents3);
+            MainContents5Place.Add(Maincontents4);
+            MainContents5Place.Add(Maincontents5);
+            MainContents5Place.Add(Maincontents6);
+            MainContents5Place.Add(Maincontents7);
+            MainContents5Place.Add(Maincontents8);
+            MainContents5Place.Add(Maincontents9);
+            MainContents5Place.Add(Maincontents10);
+
+
+
+
         }
 
 
@@ -154,8 +189,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 //Background = Brushes.GreenYellow,
                 //ShowGridLines = true
 #if DEBUG
-                Background = Brushes.DarkOrange,
-                ShowGridLines = true
+                //Background = Brushes.DarkOrange,
+                //ShowGridLines = true
 # endif
             };
 
@@ -215,7 +250,10 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
                     break;
                 case 5:
-                    
+
+                    GridSet5(12, 12);
+                    SetObject();
+
                     break;
             }
 
@@ -225,6 +263,389 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
         }
 
+
+        private void GridSet5(int row_, int column_)
+        {
+            gridHeight = (this.Height - this.Height * 0.05) / (row_ - 2);
+            gridWidth = (gridHeight * 1.5) * (row_ - 2) / (column_ - 2);//(this.Width - gridHeight * 3 / 2) /(column_-2) ;
+
+            rowDef = new RowDefinition[row_];
+            colDef = new ColumnDefinition[column_];
+
+
+            rowDef[0] = new RowDefinition { Height = new GridLength((this.Height * 0.05) / 2) };
+            mainContentsGrid.RowDefinitions.Add(rowDef[0]);
+
+            colDef[0] = new ColumnDefinition { Width = new GridLength((this.Width - (gridHeight * 1.5) * (row_ - 2)) / 2) };
+            mainContentsGrid.ColumnDefinitions.Add(colDef[0]);
+
+            //行の設定
+            for (int gridRow_num = 1; gridRow_num < row_ - 1; gridRow_num++)
+            {
+                rowDef[gridRow_num] = new RowDefinition { Height = new GridLength(gridHeight) };
+                mainContentsGrid.RowDefinitions.Add(rowDef[gridRow_num]);
+            }
+
+            //列の設定
+            for (int gridColumn_num = 1; gridColumn_num < column_ - 1; gridColumn_num++)
+            {
+                colDef[gridColumn_num] = new ColumnDefinition { Width = new GridLength(gridWidth) };
+                mainContentsGrid.ColumnDefinitions.Add(colDef[gridColumn_num]);
+            }
+
+            rowDef[row_ - 1] = new RowDefinition { Height = new GridLength((this.Height * 0.05) / 2) };
+            mainContentsGrid.RowDefinitions.Add(rowDef[row_ - 1]);
+
+            colDef[column_ - 1] = new ColumnDefinition { Width = new GridLength((this.Width - (gridHeight * 1.5) * (row_ - 2)) / 2) };
+            mainContentsGrid.ColumnDefinitions.Add(colDef[column_ - 1]);
+        }
+
+        private void SetObject()
+        {
+
+            int Maincontents5Pattern = 0;
+            int aaa = MainContents5Place[Maincontents5Pattern][0,0];
+
+
+
+            List<Canvas> CanvasList = new List<Canvas>();
+
+            Canvas canvas23 = new Canvas
+            {
+                Height = gridHeight*2,
+                Width = gridWidth*3,
+                Background = Brushes.OrangeRed,
+                Name = "canvas23",
+                
+            };
+            CanvasList.Add(canvas23);
+            mainContentsGrid.Children.Add(canvas23);
+            Grid.SetRow(canvas23,MainContents5Place[Maincontents5Pattern][0, 0]+1);
+            Grid.SetColumn(canvas23, MainContents5Place[Maincontents5Pattern][0, 1]+1);
+
+
+            //mainContentsGrid.Children.Add(Border_Canvas23);
+            TextBlock canvas23text = new TextBlock
+            {
+                Text = "1",
+                FontSize = 20
+                
+            };
+            
+            mainContentsGrid.Children.Add(canvas23text);
+            Grid.SetRow(canvas23text, MainContents5Place[Maincontents5Pattern][0, 0] + 1);
+            Grid.SetColumn(canvas23text, MainContents5Place[Maincontents5Pattern][0, 1] + 1);
+
+            
+
+            
+
+
+
+
+
+
+
+
+            Canvas canvas32 = new Canvas
+            {
+                Height = gridHeight * 3,
+                Width = gridWidth * 2,
+                Background = Brushes.Green,
+                Name = "canvas32"
+
+            };
+            CanvasList.Add(canvas32);
+            mainContentsGrid.Children.Add(canvas32);
+            Grid.SetRow(canvas32, MainContents5Place[Maincontents5Pattern][1, 0] + 1);
+            Grid.SetColumn(canvas32, MainContents5Place[Maincontents5Pattern][1, 1] + 1);
+
+            TextBlock canvas32text = new TextBlock
+            {
+                Text = "2",
+                FontSize = 20
+
+            };
+
+            mainContentsGrid.Children.Add(canvas32text);
+            Grid.SetRow(canvas32text, MainContents5Place[Maincontents5Pattern][1, 0] + 1);
+            Grid.SetColumn(canvas32text, MainContents5Place[Maincontents5Pattern][1, 1] + 1);
+
+
+
+
+
+
+
+
+            Canvas canvas33 = new Canvas
+            {
+                Height = gridHeight * 3,
+                Width = gridWidth * 3,
+                Background = Brushes.Blue,
+                Name = "canvas33"
+
+            };
+            CanvasList.Add(canvas33);
+            mainContentsGrid.Children.Add(canvas33);
+            Grid.SetRow(canvas33, MainContents5Place[Maincontents5Pattern][2, 0] + 1);
+            Grid.SetColumn(canvas33, MainContents5Place[Maincontents5Pattern][2, 1] + 1);
+
+            TextBlock canvas33text = new TextBlock
+            {
+                Text = "3",
+                FontSize = 20
+
+            };
+
+            mainContentsGrid.Children.Add(canvas33text);
+            Grid.SetRow(canvas33text, MainContents5Place[Maincontents5Pattern][2, 0] + 1);
+            Grid.SetColumn(canvas33text, MainContents5Place[Maincontents5Pattern][2, 1] + 1);
+
+
+
+
+
+
+
+            Canvas canvas34 = new Canvas
+            {
+                Height = gridHeight * 3,
+                Width = gridWidth * 4,
+                Background = Brushes.Orange,
+                Name = "canvas34"
+
+            };
+            CanvasList.Add(canvas34);
+            mainContentsGrid.Children.Add(canvas34);
+            Grid.SetRow(canvas34, MainContents5Place[Maincontents5Pattern][3, 0] + 1);
+            Grid.SetColumn(canvas34, MainContents5Place[Maincontents5Pattern][3, 1] + 1);
+
+            TextBlock canvas34text = new TextBlock
+            {
+                Text = "4",
+                FontSize = 20
+
+            };
+
+            mainContentsGrid.Children.Add(canvas34text);
+            Grid.SetRow(canvas34text, MainContents5Place[Maincontents5Pattern][3, 0] + 1);
+            Grid.SetColumn(canvas34text, MainContents5Place[Maincontents5Pattern][3, 1] + 1);
+
+
+
+
+
+            Canvas canvas43 = new Canvas
+            {
+                Height = gridHeight * 4,
+                Width = gridWidth * 3,
+                Background = Brushes.Yellow,
+                Name = "canvas43"
+            };
+            CanvasList.Add(canvas43);
+            mainContentsGrid.Children.Add(canvas43);
+            Grid.SetRow(canvas43, MainContents5Place[Maincontents5Pattern][4, 0] + 1);
+            Grid.SetColumn(canvas43, MainContents5Place[Maincontents5Pattern][4, 1] + 1);
+
+            TextBlock canvas43text = new TextBlock
+            {
+                Text = "5",
+                FontSize = 20
+
+            };
+
+            mainContentsGrid.Children.Add(canvas43text);
+            Grid.SetRow(canvas43text, MainContents5Place[Maincontents5Pattern][4, 0] + 1);
+            Grid.SetColumn(canvas43text, MainContents5Place[Maincontents5Pattern][4, 1] + 1);
+
+
+
+
+
+            Random rnd = new Random();
+
+
+            //三角
+            //Add the Polygon Element
+            myPolygonTriangle1 = new Polygon();
+            myPolygonTriangle1.Stroke = System.Windows.Media.Brushes.Black;
+            myPolygonTriangle1.Fill = System.Windows.Media.Brushes.Gray;
+            myPolygonTriangle1.StrokeThickness = 2;
+            myPolygonTriangle1.HorizontalAlignment = HorizontalAlignment.Left;
+            myPolygonTriangle1.VerticalAlignment = VerticalAlignment.Center;
+            System.Windows.Point Point1_Triangle = new System.Windows.Point((int)rnd.Next(10, (int)CanvasList[0].Width-10), (int)rnd.Next(10, (int)CanvasList[0].Height - 10));
+            System.Windows.Point Point2_Triangle = new System.Windows.Point((int)rnd.Next(10, (int)CanvasList[0].Width - 10), (int)rnd.Next(10, (int)CanvasList[0].Height - 10));
+            System.Windows.Point Point3_Triangle = new System.Windows.Point((int)rnd.Next(10, (int)CanvasList[0].Width - 10), (int)rnd.Next(10, (int)CanvasList[0].Height - 10));
+            PointCollection myPointCollection_Triangle = new PointCollection();
+            myPointCollection_Triangle.Add(Point1_Triangle);
+            myPointCollection_Triangle.Add(Point2_Triangle);
+            myPointCollection_Triangle.Add(Point3_Triangle);
+            myPolygonTriangle1.Points = myPointCollection_Triangle;
+            CanvasList[0].Children.Add(myPolygonTriangle1);
+            myPolygonTriangle1.MouseDown += PolygonMouseDown;
+
+
+            //丸
+
+            ellipse = new Ellipse { };
+            
+            ellipse.Stroke = System.Windows.Media.Brushes.Black;
+            ellipse.Fill = System.Windows.Media.Brushes.Gray;
+            ellipse.StrokeThickness = 2;
+
+            //ellipse.HorizontalAlignment = HorizontalAlignment.Center;
+            //ellipse.VerticalAlignment = VerticalAlignment.Center;
+            ellipse.HorizontalAlignment = HorizontalAlignment.Center;
+            ellipse.VerticalAlignment = VerticalAlignment.Center;
+            Canvas.SetTop(ellipse, 80);
+            Canvas.SetLeft(ellipse, 80);
+            ellipse.Width = (int)rnd.Next(10, (int)CanvasList[1].Width - 80);
+            ellipse.Height = (int)rnd.Next(10, (int)CanvasList[1].Height - 80);
+            CanvasList[1].Children.Add(ellipse);
+            
+            ellipse.MouseDown += EllipseMouseDown;
+
+
+
+
+            //長方形
+            myPolygon_Rectangle1 = new Polygon();
+            myPolygon_Rectangle1.Stroke = System.Windows.Media.Brushes.Black;
+            myPolygon_Rectangle1.Fill = System.Windows.Media.Brushes.Gray;
+            myPolygon_Rectangle1.StrokeThickness = 2;
+            myPolygon_Rectangle1.HorizontalAlignment = HorizontalAlignment.Left;
+            myPolygon_Rectangle1.VerticalAlignment = VerticalAlignment.Center;
+            int RectangleX1 = (int)rnd.Next(10, (int)CanvasList[2].Width/2 - 10);
+            int RectangleX2 = (int)rnd.Next((int)CanvasList[2].Width/2, (int)CanvasList[2].Width - 10);
+            int RectangleY1 = (int)rnd.Next(10, (int)CanvasList[2].Height/2 - 10);
+            int RectangleY2 = (int)rnd.Next((int)CanvasList[2].Height/2 , (int)CanvasList[2].Height - 10);
+
+            System.Windows.Point Point1_Rectangle = new System.Windows.Point(RectangleX1, RectangleY1);
+            System.Windows.Point Point2_Rectangle = new System.Windows.Point(RectangleX1, RectangleY2);
+            System.Windows.Point Point3_Rectangle = new System.Windows.Point(RectangleX2, RectangleY2);
+            System.Windows.Point Point4_Rectangle = new System.Windows.Point(RectangleX2, RectangleY1);
+            PointCollection myPointCollection_Rectangle = new PointCollection();
+            myPointCollection_Rectangle.Add(Point1_Rectangle);
+            myPointCollection_Rectangle.Add(Point2_Rectangle);
+            myPointCollection_Rectangle.Add(Point3_Rectangle);
+            myPointCollection_Rectangle.Add(Point4_Rectangle);
+            myPolygon_Rectangle1.Points = myPointCollection_Rectangle;
+            CanvasList[2].Children.Add(myPolygon_Rectangle1);
+            //CanvasList[2].MouseDown += new MouseButtonEventHandler(Rectangle_MouseDown(RectangleX1,RectangleX2,RectangleY1,RectangleY2));
+            //CanvasList[2].MouseDown += ((CanvasList[2], e, RectangleX1, RectangleX2, RectangleY1, RectangleY2) => MouseButtonEventHandler(Rectangle_MouseDown));
+
+            //myPolygon_Rectangle1.MouseDown += (myPolygon_Rectangle1, e) => MouseButtonEventHandler(myPolygon_Rectangle1,e); 
+            myPolygon_Rectangle1.MouseDown += PolygonMouseDown;
+
+            //長方形
+            myPolygon_Rectangle2 = new Polygon();
+            myPolygon_Rectangle2.Stroke = System.Windows.Media.Brushes.Black;
+            myPolygon_Rectangle2.Fill = System.Windows.Media.Brushes.Gray;
+            myPolygon_Rectangle2.StrokeThickness = 2;
+            myPolygon_Rectangle2.HorizontalAlignment = HorizontalAlignment.Left;
+            myPolygon_Rectangle2.VerticalAlignment = VerticalAlignment.Center;
+            int Rectangle2X1 = (int)rnd.Next(10, (int)CanvasList[3].Width / 2 - 10);
+            int Rectangle2X2 = (int)rnd.Next((int)CanvasList[3].Width / 2, (int)CanvasList[2].Width - 10);
+            int Rectangle2Y1 = (int)rnd.Next(10, (int)CanvasList[3].Height / 2 - 10);
+            int Rectangle2Y2 = (int)rnd.Next((int)CanvasList[3].Height / 2, (int)CanvasList[2].Height - 10);
+
+            System.Windows.Point Point1_Rectangle2 = new System.Windows.Point(Rectangle2X1, Rectangle2Y1);
+            System.Windows.Point Point2_Rectangle2 = new System.Windows.Point(Rectangle2X1, Rectangle2Y2);
+            System.Windows.Point Point3_Rectangle2 = new System.Windows.Point(Rectangle2X2, Rectangle2Y2);
+            System.Windows.Point Point4_Rectangle2 = new System.Windows.Point(Rectangle2X2, Rectangle2Y1);
+            PointCollection myPointCollection_Rectangle2 = new PointCollection();
+            myPointCollection_Rectangle2.Add(Point1_Rectangle2);
+            myPointCollection_Rectangle2.Add(Point2_Rectangle2);
+            myPointCollection_Rectangle2.Add(Point3_Rectangle2);
+            myPointCollection_Rectangle2.Add(Point4_Rectangle2);
+            myPolygon_Rectangle2.Points = myPointCollection_Rectangle2;
+            CanvasList[3].Children.Add(myPolygon_Rectangle2);
+            myPolygon_Rectangle2.MouseDown += PolygonMouseDown;
+
+            //myPolygon_Rectangle.MouseDown += (sender, e) => Rectangle_MouseDown(sender, e, Rectangle2X1, Rectangle2X2, Rectangle2Y1, Rectangle2Y2);
+            //myPolygon_Rectangle2.MouseDown += MouseDown;//(myPolygon_Rectangle2, e) => Rectangle_MouseDown(myPolygon_Rectangle2, e, Rectangle2X1, Rectangle2X2, Rectangle2Y1, Rectangle2Y2);
+
+
+            //三角
+            //Add the Polygon Element
+            myPolygonTriangle2 = new Polygon();
+            myPolygonTriangle2.Stroke = System.Windows.Media.Brushes.Black;
+            myPolygonTriangle2.Fill = System.Windows.Media.Brushes.Gray;
+            myPolygonTriangle2.StrokeThickness = 2;
+            myPolygonTriangle2.HorizontalAlignment = HorizontalAlignment.Left;
+            myPolygonTriangle2.VerticalAlignment = VerticalAlignment.Center;
+            System.Windows.Point Point1_Triangle2 = new System.Windows.Point((int)rnd.Next(10, (int)CanvasList[4].Width - 10), (int)rnd.Next(10, (int)CanvasList[4].Height - 10));
+            System.Windows.Point Point2_Triangle2 = new System.Windows.Point((int)rnd.Next(10, (int)CanvasList[4].Width - 10), (int)rnd.Next(10, (int)CanvasList[4].Height - 10));
+            System.Windows.Point Point3_Triangle2 = new System.Windows.Point((int)rnd.Next(10, (int)CanvasList[4].Width - 10), (int)rnd.Next(10, (int)CanvasList[4].Height - 10));
+            PointCollection myPointCollection_Triangle2 = new PointCollection();
+            myPointCollection_Triangle2.Add(Point1_Triangle2);
+            myPointCollection_Triangle2.Add(Point2_Triangle2);
+            myPointCollection_Triangle2.Add(Point3_Triangle2);
+            myPolygonTriangle2.Points = myPointCollection_Triangle2;
+            CanvasList[4].Children.Add(myPolygonTriangle2);
+            myPolygonTriangle2.MouseDown += PolygonMouseDown;
+
+
+
+
+
+
+        }
+
+        private void PolygonMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Polygon polygon = sender as Polygon;
+            polygon.Fill = System.Windows.Media.Brushes.Red;
+        }
+
+        private void EllipseMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Ellipse ellipse = sender as Ellipse;
+            ellipse.Fill = System.Windows.Media.Brushes.Red;
+        }
+
+
+
+
+        //private void MouseDown(object sender, MouseButtonEventArgs e) => (Polygon)sender.Fill = Brushes.Red;
+
+        //polygon.Fill = System.Windows.Media.Brushes.Red;
+
+
+
+
+
+        private void Rectangle_MouseDown(Polygon sender, MouseEventArgs e,  int rectangleX1, int rectangleX2, int rectangleY1, int rectangleY2)
+        {
+            /*
+            Console.WriteLine("^^"+ e.GetPosition((Canvas)sender).X + e.GetPosition((Canvas)sender).Y);
+            ;
+            int ClickX = (int)e.GetPosition((Canvas)sender).X;
+            int ClickY = (int)e.GetPosition((Canvas)sender).Y;
+            
+            if(rectangleX1 > rectangleX2)
+            {
+                int tmp;
+                tmp = rectangleX1;
+                rectangleX1 = rectangleX2;
+                rectangleX2 = tmp;
+            }
+            if (rectangleY1 > rectangleY2)
+            {
+                int tmp;
+                tmp = rectangleY1;
+                rectangleY1 = rectangleY2;
+                rectangleY2 = tmp;
+            }
+
+
+            if (ClickX > rectangleX1 && ClickX < rectangleX2) Console.WriteLine("X ok");
+            if (ClickY > rectangleY1 && ClickY < rectangleY2) Console.WriteLine("Y ok");*/
+
+            sender.Fill = System.Windows.Media.Brushes.Red;
+
+        }
 
         private void SetButtonList(int row_, int column_)
         {
@@ -236,9 +657,17 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 {
                     button[j] = new Button();
                     //button[j].Click += MyMainContentsButton_Clicked;
+                    button[j].Height = this.Height / row_;
+                    button[j].Width = this.Width / column_;
                     button[j].Name = "MainContents"+ MainContentsGridTypeNum +"C" + j + "R" + i;
                     button[j].Tag = "Number" + NumArray[i * column_ + j];
                     button[j].Click +=  MainContentsButton_Clicked;
+
+
+                    
+
+
+
                 }
                 buttonList.Add(button);
             }
@@ -370,16 +799,11 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     Image img = new Image();
                     img.Source = new BitmapImage(new Uri(System.IO.Path.GetFullPath(@"../../../ImageFolder/WebHook.png"), UriKind.RelativeOrAbsolute));
 
-                    TextBlock textBlock = new TextBlock
-                    {
-                        VerticalAlignment = VerticalAlignment.Center,
-                        HorizontalAlignment = HorizontalAlignment.Center,
-                    };
-                    //textBlock.Text = "Row:" + i + ", Col:" + j;
-                   // textBlock.Text = (numberList.IndexOf((i * GridRow) + j) + 2).ToString();
 
-                    textBlock.FontWeight = FontWeights.Bold;
-                    //stackPanels[j].Children.Add(textBlock);
+                    TextBlock textBlock = new TextBlock();
+                    textBlock.Text = NumArray[i * column_ + j].ToString();
+                    textBlock.HorizontalAlignment = HorizontalAlignment.Center;
+                    textBlock.VerticalAlignment = VerticalAlignment.Center;
 
 
 
@@ -465,6 +889,20 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                         default:
                             break;
                     };
+
+                    /*
+                     * 
+                    StackPanel stack = new StackPanel();
+                    stack.Width = button[j].Width;
+                    stack.Height = button[j].Height;
+                    button[j].Content = stack;
+                    */
+
+                    stackPanels[j].Children.Add(contentsGrid);
+
+
+
+
 
                     buttonList[i][j].Content = stackPanels[j];
                     //buttonList[i][j].Background = Brushes.Transparent;

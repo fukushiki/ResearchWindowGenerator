@@ -183,7 +183,7 @@ namespace ResearchWindowGenerator.ResearchWindow
         private void Maincontents_Arrangement()
         {
             maincontents = new List<MainContents>();
-            MainContentsNumArray = new int[] { 1, 2, 3, 4, 5 };
+            MainContentsNumArray = new int[] { 5, 2, 3, 4, 5 };
             maincontentsNumArrayList = new List<int[]>();
 
             MainContents1NumArray = new int[90];

@@ -353,14 +353,14 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     
                     case "Layout2_Grid":
                         layout2_Grid.scenario(sprit[0], text2);
-                        break;/*
+                        break;
                     case "Layout3":
                         layout3.scenario(sprit[0], text2);
                         break;
                     case "Layout3_Grid":
                         layout3_Grid.scenario(sprit[0], text2);
                         break;
-                    */
+                    
             }
         }
 

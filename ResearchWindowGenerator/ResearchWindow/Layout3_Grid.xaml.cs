@@ -255,8 +255,8 @@ namespace ResearchWindowGenerator.ResearchWindow
             MainContents child_maincontents = new MainContents(maincontentsNumArrayList[MainContentsNumArray[i_] - 1]);
             child_maincontents.SetParentClass(ParentClass);
             child_maincontents.Parent(this);
-            child_maincontents.SetWidth(WindowWidth - contentsBarVector.GetWidth());
-            child_maincontents.SetHeight(contentsBarVector.GetHeight());
+            child_maincontents.SetWidth(WindowWidth - contentsBarGrid.GetWidth());
+            child_maincontents.SetHeight(contentsBarGrid.GetHeight());
             child_maincontents.SetGridsOrder(MainContentsNumArray[i_]);
             maincontents.Add(child_maincontents);
 
@@ -383,7 +383,7 @@ namespace ResearchWindowGenerator.ResearchWindow
             {
                 //コンテンツバー1番  ContentsBarVector_C01_R01
                 case (1):
-                    if (text1.Equals("ContentsBarVector") && text2.Equals("Number1"))
+                    if (text1.Equals("ContentsBarGrid") && text2.Equals("Number1"))
                     {
                         //メインコンテンツ1
                         MaincontentsSet(0);
@@ -428,7 +428,7 @@ namespace ResearchWindowGenerator.ResearchWindow
 
 
                 case (6):
-                    if (text1.Equals("ContentsBarVector") && text2.Equals("Number2"))
+                    if (text1.Equals("ContentsBarGrid") && text2.Equals("Number2"))
                     {
                         //メインコンテンツ1
                         MaincontentsSet(1);
@@ -469,7 +469,7 @@ namespace ResearchWindowGenerator.ResearchWindow
 
 
                 case (11):
-                    if (text1.Equals("ContentsBarVector") && text2.Equals("Number3"))
+                    if (text1.Equals("ContentsBarGrid") && text2.Equals("Number3"))
                     {
                         //メインコンテンツ1
                         MaincontentsSet(2);
@@ -510,7 +510,7 @@ namespace ResearchWindowGenerator.ResearchWindow
 
 
                 case (16):
-                    if (text1.Equals("ContentsBarVector") && text2.Equals("Number4"))
+                    if (text1.Equals("ContentsBarGrid") && text2.Equals("Number4"))
                     {
                         //メインコンテンツ1
                         MaincontentsSet(3);
@@ -553,7 +553,7 @@ namespace ResearchWindowGenerator.ResearchWindow
 
 
                 case (21):
-                    if (text1.Equals("ContentsBarVector") && text2.Equals("Number5"))
+                    if (text1.Equals("ContentsBarGrid") && text2.Equals("Number5"))
                     {
                         //メインコンテンツ1
                         MaincontentsSet(4);
