@@ -82,6 +82,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         int[,] Maincontents10 = { { 0, 7 }, { 8, 7 }, { 0, 2 }, { 7, 1 }, { 3, 4 } };
         List<int[,]> MainContents5Place = new List<int[,]>();
         private Ellipse ellipse;
+        int[] Maincontents5NumArray = { 1, 2, 3, 4, 5 };
 
         public MainContents(int[] v)
         {
@@ -303,20 +304,26 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         private void SetObject()
         {
 
-            int Maincontents5Pattern = 0;
-            int aaa = MainContents5Place[Maincontents5Pattern][0,0];
+            
+            Random random = new Random();
+            int Maincontents5Pattern = random.Next(0, 9);
+            //int aaa = MainContents5Place[Maincontents5Pattern][random.Next(0,9),0];
 
 
 
             List<Canvas> CanvasList = new List<Canvas>();
+            
+            Maincontents5NumArray = Utility.RamdomArray(Maincontents5NumArray);
 
             Canvas canvas23 = new Canvas
             {
                 Height = gridHeight*2,
                 Width = gridWidth*3,
                 Background = Brushes.OrangeRed,
-                Name = "canvas23",
                 
+                Name = "canvas23" + "Row" + (MainContents5Place[Maincontents5Pattern][0, 0] + 1).ToString()
+                + "Column" + (MainContents5Place[Maincontents5Pattern][0, 1] + 1).ToString()
+
             };
             CanvasList.Add(canvas23);
             mainContentsGrid.Children.Add(canvas23);
@@ -327,7 +334,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             //mainContentsGrid.Children.Add(Border_Canvas23);
             TextBlock canvas23text = new TextBlock
             {
-                Text = "1",
+                Text = Maincontents5NumArray[0].ToString(),
                 FontSize = 20
                 
             };
@@ -352,7 +359,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Height = gridHeight * 3,
                 Width = gridWidth * 2,
                 Background = Brushes.Green,
-                Name = "canvas32"
+                Name = "canvas32" + "Row" + (MainContents5Place[Maincontents5Pattern][1, 0] + 1).ToString()
+                + "Column" + (MainContents5Place[Maincontents5Pattern][1, 1] + 1).ToString(),
+                Tag = "canvas32"
 
             };
             CanvasList.Add(canvas32);
@@ -362,7 +371,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
             TextBlock canvas32text = new TextBlock
             {
-                Text = "2",
+                Text = Maincontents5NumArray[1].ToString(),
                 FontSize = 20
 
             };
@@ -383,18 +392,23 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Height = gridHeight * 3,
                 Width = gridWidth * 3,
                 Background = Brushes.Blue,
-                Name = "canvas33"
-
+                
+                Name = "canvas33" + "Row" + (MainContents5Place[Maincontents5Pattern][2, 0] + 1).ToString()
+                + "Column" + (MainContents5Place[Maincontents5Pattern][2, 1] + 1).ToString(),
+                Tag = "canvas33"
             };
             CanvasList.Add(canvas33);
             mainContentsGrid.Children.Add(canvas33);
             Grid.SetRow(canvas33, MainContents5Place[Maincontents5Pattern][2, 0] + 1);
             Grid.SetColumn(canvas33, MainContents5Place[Maincontents5Pattern][2, 1] + 1);
 
+
+
             TextBlock canvas33text = new TextBlock
             {
-                Text = "3",
-                FontSize = 20
+                Text = Maincontents5NumArray[2].ToString(),
+                FontSize = 20,
+                
 
             };
 
@@ -413,7 +427,10 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Height = gridHeight * 3,
                 Width = gridWidth * 4,
                 Background = Brushes.Orange,
-                Name = "canvas34"
+                Name = "canvas34" + "Row"+(MainContents5Place[Maincontents5Pattern][3, 0] + 1).ToString()
+                +"Column" + (MainContents5Place[Maincontents5Pattern][3, 1] + 1).ToString(),
+                Tag = "canvas34"
+
 
             };
             CanvasList.Add(canvas34);
@@ -423,7 +440,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
             TextBlock canvas34text = new TextBlock
             {
-                Text = "4",
+                Text = Maincontents5NumArray[3].ToString(),
                 FontSize = 20
 
             };
@@ -441,7 +458,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Height = gridHeight * 4,
                 Width = gridWidth * 3,
                 Background = Brushes.Yellow,
-                Name = "canvas43"
+                Name = "canvas43" + "Row" + (MainContents5Place[Maincontents5Pattern][4, 0] + 1).ToString()
+                + "Column" + (MainContents5Place[Maincontents5Pattern][4, 1] + 1).ToString(),
+                Tag = "canvas43",
             };
             CanvasList.Add(canvas43);
             mainContentsGrid.Children.Add(canvas43);
@@ -450,7 +469,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
             TextBlock canvas43text = new TextBlock
             {
-                Text = "5",
+                Text = Maincontents5NumArray[4].ToString(),
                 FontSize = 20
 
             };
@@ -484,7 +503,13 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             myPolygonTriangle1.Points = myPointCollection_Triangle;
             CanvasList[0].Children.Add(myPolygonTriangle1);
             myPolygonTriangle1.MouseDown += PolygonMouseDown;
+            myPolygonTriangle1.Name = "MainContents_" + MainContentsGridTypeNum ;
+            myPolygonTriangle1.Tag = "Number" +  Maincontents5NumArray[0];
 
+            /*
+                                 button[j].Name = "MainContents"+ MainContentsGridTypeNum +"C" + j + "R" + i;
+                    button[j].Tag = "Number" + NumArray[i * column_ + j];
+             */
 
             //丸
 
@@ -503,7 +528,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             ellipse.Width = (int)rnd.Next(10, (int)CanvasList[1].Width - 80);
             ellipse.Height = (int)rnd.Next(10, (int)CanvasList[1].Height - 80);
             CanvasList[1].Children.Add(ellipse);
-            
+            ellipse.Name = "MainContents_" + MainContentsGridTypeNum;
+            ellipse.Tag = "Number" + Maincontents5NumArray[1];
+
             ellipse.MouseDown += EllipseMouseDown;
 
 
@@ -536,6 +563,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             //CanvasList[2].MouseDown += ((CanvasList[2], e, RectangleX1, RectangleX2, RectangleY1, RectangleY2) => MouseButtonEventHandler(Rectangle_MouseDown));
 
             //myPolygon_Rectangle1.MouseDown += (myPolygon_Rectangle1, e) => MouseButtonEventHandler(myPolygon_Rectangle1,e); 
+            myPolygon_Rectangle1.Name = "MainContents_" + MainContentsGridTypeNum;
+            myPolygon_Rectangle1.Tag = "Number" + Maincontents5NumArray[2];
             myPolygon_Rectangle1.MouseDown += PolygonMouseDown;
 
             //長方形
@@ -561,6 +590,10 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             myPointCollection_Rectangle2.Add(Point4_Rectangle2);
             myPolygon_Rectangle2.Points = myPointCollection_Rectangle2;
             CanvasList[3].Children.Add(myPolygon_Rectangle2);
+
+            myPolygon_Rectangle2.Name = "MainContents_" + MainContentsGridTypeNum;
+            myPolygon_Rectangle2.Tag = "Number" + Maincontents5NumArray[3];
+
             myPolygon_Rectangle2.MouseDown += PolygonMouseDown;
 
             //myPolygon_Rectangle.MouseDown += (sender, e) => Rectangle_MouseDown(sender, e, Rectangle2X1, Rectangle2X2, Rectangle2Y1, Rectangle2Y2);
@@ -584,6 +617,10 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             myPointCollection_Triangle2.Add(Point3_Triangle2);
             myPolygonTriangle2.Points = myPointCollection_Triangle2;
             CanvasList[4].Children.Add(myPolygonTriangle2);
+
+            myPolygonTriangle2.Name = "MainContents_" + MainContentsGridTypeNum;
+            myPolygonTriangle2.Tag = "Number" + Maincontents5NumArray[4];
+
             myPolygonTriangle2.MouseDown += PolygonMouseDown;
 
 
@@ -597,12 +634,78 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         {
             Polygon polygon = sender as Polygon;
             polygon.Fill = System.Windows.Media.Brushes.Red;
+
+            Console.WriteLine(polygon.Name);
+            Console.WriteLine(polygon.Tag);
+
+            string[] sprit = polygon.Name.Split('_');
+            string text2 = polygon.Tag.ToString();
+
+            switch (parentClass)
+            {
+                case "Layout1":
+                    layout1.scenario(sprit[0], text2);
+                    break;
+                case "Layout1_Grid":
+                    layout1_Grid.scenario(sprit[0], text2);
+                    break;
+
+                case "Layout2":
+                    layout2.scenario(sprit[0], text2);
+                    break;
+
+                case "Layout2_Grid":
+                    layout2_Grid.scenario(sprit[0], text2);
+                    break;
+                case "Layout3":
+                    layout3.scenario(sprit[0], text2);
+                    break;
+                case "Layout3_Grid":
+                    layout3_Grid.scenario(sprit[0], text2);
+                    break;
+
+            }
+
+
+
+
         }
 
         private void EllipseMouseDown(object sender, MouseButtonEventArgs e)
         {
             Ellipse ellipse = sender as Ellipse;
             ellipse.Fill = System.Windows.Media.Brushes.Red;
+
+            Console.WriteLine(ellipse.Name);
+            Console.WriteLine(ellipse.Tag);
+
+            string[] sprit = ellipse.Name.Split('_');
+            string text2 = ellipse.Tag.ToString();
+
+            switch (parentClass)
+            {
+                case "Layout1":
+                    layout1.scenario(sprit[0], text2);
+                    break;
+                case "Layout1_Grid":
+                    layout1_Grid.scenario(sprit[0], text2);
+                    break;
+
+                case "Layout2":
+                    layout2.scenario(sprit[0], text2);
+                    break;
+
+                case "Layout2_Grid":
+                    layout2_Grid.scenario(sprit[0], text2);
+                    break;
+                case "Layout3":
+                    layout3.scenario(sprit[0], text2);
+                    break;
+                case "Layout3_Grid":
+                    layout3_Grid.scenario(sprit[0], text2);
+                    break;
+
+            }
         }
 
 
@@ -659,7 +762,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     //button[j].Click += MyMainContentsButton_Clicked;
                     button[j].Height = this.Height / row_;
                     button[j].Width = this.Width / column_;
-                    button[j].Name = "MainContents"+ MainContentsGridTypeNum +"C" + j + "R" + i;
+                    button[j].Name = "MainContents_"+ MainContentsGridTypeNum +"C" + j + "R" + i;
                     button[j].Tag = "Number" + NumArray[i * column_ + j];
                     button[j].Click +=  MainContentsButton_Clicked;
 
@@ -797,13 +900,14 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
 
                     Image img = new Image();
-                    img.Source = new BitmapImage(new Uri(System.IO.Path.GetFullPath(@"../../../ImageFolder/WebHook.png"), UriKind.RelativeOrAbsolute));
-
+                    img.Source = new BitmapImage(new Uri(System.IO.Path.GetFullPath(@"../../../ImageFolder/"+ NumArray[i * column_ + j] + ".png"), UriKind.RelativeOrAbsolute));
+                    img.Height = stackPanels[j].Height * 0.8;
 
                     TextBlock textBlock = new TextBlock();
                     textBlock.Text = NumArray[i * column_ + j].ToString();
                     textBlock.HorizontalAlignment = HorizontalAlignment.Center;
                     textBlock.VerticalAlignment = VerticalAlignment.Center;
+                    textBlock.FontSize = stackPanels[j].Height * 0.8;
 
 
 
@@ -854,9 +958,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                             contentsGrid.ColumnDefinitions.Add(colDef1);
                             contentsGrid.ColumnDefinitions.Add(colDef2);
                             contentsGrid.Children.Add(img);
-                            textBlock.Text = "Row:" + i + ", Col:" + j + "\n" + "TXTファイル" + "\n" + "0バイト";
+                            //textBlock.Text = "Row:" + i + ", Col:" + j + "\n" + "TXTファイル" + "\n" + "0バイト";
                             contentsGrid.Children.Add(textBlock);
-                            textBlock.FontSize = 20;
+                            //textBlock.FontSize = 20;
                             Grid.SetColumn(img, 0);
                             Grid.SetColumn(textBlock, 1);
                             break;
@@ -881,7 +985,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
                             Grid.SetColumn(img, 0);
                             Grid.SetColumn(textBlock, 1);
-                            Grid.SetColumn(textBlock2, 2);
+                            //Grid.SetColumn(textBlock2, 2);
                             break;
                         case (5)://ランダム表示
                             break;

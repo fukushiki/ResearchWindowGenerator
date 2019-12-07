@@ -100,12 +100,13 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
             //ToolBarOrderの順で定義していく
             int eachCount = 1;
-            foreach(int i in ToolBarOrder)
+            for(int i = 0; i< ToolBarOrder.Length; i++)
             {
                 
-                Console.WriteLine("debug:ToolBarOrder:::::" + i);
+                Console.WriteLine("debug:ToolBarOrder:::::" + ToolBarOrder[i]);
                 Console.WriteLine("before" + eachCount);
-                switch (i)
+                
+                switch (ToolBarOrder[i])
                 {
                     
                     
@@ -162,6 +163,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                         toolBarGrid.Children.Add(ButtonList5_Grid);
                         //myToolBarGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength((60)) });
                         Grid.SetColumn(ButtonList5_Grid, eachCount - 1);
+                        eachCount++;
                         break;
                 }
                 Console.WriteLine("after" + eachCount);
@@ -469,7 +471,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Grid buttonGrid = new Grid
                 {
                     //Width = 60 * 5,
-                    Width = ButtonList2_Grid.Width,
+                    Width = ButtonList3_Grid.Width,
                     Height = 20,
                     /*Background = Brushes.Red,
                     ShowGridLines = true*/
@@ -520,7 +522,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
             TextBlock textblock = new TextBlock();
             textblock.Text = (count).ToString(); ;
-            textblock.FontSize = ButtonList1_Grid.Height * 0.5;
+            textblock.FontSize = ButtonList3_Grid.Height * 0.5;
             textblock.HorizontalAlignment = HorizontalAlignment.Center;
             textblock.VerticalAlignment = VerticalAlignment.Center;
             ButtonList3_Grid.Children.Add(textblock);
@@ -619,7 +621,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
                 TextBlock textblock = new TextBlock();
                 textblock.Text = (count).ToString(); ;
-                textblock.FontSize = ButtonList1_Grid.Height * 0.5;
+                //textblock.FontSize = ButtonList4_Grid.Height * 0.5;
                 textblock.HorizontalAlignment = HorizontalAlignment.Center;
                 textblock.VerticalAlignment = VerticalAlignment.Center;
                 ButtonList4_Grid.Children.Add(textblock);
@@ -747,7 +749,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
             TextBlock textblock = new TextBlock();
             textblock.Text = (count).ToString(); ;
-            textblock.FontSize = ButtonList1_Grid.Height * 0.5;
+            textblock.FontSize = ButtonList5_Grid.Height * 0.5;
             textblock.HorizontalAlignment = HorizontalAlignment.Center;
             textblock.VerticalAlignment = VerticalAlignment.Center;
             ButtonList5_Grid.Children.Add(textblock);

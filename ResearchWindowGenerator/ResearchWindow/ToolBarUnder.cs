@@ -25,7 +25,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
         int[] ToolBarOrder;
 
-
+        List<Button[]> buttonList;
+        Grid ButtonList_Grid;
         private string parentClass;
         private Layout1 layout1;
         private Layout1_Grid layout1_Grid;
@@ -110,16 +111,27 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Width = this.Width,
                 Height = this.Height,
                 //Background = Brushes.GreenYellow,
-                //ShowGridLines = true
+                
 #if DEBUG
                 Background = Brushes.LightGoldenrodYellow,
                 ShowGridLines = true
 # endif
             };
 
-            rowDef = new RowDefinition[GridRow];
-            colDef = new ColumnDefinition[GridColumn];
+            rowDef = new RowDefinition[1];
+            colDef = new ColumnDefinition[3];
 
+            colDef[0] = new ColumnDefinition { Width = new GridLength (this.Width * 1/3)};
+            colDef[1] = new ColumnDefinition { Width = new GridLength(this.Width * 1 / 3) };
+            colDef[2] = new ColumnDefinition { Width = new GridLength(this.Width * 1 / 3) };
+
+            toolBarGrid.ColumnDefinitions.Add(colDef[0]);
+            toolBarGrid.ColumnDefinitions.Add(colDef[1]);
+            toolBarGrid.ColumnDefinitions.Add(colDef[2]);
+
+            SetButtonList();
+
+            //Grid.SetColumn(ButtonList_Grid, 2);
 
             //ToolBarOrderの順で定義していく
             foreach (int i in ToolBarOrder)
@@ -133,27 +145,95 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         }
 
 
-
-        private void ToolBarUnderButton_Clicked(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Calenderタイプの一部
+        /// </summary>
+        /// <param name="_r">Row 行</param>
+        /// <param name="_c">Column 列</param>
+        private void SetButtonList()
         {
-            /*
-            if (((Button)sender).Content == "Start")
+            ButtonList_Grid = new Grid
             {
-                StartTimer();
-                ((Button)sender).Content = "Finish";
-                //System.Drawing.Point point = System.Windows.Forms.Control.MousePosition;
-                //Logger.SaveMouseClickPosition(TimeCount, point.X, point.Y);
+                Width = this.Width/3,
+                //Width = 60 + 70*5,
+                Height = this.Height,
+                ShowGridLines = true,
+                //Background = Brushes.Gray
+            };
+            //70*50
 
-                Button sender1 = (System.Windows.Controls.Button)sender;
-                Console.WriteLine("aaaaaaaaaa" + sender1.Name);
+
+            
+            /*
+            ButtonList_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(ButtonList_Grid.Width / 5) });
+            ButtonList_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(ButtonList_Grid.Width / 5) });
+            */
+
+
+            toolBarGrid.Children.Add(ButtonList_Grid);
+            Grid.SetColumn(ButtonList_Grid, 2);
+
+
+
+
+            buttonList = new List<Button[]>();
+            int buttonRow = 1;
+            int buttonColumn = 5;
+            for (int i = 0; i < buttonRow; i++)
+            {
+                Button[] button = new Button[buttonColumn];
+                
+                
+
+
+
+                for (int j = 0; j < buttonColumn; j++)
+                {
+                    ButtonList_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(ButtonList_Grid.Width / 5) });
+                    button[j] = new Button { Width = ButtonList_Grid.Width / 5, Height = ButtonList_Grid.Height };
+                    button[j].Name = "ToolBarUnder" + "_C" + j + 1 + "_R" + i + 1;
+                    button[j].Tag = "Number" + ToolBarOrder[i * buttonColumn + j];
+                    button[j].Click += ToolBarUnderButton_Clicked;
+                    ButtonList_Grid.Children.Add(button[j]);
+                    Grid.SetColumn(button[j], j);
+
+
+                    StackPanel stack = new StackPanel();
+                    stack.Width = button[j].Width;
+                    stack.Height = button[j].Height;
+                    button[j].Content = stack;
+
+
+
+                    TextBlock textblock_ = new TextBlock();
+                    textblock_.Text = ToolBarOrder[i * buttonColumn + j].ToString();
+                    textblock_.FontSize = stack.Height * 0.5;
+                    textblock_.HorizontalAlignment = HorizontalAlignment.Center;
+                    textblock_.VerticalAlignment = VerticalAlignment.Center;
+                    stack.Children.Add(textblock_);
+
+                }
+
+                buttonList.Add(button);
 
 
             }
-            else if (((Button)sender).Content == "Finish")
-            {
-                StopTimer();
-                ((Button)sender).Content = "End";
-            }*/
+            /*
+            TextBlock textblock = new TextBlock();
+            //textblock.Text = (count).ToString(); ;
+            textblock.FontSize = ButtonList_Grid.Height * 0.5;
+            textblock.HorizontalAlignment = HorizontalAlignment.Center;
+            textblock.VerticalAlignment = VerticalAlignment.Center;
+            ButtonList_Grid.Children.Add(textblock);
+            Grid.SetColumn(textblock, 0);
+            Grid.SetRowSpan(textblock, 5);
+            */
+        }
+
+
+        private void ToolBarUnderButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            
             Button sender1 = (System.Windows.Controls.Button)sender;
             Console.WriteLine(sender1.Name);
             Console.WriteLine(sender1.Tag);
@@ -167,6 +247,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             {
                 case "Layout1":
                     layout1.scenario(sprit[0], text2);
+                    
                     break;
                 case "Layout1_Grid":
                     layout1_Grid.scenario(sprit[0], text2);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Threading;
 
@@ -48,6 +49,23 @@ namespace ResearchWindowGenerator
             System.Drawing.Point p = System.Windows.Forms.Control.MousePosition;
             TimeCount += 0.05;
             Logger.SaveMouseCursorPosition(TimeCount, p.X, p.Y);
+        }
+
+        internal static int[] RamdomArray(int[] ary)
+        {
+            //return ary.OrderBy(i => Guid.NewGuid()).ToArray();
+            System.Random rng = new System.Random();
+            int n = ary.Length;
+            while (n > 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                int tmp = ary[k];
+                ary[k] = ary[n];
+                ary[n] = tmp;
+            }
+
+            return ary;
         }
     }
 }

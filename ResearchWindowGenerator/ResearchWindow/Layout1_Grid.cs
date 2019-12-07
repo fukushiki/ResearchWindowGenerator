@@ -143,6 +143,8 @@ namespace ResearchWindowGenerator.ResearchWindow
         {
             ToolBarUnderNumArray = new int[] { 1, 2, 3, 4, 5 };
             toolBarUnder = new ToolBarUnder();
+            toolBarUnder.SetParentClass(ParentClass);
+            toolBarUnder.Parent(this);
             toolBarUnder.SetWidth(WindowWidth);
             toolBarUnder.SetHeight(20);
             toolBarUnder.SetGridsOrder(ToolBarUnderNumArray);
