@@ -66,7 +66,7 @@ namespace ResearchWindowGenerator.ResearchWindow
         RowDefinition rowDef2;
         RowDefinition rowDef3;
 
-        static int Phase = 1;
+        static int Phase = 1;  
 
         string ParentClass = "Layout1";
 
