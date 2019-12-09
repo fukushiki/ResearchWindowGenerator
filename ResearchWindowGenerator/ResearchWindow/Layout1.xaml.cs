@@ -203,7 +203,8 @@ namespace ResearchWindowGenerator.ResearchWindow
         private void Maincontents_Arrangement()
         {
             maincontents = new List<MainContents>();
-            MainContentsNumArray = new int[] { 5, 2, 3, 4, 5 };
+            MainContentsNumArray = new int[] { 1, 2, 3, 4, 5 };
+            MainContentsNumArray = Utility.RamdomArray(MainContentsNumArray);
             maincontentsNumArrayList = new List<int[]>();
 
             MainContents1NumArray = new int[90];
@@ -257,10 +258,13 @@ namespace ResearchWindowGenerator.ResearchWindow
         {
             if (i_ > 0)
             {
+                maincontents[i_ - 1].ChangeVisible();
                 maincontents[i_ - 1] = null;
+                
+                Utility.DoEvents();
             }
             //int x = MainContentsNumArray[i_];
-
+            
 
 
             MainContents child_maincontents = new MainContents(maincontentsNumArrayList[MainContentsNumArray[i_] -1 ]);
@@ -381,12 +385,12 @@ namespace ResearchWindowGenerator.ResearchWindow
         }
 
 
-        public void scenario(String text1, String text2)
+        public Boolean scenario(String text1, String text2)
         {
             Console.WriteLine("ScenarioNum" + ScenarioNum);
             String WindowTitle = "Layout1 :";
             String Next = "";
-
+            Boolean Flag = false;
             switch (ScenarioNum % 5)
             {
                 //コンテンツバー1番  ContentsBarVector_C01_R01
@@ -398,6 +402,7 @@ namespace ResearchWindowGenerator.ResearchWindow
                         ScenarioNum++;
 
                         Next = "MainContentsの1をクリック";
+                        Flag = true;
                     }
                     else
                     {
@@ -412,6 +417,7 @@ namespace ResearchWindowGenerator.ResearchWindow
                         //maincontents[0].ChangeColor(1);
                         ScenarioNum++;
                         Next = "ToolBarTopの"+ Phase+"の1をクリック";
+                        Flag = true;
                     }
                     else
                     {
@@ -428,6 +434,7 @@ namespace ResearchWindowGenerator.ResearchWindow
                         maincontents[Phase - 1].ChangeColor(2);
                         ScenarioNum++;
                         Next = "MainContentsの2をクリック";
+                        Flag = true;
                     }
                     else
                     {
@@ -442,6 +449,7 @@ namespace ResearchWindowGenerator.ResearchWindow
                     {
                         ScenarioNum++;
                         Next = "ToolBarUnderの"+Phase+"をクリック";
+                        Flag = true;
                     }
                     else
                     {
@@ -454,7 +462,7 @@ namespace ResearchWindowGenerator.ResearchWindow
                     if (text1.Equals("ToolBarUnder") && text2.Equals("Number"+Phase))
                     {
                         ScenarioNum++;
-                        
+                        Flag = true;
                         Next = "ContentsBarの"+(Phase+1)+"をクリック";
                         if(Phase == 5)
                         {
@@ -481,7 +489,7 @@ namespace ResearchWindowGenerator.ResearchWindow
             String Next = "";
              */
             this.Title = WindowTitle  +" :"  + "Next : " + Next + "                                                                                                   "+"ScenarioNum" + ScenarioNum;
-
+            return Flag;
         }
 
     }

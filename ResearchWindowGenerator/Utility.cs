@@ -10,7 +10,7 @@ namespace ResearchWindowGenerator
         private Timer _timer = null;
         static double TimeCount = 0.0;
         
-        static void DoEvents()
+        internal static void DoEvents()
         {
             DispatcherFrame frame = new DispatcherFrame();
             var callback = new DispatcherOperationCallback(obj =>

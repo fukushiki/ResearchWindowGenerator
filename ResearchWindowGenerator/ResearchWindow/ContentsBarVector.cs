@@ -310,57 +310,41 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
         private void ContentsBarVectorButton_Clicked(object sender, RoutedEventArgs e)
         {
-            /*
-            if (((Button)sender).Content == "Start")
-            {
-                StartTimer();
-                ((Button)sender).Content = "Finish";
-                //System.Drawing.Point point = System.Windows.Forms.Control.MousePosition;
-                //Logger.SaveMouseClickPosition(TimeCount, point.X, point.Y);
-
-                Button sender1 = (System.Windows.Controls.Button)sender;
-                Console.WriteLine("aaaaaaaaaa" + sender1.Name);
-
-
-            }
-            else if (((Button)sender).Content == "Finish")
-            {
-                StopTimer();
-                ((Button)sender).Content = "End";
-            }*/
-
-
             Button sender1 = (System.Windows.Controls.Button)sender;
-
             Console.WriteLine(sender1.Name);
             Console.WriteLine(sender1.Tag);
 
             string[] sprit = sender1.Name.Split('_');
             string text2 = sender1.Tag.ToString();
+            Boolean changeColorFlag = false;
 
             switch (parentClass)
             {
                 case "Layout1":
-                    layout1.scenario(sprit[0], text2);
+                    changeColorFlag = layout1.scenario(sprit[0], text2);
                     break;
                 case "Layout1_Grid":
-                    layout1_Grid.scenario(sprit[0], text2);
+                    changeColorFlag = layout1_Grid.scenario(sprit[0], text2);
                     break;
-                    
-                    case "Layout2":
-                        layout2.scenario(sprit[0], text2);
-                        break;
-                    
-                    case "Layout2_Grid":
-                        layout2_Grid.scenario(sprit[0], text2);
-                        break;
-                    case "Layout3":
-                        layout3.scenario(sprit[0], text2);
-                        break;
-                    case "Layout3_Grid":
-                        layout3_Grid.scenario(sprit[0], text2);
-                        break;
-                    
+
+                case "Layout2":
+                    changeColorFlag = layout2.scenario(sprit[0], text2);
+                    break;
+
+                case "Layout2_Grid":
+                    changeColorFlag = layout2_Grid.scenario(sprit[0], text2);
+                    break;
+                case "Layout3":
+                    changeColorFlag = layout3.scenario(sprit[0], text2);
+                    break;
+                case "Layout3_Grid":
+                    layout3_Grid.scenario(sprit[0], text2);
+                    break;
+
+            }
+            if (changeColorFlag)
+            {
+                sender1.Background = Brushes.Red;
             }
         }
 

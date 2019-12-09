@@ -54,6 +54,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         {
             this.toolBarRightNumArray = toolBarRightNumArray;
         }
+        
 
         internal void SetGridsOrder(int[] toolBarTopOrder)
         {
@@ -125,7 +126,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 {
 
                     button[j] = new Button { Width = toolBarGrid.Width, Height = 40 };
-                    button[j].Name = "ToolBarRight_" + "C" + j + "R" + i;
+                    button[j].Name = "ToolBarRight_" + "C" + j + "_R" + i;
                     button[j].Tag = "Number" + toolBarRightNumArray[i * buttonColumn + j];
                     button[j].Click += ToolBarRightButton_Clicked;
                     buttonGrid.Children.Add(button[j]);
@@ -150,7 +151,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     g.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(g.Width * 0.8) });
 
                     TextBlock textblock0 = new TextBlock();
-                    textblock0.Text = "0";
+                    textblock0.Text = ToolBarOrder[i * buttonColumn + j].ToString();
                     textblock0.FontSize = button[j].Height * 0.8;
                     textblock0.HorizontalAlignment = HorizontalAlignment.Center;
                     textblock0.VerticalAlignment = VerticalAlignment.Center;
@@ -158,7 +159,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
 
                     TextBlock textblock1 = new TextBlock();
-                    textblock1.Text = "Button Number 1";
+                    textblock1.Text = "Button Number " + ToolBarOrder[i * buttonColumn + j].ToString(); ;
                     textblock1.FontSize = button[j].Height * 0.8;
                     textblock1.HorizontalAlignment = HorizontalAlignment.Center;
                     textblock1.VerticalAlignment = VerticalAlignment.Center;
@@ -226,57 +227,41 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
         private void ToolBarRightButton_Clicked(object sender, RoutedEventArgs e)
         {
-            /*
-            if (((Button)sender).Content == "Start")
-            {
-                StartTimer();
-                ((Button)sender).Content = "Finish";
-                //System.Drawing.Point point = System.Windows.Forms.Control.MousePosition;
-                //Logger.SaveMouseClickPosition(TimeCount, point.X, point.Y);
-
-                Button sender1 = (System.Windows.Controls.Button)sender;
-                Console.WriteLine("aaaaaaaaaa" + sender1.Name);
-
-
-            }
-            else if (((Button)sender).Content == "Finish")
-            {
-                StopTimer();
-                ((Button)sender).Content = "End";
-            }*/
-
-
             Button sender1 = (System.Windows.Controls.Button)sender;
             Console.WriteLine(sender1.Name);
             Console.WriteLine(sender1.Tag);
 
             string[] sprit = sender1.Name.Split('_');
             string text2 = sender1.Tag.ToString();
-
-
+            Boolean changeColorFlag = false;
 
             switch (parentClass)
             {
                 case "Layout1":
-                    layout1.scenario(sprit[0], text2);
+                    changeColorFlag = layout1.scenario(sprit[0], text2);
                     break;
                 case "Layout1_Grid":
-                    layout1_Grid.scenario(sprit[0], text2);
+                    changeColorFlag = layout1_Grid.scenario(sprit[0], text2);
                     break;
 
                 case "Layout2":
                     layout2.scenario(sprit[0], text2);
                     break;
+
                 case "Layout2_Grid":
                     layout2_Grid.scenario(sprit[0], text2);
                     break;
-                    case "Layout3":
-                        layout3.scenario(sprit[0], text2);
-                        break;
-                    case "Layout3_Grid":
-                        layout3_Grid.scenario(sprit[0], text2);
-                        break;
-                    
+                case "Layout3":
+                    changeColorFlag = layout3.scenario(sprit[0], text2);
+                    break;
+                case "Layout3_Grid":
+                    changeColorFlag = layout3_Grid.scenario(sprit[0], text2);
+                    break;
+
+            }
+            if (changeColorFlag)
+            {
+                sender1.Background = Brushes.Red;
             }
 
 

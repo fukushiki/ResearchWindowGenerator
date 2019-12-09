@@ -83,6 +83,7 @@ namespace ResearchWindowGenerator.ResearchWindow
             this.Width = SystemParameters.WorkArea.Width;
             this.Height = SystemParameters.WorkArea.Height;
             this.WindowState = WindowState.Maximized;
+            this.Title = ParentClass + ": " + "ScenarioNum" + "1" + "Next : ContentsBarの1をクリック";
 
             WindowWidth = this.Width;
             WindowHeight = this.Height;
@@ -109,20 +110,32 @@ namespace ResearchWindowGenerator.ResearchWindow
         private void ToolBarTop_Arrangement()
         {
             ToolBarTopOrder = new int[] { 1, 2, 3, 4, 5 };
+            ToolBarTopOrder = Utility.RamdomArray(ToolBarTopOrder);
             toolBarTopNumArray = new List<int[]>();
+
             ToolBarTop1NumArray = new int[] { 1, 2, 3, 4, 5,
                                               6, 7, 8, 9, 10 };
+            ToolBarTop1NumArray = Utility.RamdomArray(ToolBarTop1NumArray);
             toolBarTopNumArray.Add(ToolBarTop1NumArray);
+
             ToolBarTop2NumArray = new int[] { 1, 2,
                                               3, 4,
-                                              5, 6 };
+                                              5 };
+            ToolBarTop2NumArray = Utility.RamdomArray(ToolBarTop2NumArray);
             toolBarTopNumArray.Add(ToolBarTop2NumArray);
+
             ToolBarTop3NumArray = new int[] { 1, 2, 3,
                                               4, 5,6 };
+            ToolBarTop3NumArray = Utility.RamdomArray(ToolBarTop3NumArray);
             toolBarTopNumArray.Add(ToolBarTop3NumArray);
+
+
             ToolBarTop4NumArray = new int[] { 1, 2, 3, 4, 5 };
+            ToolBarTop4NumArray = Utility.RamdomArray(ToolBarTop4NumArray);
             toolBarTopNumArray.Add(ToolBarTop4NumArray);
+
             ToolBarTop5NumArray = new int[] { 1, 2, 3, 4, 5 };
+            ToolBarTop5NumArray = Utility.RamdomArray(ToolBarTop5NumArray);
             toolBarTopNumArray.Add(ToolBarTop5NumArray);
 
 
@@ -133,6 +146,14 @@ namespace ResearchWindowGenerator.ResearchWindow
             toolBarTop.SetWidth(1755);
             toolBarTop.SetHeight(60);
             toolBarTop.SetGridsOrder(ToolBarTopOrder);
+
+            /*
+             toolBar1 = new MyToolBar(1);
+                    toolBar1.SetWidth(1755);
+                    //toolBar1.SetHeight(75 - 30);
+                    toolBar1.SetHeight(60);
+                    toolBar1.SetButton(2);
+             */
 
 
 
@@ -153,6 +174,7 @@ namespace ResearchWindowGenerator.ResearchWindow
             if (ContentsBarType.Equals("Vector"))
             {
                 ContentsBarNumArray = new int[] { 1, 2, 3, 4, 5 };
+                ContentsBarNumArray = Utility.RamdomArray(ContentsBarNumArray);
                 contentsBarVector = new ContentsBarVector(ContentsBarNumArray);
 
                 contentsBarVector.SetParentClass(ParentClass);
@@ -171,6 +193,7 @@ namespace ResearchWindowGenerator.ResearchWindow
                                                   16, 17, 18, 19, 20,
                                                   21, 22, 23, 24, 25};
                 contentsBarGrid = new ContentsBarGrid(ContentsBarNumArray);
+                ContentsBarNumArray = Utility.RamdomArray(ContentsBarNumArray);
                 contentsBarGrid.SetParentClass(ParentClass);
                 contentsBarGrid.Parent(this);
                 contentsBarGrid.SetWidth(265);
@@ -186,6 +209,7 @@ namespace ResearchWindowGenerator.ResearchWindow
         {
             maincontents = new List<MainContents>();
             MainContentsNumArray = new int[] { 1, 2, 3, 4, 5 };
+            MainContentsNumArray = Utility.RamdomArray(MainContentsNumArray);
             maincontentsNumArrayList = new List<int[]>();
 
             MainContents1NumArray = new int[90];
@@ -194,6 +218,7 @@ namespace ResearchWindowGenerator.ResearchWindow
                 MainContents1NumArray[i] = i + 1;
                 //Console.WriteLine(MainContents1NumArray[i] + "うおおおお");
             }
+            MainContents1NumArray = Utility.RamdomArray(MainContents1NumArray);
             maincontentsNumArrayList.Add(MainContents1NumArray);
 
             MainContents2NumArray = new int[200];
@@ -202,6 +227,7 @@ namespace ResearchWindowGenerator.ResearchWindow
                 MainContents2NumArray[i] = i + 1;
                 //Console.WriteLine(MainContents2NumArray[i] + "うおおおお");
             }
+            MainContents2NumArray = Utility.RamdomArray(MainContents2NumArray);
             maincontentsNumArrayList.Add(MainContents2NumArray);
 
             MainContents3NumArray = new int[90];
@@ -210,6 +236,7 @@ namespace ResearchWindowGenerator.ResearchWindow
                 MainContents3NumArray[i] = i + 1;
                 //Console.WriteLine(MainContents3NumArray[i] + "うおおおお");
             }
+            MainContents3NumArray = Utility.RamdomArray(MainContents3NumArray);
             maincontentsNumArrayList.Add(MainContents3NumArray);
 
             MainContents4NumArray = new int[17];
@@ -218,6 +245,7 @@ namespace ResearchWindowGenerator.ResearchWindow
                 MainContents4NumArray[i] = i + 1;
                 //Console.WriteLine(MainContents4NumArray[i] + "うおおおお");
             }
+            MainContents4NumArray = Utility.RamdomArray(MainContents4NumArray);
             maincontentsNumArrayList.Add(MainContents4NumArray);
 
             MainContents5NumArray = new int[5];
@@ -226,6 +254,7 @@ namespace ResearchWindowGenerator.ResearchWindow
                 MainContents5NumArray[i] = i + 1;
                 //Console.WriteLine(MainContents5NumArray[i] + "うおおおお");
             }
+            MainContents5NumArray = Utility.RamdomArray(MainContents5NumArray);
             maincontentsNumArrayList.Add(MainContents5NumArray);
 
         }
@@ -234,7 +263,9 @@ namespace ResearchWindowGenerator.ResearchWindow
         {
             if (i_ > 0)
             {
+                maincontents[i_ - 1].ChangeVisible();
                 maincontents[i_ - 1] = null;
+
             }
             //int x = MainContentsNumArray[i_];
             MainContents child_maincontents = new MainContents(maincontentsNumArrayList[MainContentsNumArray[i_] - 1]);
@@ -358,227 +389,114 @@ namespace ResearchWindowGenerator.ResearchWindow
         }
 
 
-        public void scenario(String text1, String text2)
+        static int Phase = 1;
+        public Boolean scenario(String text1, String text2)
         {
             Console.WriteLine("ScenarioNum" + ScenarioNum);
-
-            switch (ScenarioNum)
+            String WindowTitle = "Layout2 :";
+            String Next = "";
+            Boolean Flag = false;
+            switch (ScenarioNum % 5)
             {
                 //コンテンツバー1番  ContentsBarVector_C01_R01
                 case (1):
-                    if (text1.Equals("ContentsBarGrid") && text2.Equals("Number1"))
+                    if (text1.Equals("ContentsBarGrid") && text2.Equals("Number" + Phase))
                     {
                         //メインコンテンツ1
-                        MaincontentsSet(0);
+                        MaincontentsSet(Phase - 1);
                         ScenarioNum++;
+
+                        Next = "MainContentsの1をクリック";
+                        Flag = true;
+                    }
+                    else
+                    {
+                        Next = "ContentsBarの" + Phase + "をクリック";
                     }
 
                     break;
 
                 case (2):
                     //クリックした1番の色を変える
-                    if (text1.Equals("MainContents"))
-                        maincontents[0].ChangeColor(1);
-                    ScenarioNum++;
+                    if (text1.Equals("MainContents") && text2.Equals("Number1"))
+                    {
+                        Console.WriteLine("aaaaaaaaaaaaaaa");
+                        //maincontents[0].ChangeColor(1);
+                        ScenarioNum++;
+                        Next = "ToolBarTopの" + Phase + "の1をクリック";
+                        Flag = true;
+                    }
+                    else
+                    {
+                        Next = "MainContentsの" + Phase + "をクリック";
+                    }
                     break;
+
 
                 //ツールバー1-1
                 case (3):
-                    if (text1.Equals("ToolBarTop" + ToolBarTopOrder[0]) && text2.Equals("Number1"))
+                    if (text1.Equals("ToolBarTop" + ToolBarTopOrder[Phase - 1]) && text2.Equals("Number1"))
                     {
                         //メインコンテンツの色を変える
-                        maincontents[0].ChangeColor(2);
+                        maincontents[Phase - 1].ChangeColor(2);
                         ScenarioNum++;
+                        Next = "MainContentsの2をクリック";
+                        Flag = true;
+                    }
+                    else
+                    {
+                        Next = "ToolBarTopの" + Phase + "の1をクリック";
                     }
                     break;
 
 
                 //メインコンテンツ色の変わったところ
                 case (4):
-                    if (true)
+                    if (text1.Equals("MainContents") && text2.Equals("Number2"))
                     {
                         ScenarioNum++;
+                        Next = "ToolBarTopの" + Phase + "の2をクリック";
+                        Flag = true;
+                    }
+                    else
+                    {
+                        Next = "MainContentsの2をクリック";
                     }
                     break;
 
                 //ツールバーの下の1番
-                case (5):
+                case (0):
+                    if (text1.Equals("ToolBarTop" + ToolBarTopOrder[Phase - 1]) && text2.Equals("Number2"))
+                    {
+                        ScenarioNum++;
+                        Flag = true;
+                        Next = "ContentsBarの" + (Phase + 1) + "をクリック";
+                        if (Phase == 5)
+                        {
+                            Next = "実験終了です";
+                        }
+                        Phase++;
+                    }
+                    else
+                    {
+                        Next = "ToolBarTopの" + Phase + "の2をクリック";
+                        //Console.WriteLine("NOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO");
+                    }
                     //色を変える
-                    ScenarioNum++;
-                    break;
-
-
-
-
-                case (6):
-                    if (text1.Equals("ContentsBarGrid") && text2.Equals("Number2"))
-                    {
-                        //メインコンテンツ1
-                        MaincontentsSet(1);
-                        ScenarioNum++;
-                    }
 
                     break;
 
-                case (7):
-                    //クリックした1番の色を変える
-                    ScenarioNum++;
-                    break;
-
-                //ツールバー1-1
-                case (8):
-                    if (text1.Equals("ToolBarTop" + ToolBarTopOrder[1]) && text2.Equals("Number2"))
-                    {
-                        //メインコンテンツの色を変える
-                        maincontents[1].ChangeColor(1);
-                        ScenarioNum++;
-                    }
-                    break;
 
 
-                //メインコンテンツ色の変わったところ
-                case (9):
-                    if (true)
-                    {
-                        ScenarioNum++;
-                    }
-                    break;
-
-                //ツールバーの下の1番
-                case (10):
-                    //色を変える
-                    ScenarioNum++;
-                    break;
-
-
-                case (11):
-                    if (text1.Equals("ContentsBarGrid") && text2.Equals("Number3"))
-                    {
-                        //メインコンテンツ1
-                        MaincontentsSet(2);
-                        ScenarioNum++;
-                    }
-
-                    break;
-
-                case (12):
-                    //クリックした1番の色を変える
-                    ScenarioNum++;
-                    break;
-
-                //ツールバー1-1
-                case (13):
-                    if (text1.Equals("ToolBarTop" + ToolBarTopOrder[2]) && text2.Equals("Number3"))
-                    {
-                        //メインコンテンツの色を変える
-                        maincontents[2].ChangeColor(1);
-                        ScenarioNum++;
-                    }
-                    break;
-
-
-                //メインコンテンツ色の変わったところ
-                case (14):
-                    if (true)
-                    {
-                        ScenarioNum++;
-                    }
-                    break;
-
-                //ツールバーの下の1番
-                case (15):
-                    //色を変える
-                    ScenarioNum++;
-                    break;
-
-
-                case (16):
-                    if (text1.Equals("ContentsBarGrid") && text2.Equals("Number4"))
-                    {
-                        //メインコンテンツ1
-                        MaincontentsSet(3);
-                        ScenarioNum++;
-                    }
-
-                    break;
-
-                case (17):
-                    //クリックした1番の色を変える
-                    ScenarioNum++;
-                    break;
-
-                //ツールバー1-1
-                case (18):
-                    if (text1.Equals("ToolBarTop" + ToolBarTopOrder[3]) && text2.Equals("Number4"))
-                    {
-                        //メインコンテンツの色を変える
-                        maincontents[3].ChangeColor(1);
-                        ScenarioNum++;
-                    }
-                    break;
-
-
-                //メインコンテンツ色の変わったところ
-                case (19):
-                    if (true)
-                    {
-                        ScenarioNum++;
-                    }
-                    break;
-
-                //ツールバーの下の1番
-                case (20):
-                    //色を変える
-                    ScenarioNum++;
-                    break;
-
-
-
-
-                case (21):
-                    if (text1.Equals("ContentsBarGrid") && text2.Equals("Number5"))
-                    {
-                        //メインコンテンツ1
-                        MaincontentsSet(4);
-                        ScenarioNum++;
-                    }
-
-                    break;
-
-                case (22):
-                    //クリックした1番の色を変える
-                    ScenarioNum++;
-                    break;
-
-                //ツールバー1-1
-                case (23):
-                    if (text1.Equals("ToolBarTop" + ToolBarTopOrder[4]) && text2.Equals("Number5"))
-                    {
-                        //メインコンテンツの色を変える
-                        maincontents[4].ChangeColor(1);
-                        ScenarioNum++;
-                    }
-                    break;
-
-
-                //メインコンテンツ色の変わったところ
-                case (24):
-                    if (true)
-                    {
-                        ScenarioNum++;
-                    }
-                    break;
-
-                //ツールバーの下の1番
-                case (25):
-                    //色を変える
-                    ScenarioNum++;
-                    break;
 
             }
 
-
-
+            /*
+             * String WindowTitle = "Layout1 :";
+            String Next = "";
+             */
+            this.Title = WindowTitle + " :" + "Next : " + Next + "                                                                                                   " + "ScenarioNum" + ScenarioNum;
+            return Flag;
         }
 
     }

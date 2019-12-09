@@ -630,39 +630,49 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
         }
 
+        internal void ChangeVisible()
+        {
+            mainContentsGrid.Visibility = Visibility.Hidden ;
+        }
+
         private void PolygonMouseDown(object sender, MouseButtonEventArgs e)
         {
             Polygon polygon = sender as Polygon;
-            polygon.Fill = System.Windows.Media.Brushes.Red;
+            //polygon.Fill = System.Windows.Media.Brushes.Red;
 
             Console.WriteLine(polygon.Name);
             Console.WriteLine(polygon.Tag);
 
             string[] sprit = polygon.Name.Split('_');
             string text2 = polygon.Tag.ToString();
-
+            Boolean changeColorFlag = false;
             switch (parentClass)
             {
                 case "Layout1":
-                    layout1.scenario(sprit[0], text2);
+                    changeColorFlag = layout1.scenario(sprit[0], text2);
                     break;
                 case "Layout1_Grid":
-                    layout1_Grid.scenario(sprit[0], text2);
+                    changeColorFlag = layout1_Grid.scenario(sprit[0], text2);
                     break;
-
+                
                 case "Layout2":
-                    layout2.scenario(sprit[0], text2);
+                    changeColorFlag = layout2.scenario(sprit[0], text2);
                     break;
-
+                
                 case "Layout2_Grid":
-                    layout2_Grid.scenario(sprit[0], text2);
+                    changeColorFlag = layout2_Grid.scenario(sprit[0], text2);
                     break;
                 case "Layout3":
-                    layout3.scenario(sprit[0], text2);
+                    changeColorFlag = layout3.scenario(sprit[0], text2);
                     break;
                 case "Layout3_Grid":
-                    layout3_Grid.scenario(sprit[0], text2);
+                    changeColorFlag = layout3_Grid.scenario(sprit[0], text2);
                     break;
+                    
+            }
+            if (changeColorFlag)
+            {
+                polygon.Fill = System.Windows.Media.Brushes.Red;
 
             }
 
@@ -674,36 +684,41 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
         private void EllipseMouseDown(object sender, MouseButtonEventArgs e)
         {
             Ellipse ellipse = sender as Ellipse;
-            ellipse.Fill = System.Windows.Media.Brushes.Red;
+            //ellipse.Fill = System.Windows.Media.Brushes.Red;
 
             Console.WriteLine(ellipse.Name);
             Console.WriteLine(ellipse.Tag);
 
             string[] sprit = ellipse.Name.Split('_');
             string text2 = ellipse.Tag.ToString();
-
+            Boolean changeColorFlag= false;
             switch (parentClass)
             {
                 case "Layout1":
-                    layout1.scenario(sprit[0], text2);
+                    changeColorFlag = layout1.scenario(sprit[0], text2);
                     break;
                 case "Layout1_Grid":
-                    layout1_Grid.scenario(sprit[0], text2);
+                    changeColorFlag = layout1_Grid.scenario(sprit[0], text2);
                     break;
-
+                
                 case "Layout2":
-                    layout2.scenario(sprit[0], text2);
+                    changeColorFlag = layout2.scenario(sprit[0], text2);
                     break;
-
+                
                 case "Layout2_Grid":
-                    layout2_Grid.scenario(sprit[0], text2);
+                    changeColorFlag = layout2_Grid.scenario(sprit[0], text2);
                     break;
                 case "Layout3":
-                    layout3.scenario(sprit[0], text2);
+                    changeColorFlag = layout3.scenario(sprit[0], text2);
                     break;
-                case "Layout3_Grid":
-                    layout3_Grid.scenario(sprit[0], text2);
+                /*case "Layout3_Grid":
+                    changeColorFlag = layout3_Grid.scenario(sprit[0], text2);
                     break;
+                    */
+            }
+            if (changeColorFlag)
+            {
+                ellipse.Fill = System.Windows.Media.Brushes.Red;
 
             }
         }
@@ -1035,33 +1050,39 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             Button sender1 = (System.Windows.Controls.Button)sender;
             Console.WriteLine(sender1.Name);
             Console.WriteLine(sender1.Tag);
+            Console.WriteLine("parentclass" + parentClass);
 
             string[] sprit = sender1.Name.Split('_');
             string text2 = sender1.Tag.ToString();
+            Boolean changeColorFlag = false;
 
             switch (parentClass)
             {
                 case "Layout1":
-                    layout1.scenario(sprit[0], text2);
+                    changeColorFlag = layout1.scenario(sprit[0], text2);
                     break;
                 case "Layout1_Grid":
-                    layout1_Grid.scenario(sprit[0], text2);
+                    changeColorFlag = layout1_Grid.scenario(sprit[0], text2);
                     break;
-                    
-                    case "Layout2":
-                        layout2.scenario(sprit[0], text2);
-                        break;
-                    
-                    case "Layout2_Grid":
-                        layout2_Grid.scenario(sprit[0], text2);
-                        break;
-                    case "Layout3":
-                        layout3.scenario(sprit[0], text2);
-                        break;
-                    case "Layout3_Grid":
-                        layout3_Grid.scenario(sprit[0], text2);
-                        break;
-                    
+
+                case "Layout2":
+                    changeColorFlag = layout2.scenario(sprit[0], text2);
+                    break;
+
+                case "Layout2_Grid":
+                    changeColorFlag = layout2_Grid.scenario(sprit[0], text2);
+                    break;
+                case "Layout3":
+                    changeColorFlag = layout3.scenario(sprit[0], text2);
+                    break;
+                case "Layout3_Grid":
+                    changeColorFlag = layout3_Grid.scenario(sprit[0], text2);
+                    break;
+
+            }
+            if (changeColorFlag)
+            {
+                sender1.Background = Brushes.Red;
             }
         }
 

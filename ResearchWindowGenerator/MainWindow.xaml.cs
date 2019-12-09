@@ -125,9 +125,13 @@ namespace ResearchWindowGenerator
         private void LogSlect_Click(object sender, RoutedEventArgs e)
         {
             //TODO : ログ選択Windowへ
+            /*
             logSelectWindow = new LogSelectWindow();
             logSelectWindow.Show();
-            this.Close();
+            this.Close();*/
+
+            System.Diagnostics.Process.Start(System.IO.Path.GetFullPath(@"../../../LogFolder"));
+
         }
     }
 }
