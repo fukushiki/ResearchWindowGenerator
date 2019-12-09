@@ -1018,7 +1018,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
 
                 }
-                stackPanelList.Add(stackPanels);
+                stackPanelList.Add(stackPanels); 
 
             }
 
