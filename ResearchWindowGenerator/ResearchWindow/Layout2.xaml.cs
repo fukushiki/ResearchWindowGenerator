@@ -73,6 +73,8 @@ namespace ResearchWindowGenerator.ResearchWindow
 
         //public static  Layout1 layout1 { get; private set; }
 
+        public static string LayoutFilePass;
+        public static string ClickLogFilePass;
         public Layout2()
         {
             InitializeComponent();
@@ -85,7 +87,8 @@ namespace ResearchWindowGenerator.ResearchWindow
 
             WindowWidth = this.Width;
             WindowHeight = this.Height;
-
+            LayoutFilePass = Utility.LoggerInitialize(ParentClass);
+            ClickLogFilePass = Utility.LoggerInitializeClick(ParentClass);
 
 
             GridInit();
@@ -98,7 +101,7 @@ namespace ResearchWindowGenerator.ResearchWindow
 
             Maincontents_Arrangement();
 
-
+            
             LayoutSetting();
 
             SaveLayoutSetting();
@@ -388,6 +391,7 @@ namespace ResearchWindowGenerator.ResearchWindow
         }
 
         static int Phase = 1;
+        
         public Boolean scenario(String text1, String text2)
         {
             Console.WriteLine("ScenarioNum" + ScenarioNum);

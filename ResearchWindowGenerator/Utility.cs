@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using System.Windows.Threading;
 
@@ -9,7 +12,11 @@ namespace ResearchWindowGenerator
     {
         private Timer _timer = null;
         static double TimeCount = 0.0;
-        
+        private static string LayoutfilePass;
+        private static string ClickfilePass;
+
+        public static string fileName { get; private set; }
+
         internal static void DoEvents()
         {
             DispatcherFrame frame = new DispatcherFrame();
@@ -54,6 +61,7 @@ namespace ResearchWindowGenerator
         internal static int[] RamdomArray(int[] ary)
         {
             //return ary.OrderBy(i => Guid.NewGuid()).ToArray();
+            /*
             System.Random rng = new System.Random();
             int n = ary.Length;
             while (n > 1)
@@ -65,7 +73,128 @@ namespace ResearchWindowGenerator
                 ary[n] = tmp;
             }
 
-            return ary;
+            return ary;*/
+
+            int[] ary2 = ary.OrderBy(i => Guid.NewGuid()).ToArray();
+            return ary2;
         }
+
+
+        public static string LoggerInitialize(string _layoutName)
+        {
+            DateTime date = DateTime.Now;
+            //File名生成
+            String start_time = date.Year + "." + date.Month + "." + date.Day + "." + date.Hour + "." + date.Minute + "." + date.Second;
+            String subjectname = "";
+
+
+
+            if (MainWindow.subjectName.Equals(""))
+            {
+                subjectname = "YURIKONANAO";
+            }
+            else
+            {
+                subjectname = MainWindow.subjectName;
+            }
+            fileName = subjectname + "_" + _layoutName + "_" + start_time;
+
+            string filePass = @"../../../LogLayoutFolder/";
+            if (!Directory.Exists(filePass))
+            {
+                Directory.CreateDirectory(filePass);
+                Console.WriteLine("生成しました");
+            }
+            LayoutfilePass = filePass + fileName + ".csv";
+            System.IO.File.Create(LayoutfilePass).Close();
+            Console.WriteLine("LogFile: " + LayoutfilePass + " 生成");
+            return LayoutfilePass;
+
+
+
+        }
+
+        
+
+        public static string LoggerInitializeClick(string _layoutName)
+        {
+            DateTime date = DateTime.Now;
+            //File名生成
+            String start_time = date.Year + "." + date.Month + "." + date.Day + "." + date.Hour + "." + date.Minute + "." + date.Second;
+            String subjectname = "";
+
+
+
+            if (MainWindow.subjectName.Equals(""))
+            {
+                subjectname = "YURIKONANAO";
+            }
+            else
+            {
+                subjectname = MainWindow.subjectName;
+            }
+            fileName = subjectname + "_" + _layoutName + "_" + start_time;
+
+            string filePass = @"../../../LogClickedFolder/";
+            if (!Directory.Exists(filePass))
+            {
+                Directory.CreateDirectory(filePass);
+                Console.WriteLine("生成しました");
+            }
+            ClickfilePass = filePass + fileName + ".csv";
+            System.IO.File.Create(ClickfilePass).Close();
+            Console.WriteLine("LogFile: " + ClickfilePass + " 生成");
+            return ClickfilePass;
+
+
+
+        }
+
+        internal static void SaveLog(string layoutFilePass, string v)
+        {
+            StreamWriter w = new StreamWriter(layoutFilePass, true, Encoding.UTF8);
+            w.Write(v + "\n");
+            w.Close();
+        }
+
+        internal static void SaveLog(string layoutFilePass, int[] ary)
+        {
+            StreamWriter w = new StreamWriter(layoutFilePass, true, Encoding.UTF8);
+            
+            foreach (int i in ary)
+            {
+                w.Write(i + ",");
+                
+            }
+            w.Write("\n");
+            w.Close();
+        }
+
+        internal static void SaveLogClick(string name)
+        {
+           // throw new NotImplementedException();
+        }
+
+
+        public static void counter()
+        {
+            Console.WriteLine(sw.ElapsedMilliseconds);
+        }
+
+        static Stopwatch sw = new Stopwatch();
+        internal static void StopWatch(string v)
+        {
+            if (v.Equals("Start"))
+            {
+                sw.Start();
+            }
+            else if(v.Equals("Stop"))
+            {
+                counter();
+                sw.Stop();
+            }
+        }
+
+
     }
 }

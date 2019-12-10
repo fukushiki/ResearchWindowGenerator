@@ -343,3 +343,5 @@ healthchecksdb
 #./gnoreResearchProperties
 /LogFolder
 /LogFolderClick
+/LogClickedFolder
+/LogLayoutFolder

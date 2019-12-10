@@ -72,7 +72,8 @@ namespace ResearchWindowGenerator.ResearchWindow
 
         //String ContentsBarType = "Vector";
         String ContentsBarType = "Grid";
-
+        public static string LayoutFilePass;
+        public static string ClickLogFilePass;
         //public static  Layout1 layout1 { get; private set; }
 
         public Layout2_Grid()
@@ -87,7 +88,8 @@ namespace ResearchWindowGenerator.ResearchWindow
 
             WindowWidth = this.Width;
             WindowHeight = this.Height;
-
+            LayoutFilePass = Utility.LoggerInitialize(ParentClass);
+            ClickLogFilePass = Utility.LoggerInitializeClick(ParentClass);
 
 
             GridInit();
@@ -100,7 +102,7 @@ namespace ResearchWindowGenerator.ResearchWindow
 
             Maincontents_Arrangement();
 
-
+            
             LayoutSetting();
 
             SaveLayoutSetting();
@@ -390,6 +392,7 @@ namespace ResearchWindowGenerator.ResearchWindow
 
 
         static int Phase = 1;
+
         public Boolean scenario(String text1, String text2)
         {
             Console.WriteLine("ScenarioNum" + ScenarioNum);

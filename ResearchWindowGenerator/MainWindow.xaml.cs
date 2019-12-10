@@ -30,6 +30,7 @@ namespace ResearchWindowGenerator
         //string UserClassList =
         SelectWindow selectWindow;
         LogSelectWindow logSelectWindow;
+        public static string subjectName = "";
         public MainWindow()
         {
             InitializeComponent(); //XAMLから初期配置を設定するらしい
@@ -103,7 +104,7 @@ namespace ResearchWindowGenerator
                 Console.WriteLine("学年 : "+Gradelist_ComboBox.Text);
                 */
                 Logger.SaveUserData(Subject_Name.Text, Belonglist_ComboBox.Text, Gradelist_ComboBox.Text);
-
+                subjectName = Subject_Name.Text;
                 selectWindow = new SelectWindow();
                 selectWindow.Show();
                 this.Close();

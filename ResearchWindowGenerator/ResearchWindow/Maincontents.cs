@@ -315,6 +315,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             
             Maincontents5NumArray = Utility.RamdomArray(Maincontents5NumArray);
 
+
             Canvas canvas23 = new Canvas
             {
                 Height = gridHeight*2,
@@ -1056,9 +1057,12 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             string text2 = sender1.Tag.ToString();
             Boolean changeColorFlag = false;
 
+            
+
             switch (parentClass)
             {
                 case "Layout1":
+                    Utility.SaveLogClick(sender1.Name);
                     changeColorFlag = layout1.scenario(sprit[0], text2);
                     break;
                 case "Layout1_Grid":
