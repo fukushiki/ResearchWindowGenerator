@@ -86,6 +86,7 @@ namespace ResearchWindowGenerator.ResearchWindow
             this.Width = SystemParameters.WorkArea.Width;
             this.Height = SystemParameters.WorkArea.Height;
             this.WindowState = WindowState.Maximized;
+            this.Title = ParentClass + ": " + "ScenarioNum" + "1" + "Next : ContentsBarの1をクリック";
 
             WindowWidth = this.Width;
             WindowHeight = this.Height;
@@ -517,6 +518,7 @@ namespace ResearchWindowGenerator.ResearchWindow
 
                         Next = "MainContentsの1をクリック";
                         Flag = true;
+
                     }
                     else
                     {
@@ -604,6 +606,7 @@ namespace ResearchWindowGenerator.ResearchWindow
              * String WindowTitle = "Layout1 :";
             String Next = "";
              */
+            Utility.SaveLogClick(Next," ");
             this.Title = WindowTitle + " :" + "Next : " + Next + "                                                                                                   " + "ScenarioNum" + ScenarioNum;
             return Flag;
         }

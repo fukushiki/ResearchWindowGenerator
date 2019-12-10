@@ -133,7 +133,7 @@ namespace ResearchWindowGenerator
             {
                 subjectname = MainWindow.subjectName;
             }
-            fileName = subjectname + "_" + _layoutName + "_" + start_time;
+            fileName = subjectname + "_" +"Click_"+ _layoutName + "_" + start_time;
 
             string filePass = @"../../../LogClickedFolder/";
             if (!Directory.Exists(filePass))

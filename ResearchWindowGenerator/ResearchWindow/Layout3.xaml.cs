@@ -490,6 +490,7 @@ namespace ResearchWindowGenerator.ResearchWindow
                         if (Phase == 5)
                         {
                             Next = "実験終了です";
+                            Utility.StopWatch("Stop");
                         }
                         Phase++;
                     }

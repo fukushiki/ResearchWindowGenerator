@@ -945,13 +945,13 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     {
                         case (1)://特大アイコン
                             //Row : 列 Height
-                            rowDef1 = new RowDefinition { Height = new GridLength() };
-                            rowDef2 = new RowDefinition { Height = new GridLength() };
+                            rowDef1 = new RowDefinition { Height = new GridLength(contentsGrid.Height*0.8) };
+                            rowDef2 = new RowDefinition { Height = new GridLength(contentsGrid.Height*0.2) };
                             contentsGrid.RowDefinitions.Add(rowDef1);
                             contentsGrid.RowDefinitions.Add(rowDef2);
                             contentsGrid.Children.Add(img);
                             contentsGrid.Children.Add(textBlock);
-                            textBlock.FontSize = 30;
+                            textBlock.FontSize = contentsGrid.Height * 0.2 * 0.8;
                             Grid.SetRow(img, 0);
                             Grid.SetRow(textBlock, 1);
                             break;

@@ -621,7 +621,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
                 TextBlock textblock = new TextBlock();
                 textblock.Text = (count).ToString(); ;
-                //textblock.FontSize = ButtonList4_Grid.Height * 0.5;
+                textblock.FontSize = ButtonList4_Grid.Height * 0.5;
                 textblock.HorizontalAlignment = HorizontalAlignment.Center;
                 textblock.VerticalAlignment = VerticalAlignment.Center;
                 ButtonList4_Grid.Children.Add(textblock);
@@ -643,6 +643,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
         }
 
+
+
+        ComboBox comboBox;
         /// <summary>
         /// PowerPointTypeの一部
         /// </summary>
@@ -666,18 +669,18 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             //myContentsBarGrid.RowDefinitions.Add(MainrowDef3);
 
             ButtonList5_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(60) });
-            ButtonList5_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(260) });
-            ButtonList5_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(30) });
-            ButtonList5_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(30) });
-            //ButtonList5_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength() });
+            ButtonList5_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(200) });
+            ButtonList5_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(60) });
+            //ButtonList5_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(30) });
+            ButtonList5_Grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength() });
 
             int[] numArray = toolBarNumArray[4];
             //NumArray をシャッフル
             string[] Number = { " ", toolBarNumArray[4][0].ToString(), toolBarNumArray[4][1].ToString(), toolBarNumArray[4][2].ToString(), toolBarNumArray[4][3].ToString(), toolBarNumArray[4][4].ToString() };
-
-            ComboBox comboBox = new ComboBox();
+            
+            comboBox = new ComboBox();
             comboBox.Height = 20;
-            comboBox.Width = 260;
+            comboBox.Width = 200;
 
             comboBox.SelectedIndex = 0;
             for(int i =0; i < Number.Length; i++)
@@ -688,7 +691,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
             ButtonList5_Grid.Children.Add(comboBox);
             Grid.SetColumn(comboBox, 1);
-            Grid.SetRow(comboBox, 0);
+            Grid.SetRow(comboBox, 1);
 
             buttonList5 = new List<Button[]>();
             int buttonRow = 1;
@@ -698,7 +701,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 Button[] button = new Button[buttonColumn];
                 Grid buttonGrid = new Grid
                 {
-                    Width = 30,
+                    Width = 60,
                     Height = 20,
                     
                     Background = Brushes.Pink,
@@ -708,19 +711,20 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
                 ButtonList5_Grid.Children.Add(buttonGrid);
                 Grid.SetRow(buttonGrid, 1);
-                Grid.SetColumn(buttonGrid, 1);
+                Grid.SetColumn(buttonGrid, 2);
 
 
                 
 
                 for (int j = 0; j < buttonColumn; j++)
                 {
-                    buttonGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(20) });
+                    buttonGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(30) });
                     button[j] = new Button { Width = 30, Height = 20 };
                     button[j].Name = "ToolBarTop5" + "_C" + j+1 + "_R" + i+1;
-                    button[j].Tag = "Number" + j; /*+ toolBarNumArray[4][i*buttonColumn + j];*/
-                    button[j].Click += ToolBarTopButton_Clicked;
+                    button[j].Tag = "Number" + (j+1); /*+ toolBarNumArray[4][i*buttonColumn + j];*/
+                    button[j].Click += ToolBarTopButton_Grid5_Clicked;
                     buttonGrid.Children.Add(button[j]);
+                    Grid.SetColumn(button[j],j);
                     
 
 
@@ -733,7 +737,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
 
                     TextBlock textblock_ = new TextBlock();
-                    textblock_.Text = j.ToString();
+                    textblock_.Text = (j+1).ToString();
                     textblock_.FontSize = stack.Height * 0.5;
                     textblock_.HorizontalAlignment = HorizontalAlignment.Center;
                     textblock_.VerticalAlignment = VerticalAlignment.Center;
@@ -806,6 +810,57 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             {
                 sender1.Background = Brushes.Red;
             }
+
+        }
+
+        static int ButtonGrid5Click = 1;
+        private void ToolBarTopButton_Grid5_Clicked(object sender, RoutedEventArgs e)
+        {
+            Button sender1 = (System.Windows.Controls.Button)sender;
+            Console.WriteLine(sender1.Name);
+            Console.WriteLine(sender1.Tag);
+
+            string[] sprit = sender1.Name.Split('_');
+            string text2 = sender1.Tag.ToString();
+            Boolean changeColorFlag = false;
+            Utility.SaveLogClick(sender1.Name.ToString(), sender1.Tag.ToString());
+
+
+            if(ButtonGrid5Click == 1 && comboBox.Text.Equals("1") || ButtonGrid5Click == 2 && comboBox.Text.Equals("2"))
+            {
+                Console.WriteLine("aaaaaaaaaaaaaaa");
+                switch (parentClass)
+                {
+                    case "Layout1":
+                        changeColorFlag = layout1.scenario(sprit[0], text2);
+                        break;
+                    case "Layout1_Grid":
+                        changeColorFlag = layout1_Grid.scenario(sprit[0], text2);
+                        break;
+
+                    case "Layout2":
+                        changeColorFlag = layout2.scenario(sprit[0], text2);
+                        break;
+
+                    case "Layout2_Grid":
+                        changeColorFlag = layout2_Grid.scenario(sprit[0], text2);
+                        break;
+                    case "Layout3":
+                        changeColorFlag = layout3.scenario(sprit[0], text2);
+                        break;
+                    case "Layout3_Grid":
+                        changeColorFlag = layout3_Grid.scenario(sprit[0], text2);
+                        break;
+
+                }
+                if (changeColorFlag)
+                {
+                    sender1.Background = Brushes.Red;
+                }
+                ButtonGrid5Click++;
+            }
+
+            
 
         }
 

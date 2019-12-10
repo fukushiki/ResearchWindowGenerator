@@ -183,7 +183,7 @@ namespace ResearchWindowGenerator.ResearchWindow
                 contentsBarVector.Parent(this);
                 contentsBarVector.SetWidth(265);
                 //contentsBarVector.SetHeight(WindowHeight - (toolBarTop.GetHeight()));
-                contentsBarVector.SetHeight(WindowHeight - (toolBarTop.GetHeight()));
+                contentsBarVector.SetHeight(WindowHeight -20 - (toolBarTop.GetHeight()));
                 contentsBarVector.SetGridsOrder(ContentsBarNumArray);
             }
 
@@ -194,13 +194,14 @@ namespace ResearchWindowGenerator.ResearchWindow
                                                   11, 12, 13, 14, 15,
                                                   16, 17, 18, 19, 20,
                                                   21, 22, 23, 24, 25};
-                contentsBarGrid = new ContentsBarGrid(ContentsBarNumArray);
                 ContentsBarNumArray = Utility.RamdomArray(ContentsBarNumArray);
+                contentsBarGrid = new ContentsBarGrid(ContentsBarNumArray);
+                
                 contentsBarGrid.SetParentClass(ParentClass);
                 contentsBarGrid.Parent(this);
                 contentsBarGrid.SetWidth(265);
                 //contentsBarVector.SetHeight(WindowHeight - (toolBarTop.GetHeight()));
-                contentsBarGrid.SetHeight(WindowHeight - (toolBarTop.GetHeight()));
+                contentsBarGrid.SetHeight(WindowHeight-20 - (toolBarTop.GetHeight()));
                 contentsBarGrid.SetGridsOrder(ContentsBarNumArray);
 
             }
@@ -477,6 +478,7 @@ namespace ResearchWindowGenerator.ResearchWindow
                         if (Phase == 5)
                         {
                             Next = "実験終了です";
+                            Utility.StopWatch("Stop");
                         }
                         Phase++;
                     }
