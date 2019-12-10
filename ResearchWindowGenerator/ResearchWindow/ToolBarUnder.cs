@@ -241,7 +241,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             string[] sprit = sender1.Name.Split('_');
             string text2 = sender1.Tag.ToString();
             Boolean changeColorFlag = false;
-
+            Utility.SaveLogClick(sender1.Name.ToString(), sender1.Tag.ToString());
             switch (parentClass)
             {
                 case "Layout1":

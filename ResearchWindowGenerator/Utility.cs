@@ -170,15 +170,35 @@ namespace ResearchWindowGenerator
             w.Close();
         }
 
-        internal static void SaveLogClick(string name)
+        public  static void SaveLogClick(string name, string tag)
         {
-           // throw new NotImplementedException();
+            // throw new NotImplementedException();
+            StreamWriter w = new StreamWriter(ClickfilePass, true, Encoding.UTF8);
+
+            //時間 ボタンの名前 ボタンのタグ
+            w.Write(counter() +",");
+            w.Write(name + ",");
+            w.Write(tag + ",");
+
+
+            w.Write("\n");
+            w.Close();
+
+
+
+            
+
+
+
+
+
         }
 
 
-        public static void counter()
+        public static int counter()
         {
             Console.WriteLine(sw.ElapsedMilliseconds);
+            return (int)sw.ElapsedMilliseconds;
         }
 
         static Stopwatch sw = new Stopwatch();
@@ -190,7 +210,7 @@ namespace ResearchWindowGenerator
             }
             else if(v.Equals("Stop"))
             {
-                counter();
+                int a = counter();
                 sw.Stop();
             }
         }

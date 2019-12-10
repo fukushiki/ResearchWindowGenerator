@@ -529,7 +529,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             ellipse.Width = (int)rnd.Next(10, (int)CanvasList[1].Width - 80);
             ellipse.Height = (int)rnd.Next(10, (int)CanvasList[1].Height - 80);
             CanvasList[1].Children.Add(ellipse);
-            ellipse.Name = "MainContents_" + MainContentsGridTypeNum;
+            ellipse.Name = "MainContents_" + MainContentsGridTypeNum + "_ellipse";
             ellipse.Tag = "Number" + Maincontents5NumArray[1];
 
             ellipse.MouseDown += EllipseMouseDown;
@@ -564,7 +564,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             //CanvasList[2].MouseDown += ((CanvasList[2], e, RectangleX1, RectangleX2, RectangleY1, RectangleY2) => MouseButtonEventHandler(Rectangle_MouseDown));
 
             //myPolygon_Rectangle1.MouseDown += (myPolygon_Rectangle1, e) => MouseButtonEventHandler(myPolygon_Rectangle1,e); 
-            myPolygon_Rectangle1.Name = "MainContents_" + MainContentsGridTypeNum;
+            myPolygon_Rectangle1.Name = "MainContents_" + MainContentsGridTypeNum + "_myPolygonRectangle1";
             myPolygon_Rectangle1.Tag = "Number" + Maincontents5NumArray[2];
             myPolygon_Rectangle1.MouseDown += PolygonMouseDown;
 
@@ -592,7 +592,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             myPolygon_Rectangle2.Points = myPointCollection_Rectangle2;
             CanvasList[3].Children.Add(myPolygon_Rectangle2);
 
-            myPolygon_Rectangle2.Name = "MainContents_" + MainContentsGridTypeNum;
+            myPolygon_Rectangle2.Name = "MainContents_" + MainContentsGridTypeNum + "_myPolygon_Rectangle2";
             myPolygon_Rectangle2.Tag = "Number" + Maincontents5NumArray[3];
 
             myPolygon_Rectangle2.MouseDown += PolygonMouseDown;
@@ -619,7 +619,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             myPolygonTriangle2.Points = myPointCollection_Triangle2;
             CanvasList[4].Children.Add(myPolygonTriangle2);
 
-            myPolygonTriangle2.Name = "MainContents_" + MainContentsGridTypeNum;
+            myPolygonTriangle2.Name = "MainContents_" + MainContentsGridTypeNum+"_myPolygonTriangle2";
             myPolygonTriangle2.Tag = "Number" + Maincontents5NumArray[4];
 
             myPolygonTriangle2.MouseDown += PolygonMouseDown;
@@ -647,6 +647,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             string[] sprit = polygon.Name.Split('_');
             string text2 = polygon.Tag.ToString();
             Boolean changeColorFlag = false;
+            Utility.SaveLogClick(polygon.Name.ToString(), polygon.Tag.ToString());
             switch (parentClass)
             {
                 case "Layout1":
@@ -693,6 +694,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             string[] sprit = ellipse.Name.Split('_');
             string text2 = ellipse.Tag.ToString();
             Boolean changeColorFlag= false;
+            Utility.SaveLogClick(ellipse.Name.ToString(), ellipse.Tag.ToString());
             switch (parentClass)
             {
                 case "Layout1":
@@ -1057,12 +1059,12 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             string text2 = sender1.Tag.ToString();
             Boolean changeColorFlag = false;
 
-            
 
+            Utility.SaveLogClick(sender1.Name.ToString(), sender1.Tag.ToString());
             switch (parentClass)
             {
                 case "Layout1":
-                    Utility.SaveLogClick(sender1.Name);
+                    
                     changeColorFlag = layout1.scenario(sprit[0], text2);
                     break;
                 case "Layout1_Grid":
