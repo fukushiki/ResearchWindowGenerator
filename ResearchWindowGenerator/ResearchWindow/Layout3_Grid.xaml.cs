@@ -288,10 +288,12 @@ namespace ResearchWindowGenerator.ResearchWindow
             MainContents child_maincontents = new MainContents(maincontentsNumArrayList[MainContentsNumArray[i_] - 1]);
             child_maincontents.SetParentClass(ParentClass);
             child_maincontents.Parent(this);
-            child_maincontents.SetWidth(WindowWidth - contentsBarGrid.GetWidth() - toolBarRight.GetWidth());
-            child_maincontents.SetHeight(contentsBarGrid.GetHeight());
+            child_maincontents.SetWidth(WindowWidth  - contentsBarGrid.GetWidth() - toolBarRight.GetWidth());
+            child_maincontents.SetHeight(contentsBarGrid.GetHeight() - 25);
             child_maincontents.SetGridsOrder(MainContentsNumArray[i_]);
             maincontents.Add(child_maincontents);
+
+            maincontents[i_].mainContentsGrid.VerticalAlignment = VerticalAlignment.Top;
 
             //maincontents
             Grid.SetColumn(maincontents[i_].mainContentsGrid, 1);
@@ -309,9 +311,9 @@ namespace ResearchWindowGenerator.ResearchWindow
                 Width = this.Width,
                 Height = this.Height,
                 //Background = Brushes.Aquamarine,
-#if DEBUG
+
                 ShowGridLines = true
-#endif
+
 
             };
 

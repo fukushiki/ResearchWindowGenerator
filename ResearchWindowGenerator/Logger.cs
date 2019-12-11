@@ -33,6 +33,7 @@ namespace ResearchWindowGenerator
         /// <param name="_v">Windowの名前</param>
         internal static void LoggerInitialize(string _v)
         {
+            /*
             DateTime date = DateTime.Now;
             
             //File名生成
@@ -63,7 +64,7 @@ namespace ResearchWindowGenerator
 
             filePassClick = filePassClick + fileName + ".csv";
             System.IO.File.Create(filePassClick).Close();
-            Console.WriteLine("LogFile: " + filePassClick + " 生成");
+            Console.WriteLine("LogFile: " + filePassClick + " 生成");*/
 
         }
 

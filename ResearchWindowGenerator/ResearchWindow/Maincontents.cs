@@ -336,7 +336,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             TextBlock canvas23text = new TextBlock
             {
                 Text = Maincontents5NumArray[0].ToString(),
-                FontSize = 20
+                FontSize = 40
                 
             };
             
@@ -373,7 +373,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             TextBlock canvas32text = new TextBlock
             {
                 Text = Maincontents5NumArray[1].ToString(),
-                FontSize = 20
+                FontSize = 40
 
             };
 
@@ -392,7 +392,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             {
                 Height = gridHeight * 3,
                 Width = gridWidth * 3,
-                Background = Brushes.Blue,
+                Background = Brushes.LightSalmon,
                 
                 Name = "canvas33" + "Row" + (MainContents5Place[Maincontents5Pattern][2, 0] + 1).ToString()
                 + "Column" + (MainContents5Place[Maincontents5Pattern][2, 1] + 1).ToString(),
@@ -408,7 +408,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             TextBlock canvas33text = new TextBlock
             {
                 Text = Maincontents5NumArray[2].ToString(),
-                FontSize = 20,
+                FontSize = 40,
                 
 
             };
@@ -442,7 +442,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             TextBlock canvas34text = new TextBlock
             {
                 Text = Maincontents5NumArray[3].ToString(),
-                FontSize = 20
+                FontSize = 40
 
             };
 
@@ -471,7 +471,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             TextBlock canvas43text = new TextBlock
             {
                 Text = Maincontents5NumArray[4].ToString(),
-                FontSize = 20
+                FontSize = 40
 
             };
 

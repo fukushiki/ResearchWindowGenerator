@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using ResearchWindowGenerator.ResearchWindow;
 
 namespace ResearchWindowGenerator.ResearchWindowFolder
@@ -150,23 +151,31 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     g.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(g.Width * 0.2) });
                     g.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(g.Width * 0.8) });
 
-                    TextBlock textblock0 = new TextBlock();
+                    /*TextBlock textblock0 = new TextBlock();
                     textblock0.Text = ToolBarOrder[i * buttonColumn + j].ToString();
                     textblock0.FontSize = button[j].Height * 0.8;
                     textblock0.HorizontalAlignment = HorizontalAlignment.Center;
                     textblock0.VerticalAlignment = VerticalAlignment.Center;
                     g.Children.Add(textblock0);
+                    */
+
+
+                    Image img = new Image();
+                    img.Source = new BitmapImage(new Uri(System.IO.Path.GetFullPath(@"../../../ImageFolder/" + ToolBarOrder[i * buttonColumn + j] + ".png"), UriKind.RelativeOrAbsolute));
+                    img.Height = sp.Height * 0.8;
+                    g.Children.Add(img);
+
 
 
                     TextBlock textblock1 = new TextBlock();
-                    textblock1.Text = "Button Number " + ToolBarOrder[i * buttonColumn + j].ToString(); ;
+                    textblock1.Text = ToolBarOrder[i * buttonColumn + j].ToString(); ;
                     textblock1.FontSize = button[j].Height * 0.8;
                     textblock1.HorizontalAlignment = HorizontalAlignment.Center;
                     textblock1.VerticalAlignment = VerticalAlignment.Center;
                     g.Children.Add(textblock1);
 
 
-                    Grid.SetColumn(textblock0, 0);
+                    Grid.SetColumn(img, 0);
                     Grid.SetColumn(textblock1, 1);
 
 

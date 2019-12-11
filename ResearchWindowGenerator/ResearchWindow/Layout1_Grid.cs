@@ -291,9 +291,9 @@ namespace ResearchWindowGenerator.ResearchWindow
                 Width = this.Width,
                 Height = this.Height,
                 //Background = Brushes.Aquamarine,
-#if DEBUG
+
                 ShowGridLines = true
-#endif
+
 
             };
 

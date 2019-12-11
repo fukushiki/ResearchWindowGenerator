@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using ResearchWindowGenerator.ResearchWindow;
 
 namespace ResearchWindowGenerator.ResearchWindowFolder
@@ -387,6 +388,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
                 for (int j = 0; j < buttonColumn; j++)
                 {
+
+                    
+
                     buttonGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(70) });
                     button[j] = new Button { Width = 70, Height = buttonGrid.Height };
                     button[j].Name = "ToolBarTop2" + "_C" + j+1 + "_R" + i+1;
@@ -403,13 +407,30 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
 
 
+                    Grid g = new Grid
+                    {
+                        Width = stack.Width,
+                        Height = stack.Height
+                    };
+
+
+                    g.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(g.Width * 0.2) });
+                    g.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(g.Width * 0.8) });
+                    stack.Children.Add(g);
+
+                    Image img = new Image();
+                    img.Source = new BitmapImage(new Uri(System.IO.Path.GetFullPath(@"../../../ImageFolder/" + toolBarNumArray[1][i * buttonColumn + j] + ".png"), UriKind.RelativeOrAbsolute));
+                    img.Width = buttonGrid.Width* 0.8;
+                    g.Children.Add(img);
+                    Grid.SetColumn(img, 1);
+
                     TextBlock textblock_ = new TextBlock();
                     textblock_.Text = toolBarNumArray[1][i * buttonColumn + j].ToString();
                     textblock_.FontSize = stack.Height * 0.5;
                     textblock_.HorizontalAlignment = HorizontalAlignment.Center;
                     textblock_.VerticalAlignment = VerticalAlignment.Center;
-                    stack.Children.Add(textblock_);
-
+                    g.Children.Add(textblock_);
+                    Grid.SetColumn(textblock_, 0);
                 }
 
                 buttonList2.Add(button);
@@ -602,19 +623,59 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     stack.Height = button[j].Height;
                     button[j].Content = stack;
 
+                    Grid g = new Grid
+                    {
+                        Width = stack.Width,
+                        Height = stack.Height
+                    };
+
+
+                    g.RowDefinitions.Add(new RowDefinition { Height = new GridLength(g.Height * 0.6) });
+                    g.RowDefinitions.Add(new RowDefinition { Height = new GridLength(g.Height * 0.4) });
+                    stack.Children.Add(g);
+
+                    Image img = new Image();
+                    img.Source = new BitmapImage(new Uri(System.IO.Path.GetFullPath(@"../../../ImageFolder/" + toolBarNumArray[3][i * buttonColumn + j] + ".png"), UriKind.RelativeOrAbsolute));
+                    img.Height = buttonGrid.Height * 0.6;
+                    g.Children.Add(img);
+                    Grid.SetRow(img, 0);
 
 
                     TextBlock textblock_ = new TextBlock();
                     textblock_.Text = toolBarNumArray[3][i * buttonColumn + j].ToString();
-                    textblock_.FontSize = stack.Height * 0.5;
+                    textblock_.FontSize = stack.Height * 0.4;
                     textblock_.HorizontalAlignment = HorizontalAlignment.Center;
                     textblock_.VerticalAlignment = VerticalAlignment.Center;
-                    stack.Children.Add(textblock_);
+                    g.Children.Add(textblock_);
+                    Grid.SetRow(textblock_,1);                    
+
                     /*
                     Grid.SetColumn(textblock_, 0);
                     Grid.SetRow(textblock_, 0);
                     Grid.SetRowSpan(textblock_, 3);
                     */
+
+
+
+
+
+                    
+
+                    
+
+                    
+
+
+
+
+
+
+
+
+
+
+
+
                 }
 
                 buttonList4.Add(button);
