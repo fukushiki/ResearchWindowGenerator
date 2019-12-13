@@ -105,6 +105,7 @@ namespace ResearchWindowGenerator.ResearchWindow
             LayoutSetting();
 
             SaveLayoutSetting();
+            Utility.StopWatch("Start");
         }
 
 
@@ -357,33 +358,74 @@ namespace ResearchWindowGenerator.ResearchWindow
         private void SaveLayoutSetting()
         {
             Console.WriteLine("Layout" + LayoutNum);
-            Console.WriteLine("ToolBarTop" + "True");
-            Console.WriteLine("ToolBarOrder");
+            Console.WriteLine("ToolBarTop");
+            Console.WriteLine("ToolBarTopOrder");
+            foreach (int i in ToolBarTopOrder)
+            {
+                Console.Write(i + ",");
+            }
+            Console.WriteLine();
+
+            Utility.SaveLog(LayoutFilePass, "ToolBarTop");
+            Utility.SaveLog(LayoutFilePass, "ToolBarTopOrder");
+            Utility.SaveLog(LayoutFilePass, ToolBarTopOrder);
+
+
             Console.WriteLine("ToolBarTop1_NumArray");
             foreach (int i in ToolBarTop1NumArray)
             {
-                Console.WriteLine(i);
+                Console.Write(i + ",");
             }
+            Console.WriteLine();
+            Utility.SaveLog(LayoutFilePass, "ToolBarTop1_NumArray");
+            Utility.SaveLog(LayoutFilePass, ToolBarTop1NumArray);
+
+
             Console.WriteLine("ToolBarTop2_NumArray");
             foreach (int i in ToolBarTop2NumArray)
             {
-                Console.WriteLine(i);
+                Console.Write(i + ",");
             }
+            Console.WriteLine();
+            Utility.SaveLog(LayoutFilePass, "ToolBarTop2_NumArray");
+            Utility.SaveLog(LayoutFilePass, ToolBarTop2NumArray);
+
+
             Console.WriteLine("ToolBarTop3_NumArray");
             foreach (int i in ToolBarTop3NumArray)
             {
-                Console.WriteLine(i);
+                Console.Write(i + ",");
             }
+            Console.WriteLine();
+            Utility.SaveLog(LayoutFilePass, "ToolBarTop3_NumArray");
+            Utility.SaveLog(LayoutFilePass, ToolBarTop3NumArray);
+
+
             Console.WriteLine("ToolBarTop4_NumArray");
             foreach (int i in ToolBarTop4NumArray)
             {
-                Console.WriteLine(i);
+                Console.Write(i + ",");
             }
+            Console.WriteLine();
+            Utility.SaveLog(LayoutFilePass, "ToolBarTop4_NumArray");
+            Utility.SaveLog(LayoutFilePass, ToolBarTop4NumArray);
+
             Console.WriteLine("ToolBarTop5_NumArray");
             foreach (int i in ToolBarTop5NumArray)
             {
-                Console.WriteLine(i);
+                Console.Write(i + ",");
             }
+            Console.WriteLine();
+            Utility.SaveLog(LayoutFilePass, "ToolBarTop5_NumArray");
+            Utility.SaveLog(LayoutFilePass, ToolBarTop5NumArray);
+
+
+
+
+
+
+
+
             Console.WriteLine("ContentsBar" + ContentsBarType);
             Console.WriteLine("MainContents");
             foreach (int i in MainContentsNumArray)

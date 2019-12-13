@@ -494,9 +494,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             myPolygonTriangle1.StrokeThickness = 2;
             myPolygonTriangle1.HorizontalAlignment = HorizontalAlignment.Left;
             myPolygonTriangle1.VerticalAlignment = VerticalAlignment.Center;
-            System.Windows.Point Point1_Triangle = new System.Windows.Point((int)rnd.Next(10, (int)CanvasList[0].Width-10), (int)rnd.Next(10, (int)CanvasList[0].Height - 10));
-            System.Windows.Point Point2_Triangle = new System.Windows.Point((int)rnd.Next(10, (int)CanvasList[0].Width - 10), (int)rnd.Next(10, (int)CanvasList[0].Height - 10));
-            System.Windows.Point Point3_Triangle = new System.Windows.Point((int)rnd.Next(10, (int)CanvasList[0].Width - 10), (int)rnd.Next(10, (int)CanvasList[0].Height - 10));
+            System.Windows.Point Point1_Triangle = new System.Windows.Point((int)rnd.Next(40, (int)CanvasList[0].Width-10), (int)rnd.Next(40, (int)CanvasList[0].Height - 10));
+            System.Windows.Point Point2_Triangle = new System.Windows.Point((int)rnd.Next(40, (int)CanvasList[0].Width - 10), (int)rnd.Next(40, (int)CanvasList[0].Height - 10));
+            System.Windows.Point Point3_Triangle = new System.Windows.Point((int)rnd.Next(40, (int)CanvasList[0].Width - 10), (int)rnd.Next(40, (int)CanvasList[0].Height - 10));
             PointCollection myPointCollection_Triangle = new PointCollection();
             myPointCollection_Triangle.Add(Point1_Triangle);
             myPointCollection_Triangle.Add(Point2_Triangle);
@@ -544,9 +544,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             myPolygon_Rectangle1.StrokeThickness = 2;
             myPolygon_Rectangle1.HorizontalAlignment = HorizontalAlignment.Left;
             myPolygon_Rectangle1.VerticalAlignment = VerticalAlignment.Center;
-            int RectangleX1 = (int)rnd.Next(10, (int)CanvasList[2].Width/2 - 10);
+            int RectangleX1 = (int)rnd.Next(40, (int)CanvasList[2].Width/2 - 10);
             int RectangleX2 = (int)rnd.Next((int)CanvasList[2].Width/2, (int)CanvasList[2].Width - 10);
-            int RectangleY1 = (int)rnd.Next(10, (int)CanvasList[2].Height/2 - 10);
+            int RectangleY1 = (int)rnd.Next(40, (int)CanvasList[2].Height/2 - 10);
             int RectangleY2 = (int)rnd.Next((int)CanvasList[2].Height/2 , (int)CanvasList[2].Height - 10);
 
             System.Windows.Point Point1_Rectangle = new System.Windows.Point(RectangleX1, RectangleY1);
@@ -575,9 +575,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             myPolygon_Rectangle2.StrokeThickness = 2;
             myPolygon_Rectangle2.HorizontalAlignment = HorizontalAlignment.Left;
             myPolygon_Rectangle2.VerticalAlignment = VerticalAlignment.Center;
-            int Rectangle2X1 = (int)rnd.Next(10, (int)CanvasList[3].Width / 2 - 10);
+            int Rectangle2X1 = (int)rnd.Next(40, (int)CanvasList[3].Width / 2 - 10);
             int Rectangle2X2 = (int)rnd.Next((int)CanvasList[3].Width / 2, (int)CanvasList[2].Width - 10);
-            int Rectangle2Y1 = (int)rnd.Next(10, (int)CanvasList[3].Height / 2 - 10);
+            int Rectangle2Y1 = (int)rnd.Next(40, (int)CanvasList[3].Height / 2 - 10);
             int Rectangle2Y2 = (int)rnd.Next((int)CanvasList[3].Height / 2, (int)CanvasList[2].Height - 10);
 
             System.Windows.Point Point1_Rectangle2 = new System.Windows.Point(Rectangle2X1, Rectangle2Y1);
@@ -609,9 +609,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             myPolygonTriangle2.StrokeThickness = 2;
             myPolygonTriangle2.HorizontalAlignment = HorizontalAlignment.Left;
             myPolygonTriangle2.VerticalAlignment = VerticalAlignment.Center;
-            System.Windows.Point Point1_Triangle2 = new System.Windows.Point((int)rnd.Next(10, (int)CanvasList[4].Width - 10), (int)rnd.Next(10, (int)CanvasList[4].Height - 10));
-            System.Windows.Point Point2_Triangle2 = new System.Windows.Point((int)rnd.Next(10, (int)CanvasList[4].Width - 10), (int)rnd.Next(10, (int)CanvasList[4].Height - 10));
-            System.Windows.Point Point3_Triangle2 = new System.Windows.Point((int)rnd.Next(10, (int)CanvasList[4].Width - 10), (int)rnd.Next(10, (int)CanvasList[4].Height - 10));
+            System.Windows.Point Point1_Triangle2 = new System.Windows.Point((int)rnd.Next(40, (int)CanvasList[4].Width - 10), (int)rnd.Next(40, (int)CanvasList[4].Height - 10));
+            System.Windows.Point Point2_Triangle2 = new System.Windows.Point((int)rnd.Next(40, (int)CanvasList[4].Width - 10), (int)rnd.Next(40, (int)CanvasList[4].Height - 10));
+            System.Windows.Point Point3_Triangle2 = new System.Windows.Point((int)rnd.Next(40, (int)CanvasList[4].Width - 10), (int)rnd.Next(40, (int)CanvasList[4].Height - 10));
             PointCollection myPointCollection_Triangle2 = new PointCollection();
             myPointCollection_Triangle2.Add(Point1_Triangle2);
             myPointCollection_Triangle2.Add(Point2_Triangle2);
@@ -647,7 +647,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             string[] sprit = polygon.Name.Split('_');
             string text2 = polygon.Tag.ToString();
             Boolean changeColorFlag = false;
-            Utility.SaveLogClick(polygon.Name.ToString(), polygon.Tag.ToString());
+            Utility.SaveLogClick(polygon.Name.ToString(), polygon.Tag.ToString(), System.Windows.Forms.Control.MousePosition);
             switch (parentClass)
             {
                 case "Layout1":
@@ -694,7 +694,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             string[] sprit = ellipse.Name.Split('_');
             string text2 = ellipse.Tag.ToString();
             Boolean changeColorFlag= false;
-            Utility.SaveLogClick(ellipse.Name.ToString(), ellipse.Tag.ToString());
+            Utility.SaveLogClick(ellipse.Name.ToString(), ellipse.Tag.ToString(), System.Windows.Forms.Control.MousePosition);
             switch (parentClass)
             {
                 case "Layout1":
@@ -714,10 +714,10 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 case "Layout3":
                     changeColorFlag = layout3.scenario(sprit[0], text2);
                     break;
-                /*case "Layout3_Grid":
+                case "Layout3_Grid":
                     changeColorFlag = layout3_Grid.scenario(sprit[0], text2);
                     break;
-                    */
+                    
             }
             if (changeColorFlag)
             {
@@ -1059,8 +1059,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             string text2 = sender1.Tag.ToString();
             Boolean changeColorFlag = false;
 
-
-            Utility.SaveLogClick(sender1.Name.ToString(), sender1.Tag.ToString());
+            
+            Utility.SaveLogClick(sender1.Name.ToString(), sender1.Tag.ToString(), System.Windows.Forms.Control.MousePosition);
             switch (parentClass)
             {
                 case "Layout1":

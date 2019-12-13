@@ -192,8 +192,9 @@ namespace ResearchWindowGenerator.ResearchWindow
                                                   11, 12, 13, 14, 15,
                                                   16, 17, 18, 19, 20,
                                                   21, 22, 23, 24, 25};
-                contentsBarGrid = new ContentsBarGrid(ContentsBarNumArray);
+                
                 ContentsBarNumArray = Utility.RamdomArray(ContentsBarNumArray);
+                contentsBarGrid = new ContentsBarGrid(ContentsBarNumArray);
                 contentsBarGrid.SetParentClass(ParentClass);
                 contentsBarGrid.Parent(this);
                 contentsBarGrid.SetWidth(310);
@@ -208,6 +209,7 @@ namespace ResearchWindowGenerator.ResearchWindow
         {
             maincontents = new List<MainContents>();
             MainContentsNumArray = new int[] { 1, 2, 3, 4, 5 };
+            //MainContentsNumArray = new int[] { 5, 5, 5, 5, 5 };
             MainContentsNumArray = Utility.RamdomArray(MainContentsNumArray);
             maincontentsNumArrayList = new List<int[]>();
 
@@ -606,7 +608,7 @@ namespace ResearchWindowGenerator.ResearchWindow
              * String WindowTitle = "Layout1 :";
             String Next = "";
              */
-            Utility.SaveLogClick(Next," ");
+            //Utility.SaveLogClick(Next," ", System.Windows.Forms.Control.MousePosition);
             this.Title = WindowTitle + " :" + "Next : " + Next + "                                                                                                   " + "ScenarioNum" + ScenarioNum;
             return Flag;
         }

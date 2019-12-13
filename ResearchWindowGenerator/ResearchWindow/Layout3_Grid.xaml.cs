@@ -226,6 +226,7 @@ namespace ResearchWindowGenerator.ResearchWindow
         {
             maincontents = new List<MainContents>();
             MainContentsNumArray = new int[] { 1, 2, 3, 4, 5 };
+            //MainContentsNumArray = new int[] { 5, 5, 5, 5, 5 };
             MainContentsNumArray = Utility.RamdomArray(MainContentsNumArray);
             maincontentsNumArrayList = new List<int[]>();
 
@@ -373,40 +374,152 @@ namespace ResearchWindowGenerator.ResearchWindow
 
         private void SaveLayoutSetting()
         {
-            Console.WriteLine("Layout" + LayoutNum);
-            Console.WriteLine("ToolBarTop" + "True");
-            Console.WriteLine("ToolBarOrder");
+            Console.WriteLine(ParentClass);
+            Console.WriteLine("ToolBarTop");
+            Console.WriteLine("ToolBarTopOrder");
+            foreach (int i in ToolBarTopOrder)
+            {
+                Console.Write(i + ",");
+            }
+            Console.WriteLine();
+
+            Utility.SaveLog(LayoutFilePass, "ToolBarTop");
+            Utility.SaveLog(LayoutFilePass, "ToolBarTopOrder");
+            Utility.SaveLog(LayoutFilePass, ToolBarTopOrder);
+
+
             Console.WriteLine("ToolBarTop1_NumArray");
             foreach (int i in ToolBarTop1NumArray)
             {
-                Console.WriteLine(i);
+                Console.Write(i + ",");
             }
+            Console.WriteLine();
+            Utility.SaveLog(LayoutFilePass, "ToolBarTop1_NumArray");
+            Utility.SaveLog(LayoutFilePass, ToolBarTop1NumArray);
+
+
             Console.WriteLine("ToolBarTop2_NumArray");
             foreach (int i in ToolBarTop2NumArray)
             {
-                Console.WriteLine(i);
+                Console.Write(i + ",");
             }
+            Console.WriteLine();
+            Utility.SaveLog(LayoutFilePass, "ToolBarTop2_NumArray");
+            Utility.SaveLog(LayoutFilePass, ToolBarTop2NumArray);
+
+
             Console.WriteLine("ToolBarTop3_NumArray");
             foreach (int i in ToolBarTop3NumArray)
             {
-                Console.WriteLine(i);
+                Console.Write(i + ",");
             }
+            Console.WriteLine();
+            Utility.SaveLog(LayoutFilePass, "ToolBarTop3_NumArray");
+            Utility.SaveLog(LayoutFilePass, ToolBarTop3NumArray);
+
+
             Console.WriteLine("ToolBarTop4_NumArray");
             foreach (int i in ToolBarTop4NumArray)
             {
-                Console.WriteLine(i);
+                Console.Write(i + ",");
             }
+            Console.WriteLine();
+            Utility.SaveLog(LayoutFilePass, "ToolBarTop4_NumArray");
+            Utility.SaveLog(LayoutFilePass, ToolBarTop4NumArray);
+
             Console.WriteLine("ToolBarTop5_NumArray");
             foreach (int i in ToolBarTop5NumArray)
             {
-                Console.WriteLine(i);
+                Console.Write(i + ",");
             }
+            Console.WriteLine();
+            Utility.SaveLog(LayoutFilePass, "ToolBarTop5_NumArray");
+            Utility.SaveLog(LayoutFilePass, ToolBarTop5NumArray);
+
+            Console.WriteLine("ToolBarRight_NumArray");
+            foreach (int i in ToolBarRightNumArray)
+            {
+                Console.Write(i + ",");
+            }
+            Console.WriteLine();
+            Utility.SaveLog(LayoutFilePass, "ToolBarRight_NumArray");
+            Utility.SaveLog(LayoutFilePass, ToolBarRightNumArray);
+
             Console.WriteLine("ContentsBar" + ContentsBarType);
+            foreach (int i in ContentsBarNumArray)
+            {
+                Console.Write(i + ",");
+            }
+            Console.WriteLine();
+            Utility.SaveLog(LayoutFilePass, "ContentsBar" + ContentsBarType);
+            Utility.SaveLog(LayoutFilePass, ContentsBarNumArray);
+
+
             Console.WriteLine("MainContents");
             foreach (int i in MainContentsNumArray)
             {
-                Console.WriteLine(i);
+                Console.Write(i + ",");
             }
+            Console.WriteLine();
+
+            Utility.SaveLog(LayoutFilePass, "MainContents");
+            Utility.SaveLog(LayoutFilePass, "MainContentsNum");
+            Utility.SaveLog(LayoutFilePass, MainContentsNumArray);
+
+
+
+            Console.WriteLine("MainContents1NumArray");
+
+            foreach (int i in MainContents1NumArray)
+            {
+                Console.Write(i + ",");
+            }
+            Console.WriteLine();
+
+
+            Utility.SaveLog(LayoutFilePass, "MainContents1NumArray");
+            Utility.SaveLog(LayoutFilePass, MainContents1NumArray);
+
+
+
+
+            Console.WriteLine("MainContents2NumArray");
+            foreach (int i in MainContents2NumArray)
+            {
+                Console.Write(i + ",");
+            }
+            Console.WriteLine();
+            Utility.SaveLog(LayoutFilePass, "MainContents2NumArray");
+            Utility.SaveLog(LayoutFilePass, MainContents2NumArray);
+
+            Console.WriteLine("MainContents3NumArray");
+            foreach (int i in MainContents3NumArray)
+            {
+                Console.Write(i + ",");
+            }
+            Console.WriteLine();
+            Utility.SaveLog(LayoutFilePass, "MainContents3NumArray");
+            Utility.SaveLog(LayoutFilePass, MainContents3NumArray);
+
+
+            Console.WriteLine("MainContents4NumArray");
+            foreach (int i in MainContents4NumArray)
+            {
+                Console.Write(i + ",");
+            }
+            Console.WriteLine();
+            Utility.SaveLog(LayoutFilePass, "MainContents4NumArray");
+            Utility.SaveLog(LayoutFilePass, MainContents4NumArray);
+
+
+            Console.WriteLine("MainContents5NumArray");
+            foreach (int i in MainContents5NumArray)
+            {
+                Console.Write(i + ",");
+            }
+            Console.WriteLine();
+            Utility.SaveLog(LayoutFilePass, "MainContents5NumArray");
+            Utility.SaveLog(LayoutFilePass, MainContents5NumArray);
         }
 
 
@@ -418,6 +531,7 @@ namespace ResearchWindowGenerator.ResearchWindow
             String WindowTitle = "Layout3 :";
             String Next = "";
             Boolean Flag = false;
+            Console.WriteLine(text1+"_________________"+text2);
             switch (ScenarioNum % 5)
             {
                 //コンテンツバー1番  ContentsBarVector_C01_R01
@@ -449,7 +563,7 @@ namespace ResearchWindowGenerator.ResearchWindow
                     }
                     else
                     {
-                        Next = "MainContentsの" + Phase + "をクリック";
+                        Next = "MainContentsの1をクリック";
                     }
                     break;
 

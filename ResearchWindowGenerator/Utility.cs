@@ -99,7 +99,7 @@ namespace ResearchWindowGenerator
             }
             fileName = subjectname + "_" + _layoutName + "_" + start_time;
 
-            string filePass = @"../../../LogLayoutFolder/";
+            string filePass = @"../../../LogFolder/";
             if (!Directory.Exists(filePass))
             {
                 Directory.CreateDirectory(filePass);
@@ -114,7 +114,7 @@ namespace ResearchWindowGenerator
 
         }
 
-        
+
 
         public static string LoggerInitializeClick(string _layoutName)
         {
@@ -133,9 +133,9 @@ namespace ResearchWindowGenerator
             {
                 subjectname = MainWindow.subjectName;
             }
-            fileName = subjectname + "_" +"Click_"+ _layoutName + "_" + start_time;
+            fileName = subjectname + "_" + "Click_" + _layoutName + "_" + start_time;
 
-            string filePass = @"../../../LogClickedFolder/";
+            string filePass = @"../../../LogFolder/";
             if (!Directory.Exists(filePass))
             {
                 Directory.CreateDirectory(filePass);
@@ -160,25 +160,27 @@ namespace ResearchWindowGenerator
         internal static void SaveLog(string layoutFilePass, int[] ary)
         {
             StreamWriter w = new StreamWriter(layoutFilePass, true, Encoding.UTF8);
-            
+
             foreach (int i in ary)
             {
                 w.Write(i + ",");
-                
+
             }
             w.Write("\n");
             w.Close();
         }
 
-        public  static void SaveLogClick(string name, string tag)
+        public static void SaveLogClick(string name, string tag, System.Drawing.Point mousePosition)
         {
             // throw new NotImplementedException();
             StreamWriter w = new StreamWriter(ClickfilePass, true, Encoding.UTF8);
 
             //時間 ボタンの名前 ボタンのタグ
-            w.Write(counter() +",");
+            w.Write(counter() + ",");
             w.Write(name + ",");
             w.Write(tag + ",");
+            w.Write(mousePosition.X + ",");
+            w.Write(mousePosition.Y + ",");
 
 
             w.Write("\n");
@@ -186,7 +188,7 @@ namespace ResearchWindowGenerator
 
 
 
-            
+
 
 
 
@@ -208,7 +210,7 @@ namespace ResearchWindowGenerator
             {
                 sw.Start();
             }
-            else if(v.Equals("Stop"))
+            else if (v.Equals("Stop"))
             {
                 int a = counter();
                 sw.Stop();
