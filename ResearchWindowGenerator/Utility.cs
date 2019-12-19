@@ -144,6 +144,27 @@ namespace ResearchWindowGenerator
             ClickfilePass = filePass + fileName + ".csv";
             System.IO.File.Create(ClickfilePass).Close();
             Console.WriteLine("LogFile: " + ClickfilePass + " 生成");
+
+
+            // throw new NotImplementedException();
+            StreamWriter w = new StreamWriter(ClickfilePass, true, Encoding.UTF8);
+
+            //時間 ボタンの名前 ボタンのタグ
+            w.Write("sec." + ",");
+            w.Write("Name" + ",");
+            w.Write("tag" + ",");
+            w.Write("mousePosition.X" + ",");
+            w.Write("mousePosition.Y" + ",");
+
+
+            w.Write("\n");
+            w.Close();
+
+
+
+
+
+
             return ClickfilePass;
 
 

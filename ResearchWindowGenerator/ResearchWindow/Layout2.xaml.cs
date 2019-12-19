@@ -427,11 +427,80 @@ namespace ResearchWindowGenerator.ResearchWindow
 
 
             Console.WriteLine("ContentsBar" + ContentsBarType);
+            foreach (int i in ContentsBarNumArray)
+            {
+                Console.Write(i + ",");
+            }
+            Console.WriteLine();
+            Utility.SaveLog(LayoutFilePass, "ContentsBar" + ContentsBarType);
+            Utility.SaveLog(LayoutFilePass, ContentsBarNumArray);
+
+
             Console.WriteLine("MainContents");
             foreach (int i in MainContentsNumArray)
             {
-                Console.WriteLine(i);
+                Console.Write(i + ",");
             }
+            Console.WriteLine();
+
+            Utility.SaveLog(LayoutFilePass, "MainContents");
+            Utility.SaveLog(LayoutFilePass, "MainContentsNum");
+            Utility.SaveLog(LayoutFilePass, MainContentsNumArray);
+
+
+
+            Console.WriteLine("MainContents1NumArray");
+
+            foreach (int i in MainContents1NumArray)
+            {
+                Console.Write(i + ",");
+            }
+            Console.WriteLine();
+
+
+            Utility.SaveLog(LayoutFilePass, "MainContents1NumArray");
+            Utility.SaveLog(LayoutFilePass, MainContents1NumArray);
+
+
+
+
+            Console.WriteLine("MainContents2NumArray");
+            foreach (int i in MainContents2NumArray)
+            {
+                Console.Write(i + ",");
+            }
+            Console.WriteLine();
+            Utility.SaveLog(LayoutFilePass, "MainContents2NumArray");
+            Utility.SaveLog(LayoutFilePass, MainContents2NumArray);
+
+            Console.WriteLine("MainContents3NumArray");
+            foreach (int i in MainContents3NumArray)
+            {
+                Console.Write(i + ",");
+            }
+            Console.WriteLine();
+            Utility.SaveLog(LayoutFilePass, "MainContents3NumArray");
+            Utility.SaveLog(LayoutFilePass, MainContents3NumArray);
+
+
+            Console.WriteLine("MainContents4NumArray");
+            foreach (int i in MainContents4NumArray)
+            {
+                Console.Write(i + ",");
+            }
+            Console.WriteLine();
+            Utility.SaveLog(LayoutFilePass, "MainContents4NumArray");
+            Utility.SaveLog(LayoutFilePass, MainContents4NumArray);
+
+
+            Console.WriteLine("MainContents5NumArray");
+            foreach (int i in MainContents5NumArray)
+            {
+                Console.Write(i + ",");
+            }
+            Console.WriteLine();
+            Utility.SaveLog(LayoutFilePass, "MainContents5NumArray");
+            Utility.SaveLog(LayoutFilePass, MainContents5NumArray);
         }
 
         static int Phase = 1;
