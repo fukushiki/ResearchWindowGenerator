@@ -94,7 +94,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 ShowGridLines = true
 # endif
             };
-
+            
             rowDef = new RowDefinition[1];
             colDef = new ColumnDefinition[5];
 
@@ -173,7 +173,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             //番号に応じて順にGridを生成
             //それぞれに必要なボタンを配置
 
-
+            
 
 
 

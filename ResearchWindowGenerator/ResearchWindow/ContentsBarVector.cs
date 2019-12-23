@@ -182,7 +182,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
 
 
-
+            
 
             //ボタンを乗せるGridの生成
             ButtonPlaceGrid(5, 1);
@@ -192,7 +192,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             SetStackPanel(5, 1);
             //ボタンにStackPanelを貼る
             //SetStackPanel2Button
-
+            
 
 
 

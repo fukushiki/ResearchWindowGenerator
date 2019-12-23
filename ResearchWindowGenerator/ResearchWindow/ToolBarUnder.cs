@@ -117,7 +117,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 ShowGridLines = true
 # endif
             };
-
+            
             rowDef = new RowDefinition[1];
             colDef = new ColumnDefinition[3];
 
@@ -138,7 +138,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             {
                 Console.WriteLine("debug:ToolBarUnderOrder:::::" + i);
             }
-
+            
 
 
 

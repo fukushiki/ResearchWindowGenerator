@@ -99,7 +99,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             */
 
 
-
+            
             buttonList1 = new List<Button[]>();
             int buttonRow = 9;
             int buttonColumn = 1;
@@ -151,13 +151,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     g.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(g.Width * 0.2) });
                     g.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(g.Width * 0.8) });
 
-                    /*TextBlock textblock0 = new TextBlock();
-                    textblock0.Text = ToolBarOrder[i * buttonColumn + j].ToString();
-                    textblock0.FontSize = button[j].Height * 0.8;
-                    textblock0.HorizontalAlignment = HorizontalAlignment.Center;
-                    textblock0.VerticalAlignment = VerticalAlignment.Center;
-                    g.Children.Add(textblock0);
-                    */
+                    
 
 
                     Image img = new Image();
@@ -182,7 +176,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 }
 
                 buttonList1.Add(button);
-
+                
 
             }
 

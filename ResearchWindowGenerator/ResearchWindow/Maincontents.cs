@@ -190,7 +190,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 //Background = Brushes.GreenYellow,
                 //ShowGridLines = true
 #if DEBUG
-                //Background = Brushes.DarkOrange,
+                Background = Brushes.DarkOrange,
                 //ShowGridLines = true
 # endif
             };
@@ -259,7 +259,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             }
 
 
-
+            
 
 
         }

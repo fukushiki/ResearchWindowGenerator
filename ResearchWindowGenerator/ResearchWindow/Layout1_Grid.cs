@@ -103,8 +103,8 @@ namespace ResearchWindowGenerator.ResearchWindow
             ContentsBar_Arrangement();
 
             Maincontents_Arrangement();
+           // MaincontentsSet(0);
 
-            
             LayoutSetting();
 
             SaveLayoutSetting();
