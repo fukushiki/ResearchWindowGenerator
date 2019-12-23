@@ -211,7 +211,7 @@ namespace ResearchWindowGenerator.ResearchWindow
         {
             maincontents = new List<MainContents>();
             MainContentsNumArray = new int[] { 1, 2, 3, 4, 5 };
-            MainContentsNumArray = Utility.RamdomArray(MainContentsNumArray);
+            //MainContentsNumArray = Utility.RamdomArray(MainContentsNumArray);
             maincontentsNumArrayList = new List<int[]>();
 
             MainContents1NumArray = new int[90];
