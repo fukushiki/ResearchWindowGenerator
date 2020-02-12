@@ -190,7 +190,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 //Background = Brushes.GreenYellow,
                 //ShowGridLines = true
 #if DEBUG
-                Background = Brushes.DarkOrange,
+                //Background = Brushes.DarkOrange,
                 //ShowGridLines = true
 # endif
             };
@@ -320,7 +320,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             {
                 Height = gridHeight*2,
                 Width = gridWidth*3,
-                Background = Brushes.OrangeRed,
+                //Background = Brushes.OrangeRed,
                 
                 Name = "canvas23" + "Row" + (MainContents5Place[Maincontents5Pattern][0, 0] + 1).ToString()
                 + "Column" + (MainContents5Place[Maincontents5Pattern][0, 1] + 1).ToString()
@@ -340,7 +340,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 
             };
             
-            mainContentsGrid.Children.Add(canvas23text);
+           // mainContentsGrid.Children.Add(canvas23text);
             Grid.SetRow(canvas23text, MainContents5Place[Maincontents5Pattern][0, 0] + 1);
             Grid.SetColumn(canvas23text, MainContents5Place[Maincontents5Pattern][0, 1] + 1);
 
@@ -359,7 +359,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             {
                 Height = gridHeight * 3,
                 Width = gridWidth * 2,
-                Background = Brushes.Green,
+                //Background = Brushes.Green,
                 Name = "canvas32" + "Row" + (MainContents5Place[Maincontents5Pattern][1, 0] + 1).ToString()
                 + "Column" + (MainContents5Place[Maincontents5Pattern][1, 1] + 1).ToString(),
                 Tag = "canvas32"
@@ -377,7 +377,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
             };
 
-            mainContentsGrid.Children.Add(canvas32text);
+            //mainContentsGrid.Children.Add(canvas32text);
             Grid.SetRow(canvas32text, MainContents5Place[Maincontents5Pattern][1, 0] + 1);
             Grid.SetColumn(canvas32text, MainContents5Place[Maincontents5Pattern][1, 1] + 1);
 
@@ -392,14 +392,14 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             {
                 Height = gridHeight * 3,
                 Width = gridWidth * 3,
-                Background = Brushes.LightSalmon,
+                //Background = Brushes.LightSalmon,
                 
                 Name = "canvas33" + "Row" + (MainContents5Place[Maincontents5Pattern][2, 0] + 1).ToString()
                 + "Column" + (MainContents5Place[Maincontents5Pattern][2, 1] + 1).ToString(),
                 Tag = "canvas33"
             };
             CanvasList.Add(canvas33);
-            mainContentsGrid.Children.Add(canvas33);
+           // mainContentsGrid.Children.Add(canvas33);
             Grid.SetRow(canvas33, MainContents5Place[Maincontents5Pattern][2, 0] + 1);
             Grid.SetColumn(canvas33, MainContents5Place[Maincontents5Pattern][2, 1] + 1);
 
@@ -413,7 +413,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
             };
 
-            mainContentsGrid.Children.Add(canvas33text);
+           // mainContentsGrid.Children.Add(canvas33text);
             Grid.SetRow(canvas33text, MainContents5Place[Maincontents5Pattern][2, 0] + 1);
             Grid.SetColumn(canvas33text, MainContents5Place[Maincontents5Pattern][2, 1] + 1);
 
@@ -427,7 +427,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             {
                 Height = gridHeight * 3,
                 Width = gridWidth * 4,
-                Background = Brushes.Orange,
+                //Background = Brushes.Orange,
                 Name = "canvas34" + "Row"+(MainContents5Place[Maincontents5Pattern][3, 0] + 1).ToString()
                 +"Column" + (MainContents5Place[Maincontents5Pattern][3, 1] + 1).ToString(),
                 Tag = "canvas34"
@@ -446,7 +446,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
             };
 
-            mainContentsGrid.Children.Add(canvas34text);
+           // mainContentsGrid.Children.Add(canvas34text);
             Grid.SetRow(canvas34text, MainContents5Place[Maincontents5Pattern][3, 0] + 1);
             Grid.SetColumn(canvas34text, MainContents5Place[Maincontents5Pattern][3, 1] + 1);
 
@@ -458,7 +458,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             {
                 Height = gridHeight * 4,
                 Width = gridWidth * 3,
-                Background = Brushes.Yellow,
+                //Background = Brushes.Yellow,
                 Name = "canvas43" + "Row" + (MainContents5Place[Maincontents5Pattern][4, 0] + 1).ToString()
                 + "Column" + (MainContents5Place[Maincontents5Pattern][4, 1] + 1).ToString(),
                 Tag = "canvas43",
@@ -475,7 +475,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
 
             };
 
-            mainContentsGrid.Children.Add(canvas43text);
+            //mainContentsGrid.Children.Add(canvas43text);
             Grid.SetRow(canvas43text, MainContents5Place[Maincontents5Pattern][4, 0] + 1);
             Grid.SetColumn(canvas43text, MainContents5Place[Maincontents5Pattern][4, 1] + 1);
 
@@ -949,11 +949,11 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                             rowDef2 = new RowDefinition { Height = new GridLength(contentsGrid.Height*0.2) };
                             contentsGrid.RowDefinitions.Add(rowDef1);
                             contentsGrid.RowDefinitions.Add(rowDef2);
-                            contentsGrid.Children.Add(img);
-                            contentsGrid.Children.Add(textBlock);
+                            //contentsGrid.Children.Add(img);
+                            //contentsGrid.Children.Add(textBlock);
                             textBlock.FontSize = contentsGrid.Height * 0.2 * 0.8;
-                            Grid.SetRow(img, 0);
-                            Grid.SetRow(textBlock, 1);
+                            //Grid.SetRow(img, 0);
+                           // Grid.SetRow(textBlock, 1);
                             break;
                         
                         case (2)://一覧
@@ -963,11 +963,11 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                             colDef2 = new ColumnDefinition { Width = new GridLength() };
                             contentsGrid.ColumnDefinitions.Add(colDef1);
                             contentsGrid.ColumnDefinitions.Add(colDef2);
-                            contentsGrid.Children.Add(img);
-                            contentsGrid.Children.Add(textBlock);
+                            //contentsGrid.Children.Add(img);
+                           // contentsGrid.Children.Add(textBlock);
                             textBlock.FontSize = 20;
-                            Grid.SetColumn(img, 0);
-                            Grid.SetColumn(textBlock, 1);
+                           // Grid.SetColumn(img, 0);
+                           // Grid.SetColumn(textBlock, 1);
                             break;
                         case (3)://並べて表示
                             //Column : 行 Width
@@ -975,12 +975,12 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                             colDef2 = new ColumnDefinition { Width = new GridLength() };
                             contentsGrid.ColumnDefinitions.Add(colDef1);
                             contentsGrid.ColumnDefinitions.Add(colDef2);
-                            contentsGrid.Children.Add(img);
+                            //contentsGrid.Children.Add(img);
                             //textBlock.Text = "Row:" + i + ", Col:" + j + "\n" + "TXTファイル" + "\n" + "0バイト";
-                            contentsGrid.Children.Add(textBlock);
+                            //contentsGrid.Children.Add(textBlock);
                             //textBlock.FontSize = 20;
-                            Grid.SetColumn(img, 0);
-                            Grid.SetColumn(textBlock, 1);
+                            //Grid.SetColumn(img, 0);
+                            //Grid.SetColumn(textBlock, 1);
                             break;
                         case (4)://コンテンツ
                             //Column : 行 Width
@@ -990,9 +990,9 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                             contentsGrid.ColumnDefinitions.Add(colDef1);
                             contentsGrid.ColumnDefinitions.Add(colDef2);
                             contentsGrid.ColumnDefinitions.Add(colDef3);
-                            contentsGrid.Children.Add(img);
+                           // contentsGrid.Children.Add(img);
                             textBlock.FontSize = 30;
-                            contentsGrid.Children.Add(textBlock);
+                            //contentsGrid.Children.Add(textBlock);
                             TextBlock textBlock2 = new TextBlock
                             {
                                 VerticalAlignment = VerticalAlignment.Center,
@@ -1001,8 +1001,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                             textBlock2.Text = "更新日時: 2019/11/09 20:00" + "\n" + "サイズ: 0バイト";
                             //contentsGrid.Children.Add(textBlock2);
 
-                            Grid.SetColumn(img, 0);
-                            Grid.SetColumn(textBlock, 1);
+                           // Grid.SetColumn(img, 0);
+                           // Grid.SetColumn(textBlock, 1);
                             //Grid.SetColumn(textBlock2, 2);
                             break;
                         case (5)://ランダム表示

@@ -157,7 +157,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     Image img = new Image();
                     img.Source = new BitmapImage(new Uri(System.IO.Path.GetFullPath(@"../../../ImageFolder/" + ToolBarOrder[i * buttonColumn + j] + ".png"), UriKind.RelativeOrAbsolute));
                     img.Height = sp.Height * 0.8;
-                    g.Children.Add(img);
+                    //g.Children.Add(img);
 
 
 
@@ -166,7 +166,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     textblock1.FontSize = button[j].Height * 0.8;
                     textblock1.HorizontalAlignment = HorizontalAlignment.Center;
                     textblock1.VerticalAlignment = VerticalAlignment.Center;
-                    g.Children.Add(textblock1);
+                   // g.Children.Add(textblock1);
 
 
                     Grid.SetColumn(img, 0);

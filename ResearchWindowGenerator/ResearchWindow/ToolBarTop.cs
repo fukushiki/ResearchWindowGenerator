@@ -90,7 +90,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 //Background = Brushes.GreenYellow,
                 //ShowGridLines = true
 #if DEBUG
-                Background = Brushes.Yellow,
+                //Background = Brushes.Yellow,
                 ShowGridLines = true
 # endif
             };
@@ -421,7 +421,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     Image img = new Image();
                     img.Source = new BitmapImage(new Uri(System.IO.Path.GetFullPath(@"../../../ImageFolder/" + toolBarNumArray[1][i * buttonColumn + j] + ".png"), UriKind.RelativeOrAbsolute));
                     img.Width = buttonGrid.Width* 0.8;
-                    g.Children.Add(img);
+                    //g.Children.Add(img);
                     Grid.SetColumn(img, 1);
 
                     TextBlock textblock_ = new TextBlock();
@@ -429,7 +429,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     textblock_.FontSize = stack.Height * 0.5;
                     textblock_.HorizontalAlignment = HorizontalAlignment.Center;
                     textblock_.VerticalAlignment = VerticalAlignment.Center;
-                    g.Children.Add(textblock_);
+                    //g.Children.Add(textblock_);
                     Grid.SetColumn(textblock_, 0);
                 }
 
@@ -527,7 +527,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     textblock_.FontSize = stack.Height * 0.5;
                     textblock_.HorizontalAlignment = HorizontalAlignment.Center;
                     textblock_.VerticalAlignment = VerticalAlignment.Center;
-                    stack.Children.Add(textblock_);
+                   // stack.Children.Add(textblock_);
 
                 }
 
@@ -637,8 +637,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     Image img = new Image();
                     img.Source = new BitmapImage(new Uri(System.IO.Path.GetFullPath(@"../../../ImageFolder/" + toolBarNumArray[3][i * buttonColumn + j] + ".png"), UriKind.RelativeOrAbsolute));
                     img.Height = buttonGrid.Height * 0.6;
-                    g.Children.Add(img);
-                    Grid.SetRow(img, 0);
+                    //g.Children.Add(img);
+                    //Grid.SetRow(img, 0);
 
 
                     TextBlock textblock_ = new TextBlock();
@@ -646,8 +646,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                     textblock_.FontSize = stack.Height * 0.4;
                     textblock_.HorizontalAlignment = HorizontalAlignment.Center;
                     textblock_.VerticalAlignment = VerticalAlignment.Center;
-                    g.Children.Add(textblock_);
-                    Grid.SetRow(textblock_,1);                    
+                   // g.Children.Add(textblock_);
+                   // Grid.SetRow(textblock_,1);                    
 
                     /*
                     Grid.SetColumn(textblock_, 0);

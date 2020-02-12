@@ -134,8 +134,8 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
                 //Background = Brushes.GreenYellow,
                 //ShowGridLines = true
                 #if DEBUG
-                Background = Brushes.GreenYellow,
-                ShowGridLines = true
+                //Background = Brushes.GreenYellow,
+                //ShowGridLines = true
                 # endif
             };
 
@@ -344,7 +344,7 @@ namespace ResearchWindowGenerator.ResearchWindowFolder
             }
             if (changeColorFlag)
             {
-                sender1.Background = Brushes.Red;
+                //sender1.Background = Brushes.Red;
             }
         }
 

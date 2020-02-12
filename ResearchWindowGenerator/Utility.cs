@@ -76,7 +76,8 @@ namespace ResearchWindowGenerator
             return ary;*/
 
             int[] ary2 = ary.OrderBy(i => Guid.NewGuid()).ToArray();
-            return ary2;
+            //return ary2;
+            return ary;
         }
 
 
